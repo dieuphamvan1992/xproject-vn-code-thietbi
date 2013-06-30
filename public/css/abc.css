@@ -1,0 +1,262 @@
+@charset "utf-8";
+
+body {
+	margin:0;
+	padding:0;
+	background:url(../images/nen.png) repeat;
+	
+}
+h1{
+	font-size:14pt;
+	color:#5353A6;
+
+}
+a{
+text-decoration:none;
+}
+ul {
+	margin:0;
+	padding:0;
+}
+#anhlogo{
+	position:fixed;
+	top:55px;
+	left:5px;
+	z-index:-1;
+
+}
+li {
+	list-style:none;
+}
+#header {
+	width:100%;
+	height:40px;
+	max-height:140px;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:9;
+}
+#content {
+	z-index:5;
+	width:960px;
+
+	padding-bottom:10px;
+	margin:auto;
+	margin-top:50px;
+	padding:10px;
+	/* inner shadow*/
+
+	box-shadow: 0px 0px 5px #555;
+    -moz-box-shadow: 0px 0px 5px #555;
+    -webkit-box-shadow: 0px 0px 5px #555;
+    -khtml-box-shadow: 0px 0px 5px #555;
+	background-color: #f5f5f5;
+	border: 1px solid #666;
+	-webkit-border-radius: 5px;
+	 border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+
+}
+#footer {
+	width:100%;
+	height:0px;
+}
+/*nút tìm kiếm*/
+#search-box {
+	margin:auto;
+	width:900px;
+	padding:5px;
+	padding-top:5px;
+	border:1px solid #797979;
+	margin-bottom:10px;
+
+
+
+}
+
+#search-box label,#search-box input,#search-box select{
+	float:left;
+}
+#search-box label{
+	line-height:25px;
+	width:80px;
+}
+#search-box input[checkbok]{
+	margin-top:5px;
+}
+.search-element-dv {
+
+}
+.search-element {
+	width:300px;
+	float:left;
+}
+.search-element-submit {
+	text-align:center;
+	padding-top:1px;
+}
+#search-button {
+	padding:5px;
+	padding-left:10px;
+	padding-right:10px;
+	background:#9e9bdc;
+	border:#554fb6 1px solid;
+	color:#fff;
+	font-weight:bold;
+	box-shadow: inset 0px -15px 20px #635fa9;
+    -moz-box-shadow: inset 0px -15px 20px #635fa9;
+    -webkit-box-shadow: inset 0px -15px 20px #635fa9;
+    -khtml-box-shadow: inset 0px -15px 20px #635fa9;
+}
+#search-button:hover {
+	background:#908dd0;
+	border:#654fb6 1px solid;
+	box-shadow: inset 0px -15px 20px #565297;
+    -moz-box-shadow: inset 0px -15px 20px #565297;
+    -webkit-box-shadow: inset 0px -15px 20px #565297;
+    -khtml-box-shadow: inset 0px -15px 20px #565297;
+}
+#tuoi{
+	width:30px;
+}
+
+#result-box{
+	width:100%;
+	padding-left:3px;
+	padding-right:3px;
+
+}
+#result-menu{
+	width:100%;
+	height:40px;
+	line-height:35px;
+
+}
+#result-menu a{
+	margin-top:5px;
+}
+.button{
+
+	line-height:25px;
+	padding-left:10px;
+	padding-right:10px;
+	display:block;
+	float:right;
+	margin-right:10px;
+	margin-bottom:2px;
+	text-decoration:none;
+	color:#FFF;
+	background:#00aaec;
+	box-shadow: inset 0px -15px 20px #0066a9;
+    -moz-box-shadow: inset 0px -15px 20px #0066a9;
+    -webkit-box-shadow: inset 0px -15px 20px #0066a9;
+    -khtml-box-shadow: inset 0px -15px 20px #0066a9;
+	border:#0076a3 1px solid;
+
+}
+.trai .button{
+float:left;
+margin-right:0px;
+}
+.giua .button{
+float:none;
+clear:both;
+margin:auto;
+}
+.button:hover{
+	background:#00b7ff;
+	box-shadow: inset 0px -15px 20px #0078c6;
+    -moz-box-shadow: inset 0px -15px 20px #0078c6;
+    -webkit-box-shadow: inset 0px -15px 20px #0078c6;
+    -khtml-box-shadow: inset 0px -15px 20px #0078c6;
+	border:#5ec1e8 1px solid;
+}
+
+#result-table{
+	background:#fff;
+	height:480px;
+	border:1px solid #aaa;
+	overflow:scroll;
+	padding:2px;
+
+}
+#result-table table {
+
+	border-collapse:collapse;
+	border:#888 1px solid;
+}
+#result-table table a{
+	text-decoration:none;
+	color:#5353A6;
+	font-weight:bold;
+}
+#result-table table a:hover{
+	color:#F00;
+}
+#result-table th{
+	background:#9B9BCE;
+	/* inner shadow*/
+	box-shadow: inset 0px -10px 15px #8080C0;
+    -moz-box-shadow: inset 0px -10px 15px #8080C0;
+    -webkit-box-shadow: inset 0px -10px 15px #8080C0;
+    -khtml-box-shadow: inset 0px -10px 15px #8080C0;
+	line-height:21px;
+	color:#fff;
+	font-weight:normal;
+	padding-left:10px;
+	padding-right:5px;
+	text-align:left;
+}
+#result-table tr{
+	background:#FFF;
+
+}
+#result-table td{
+	padding-left:10px;
+	padding-right:5px;
+}
+#result-table tr.chan{
+	background:#eee;
+}
+.clear{
+clear;
+}
+.comment{
+	padding:0.5%;
+	width:99%;
+	background:#ddd;
+	border:1px solid #999;
+}
+#imp1{
+width:300px;
+border:1px solid #333;
+margin:5px auto;
+}
+.cot {
+clear:both;
+border-top:1px solid #ccc;
+}
+.cot label{
+width:200 px;
+line-height:25px;
+float:left;
+}
+.hang {
+float:left;
+width:33%;
+}
+.hang span,hang .input{
+line-height:27px;
+}
+.hang span{
+padding-right:5px;
+padding-left:5px;
+}
+.cot span{
+float:left;
+line-height:27px;
+padding-right:5px;
+padding-left:5px;
+}
