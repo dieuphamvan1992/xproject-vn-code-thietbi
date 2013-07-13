@@ -54,7 +54,7 @@
         <tr>
             <td>Từ năm</td>
             <td>
-                <select name="tu" id="tu" class="span1">
+                <select name="tu" id="tu" class="">
                     <option value=""></option>
                     <?php
                         $year = (int) date('Y');
