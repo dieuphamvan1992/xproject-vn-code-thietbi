@@ -74,7 +74,7 @@
 <div>
     <div>
         <input type="hidden" id="ma" value="" />
-        <table>
+        <table style="border: 1px solid #666; background: ">
             <tr>
                 <td><label>Tên thiết bị</label></td>
                 <td>
