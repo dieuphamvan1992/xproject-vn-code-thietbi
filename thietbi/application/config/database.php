@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = 'root';
+$db['default']['password'] = 'vertrigo';
 $db['default']['database'] = 'quanlythietbi';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
@@ -67,8 +67,8 @@ $db['default']['stricton'] = FALSE;
 // Database thứ 2 đặt trên là staff
 $db['dv']['hostname'] = "localhost";
 $db['dv']['username'] = "root";
-$db['dv']['password'] = "root";
-$db['dv']['database'] = "staff";
+$db['dv']['password'] = "vertrigo";
+$db['dv']['database'] = "qlcb150413";
 $db['dv']['dbdriver'] = "mysql";
 $db['dv']['dbprefix'] = "";
 //$db['dv']['pconnect'] = TRUE;

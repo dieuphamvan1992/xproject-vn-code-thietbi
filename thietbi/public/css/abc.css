@@ -4,7 +4,8 @@ body {
 	margin:0;
 	padding:0;
 	background:url(../images/nen.png) repeat;
-	
+	font-family:"Times New Roman", Times, serif;
+	font-size:10pt;
 }
 h1{
 	font-size:14pt;
