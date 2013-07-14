@@ -8,14 +8,14 @@ class Mnhapthang extends CI_Model{
     
     public function getAllNhaCungCap(){
         $this->db->select('ten, id');
-        $result = $this->db->get('nha_cung_cap');
+        $result = $this->db->get('dm_nha_cung_cap');
         
         return $result->result_array();
     }
     
     public function getAllTenThietBi(){
         $this->db->select('ten, id');
-        $result = $this->db->get('ten_thiet_bi');
+        $result = $this->db->get('dm_ten_thiet_bi');
         
         return $result->result_array();
     }
@@ -28,21 +28,21 @@ class Mnhapthang extends CI_Model{
     
     public function getAllDonVi(){
         $this->db->select('id, ten');
-        $result = $this->db->get('don_vi');
+        $result = $this->db->get('dm_don_vi');
         
         return $result->result_array();
     }
     
     public function getAllKhuNha(){
         $this->db->select('id, ten, trang_thai');
-        $result = $this->db->get('khu_nha');
+        $result = $this->db->get('dm_khu_nha');
         
         return $result->result_array();
     }
     
     public function getAllNguonVon(){
         $this->db->select('id, ten');
-        $result = $this->db->get('nguon_von');
+        $result = $this->db->get('dm_nguon_von');
         
         return $result->result_array();
     }

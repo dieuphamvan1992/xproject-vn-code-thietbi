@@ -8,14 +8,14 @@ class Msearch extends CI_Model{
     
     public function getAllKhuNha(){
         $this->db->select('id, ten');
-        $result = $this->db->get('khu_nha');
+        $result = $this->db->get('dm_khu_nha');
         
         return $result->result_array();
     }
     
     public function getAllDonVi(){
         $this->db->select('id, ten');
-        $result = $this->db->get('don_vi');
+        $result = $this->db->get('dm_don_vi');
         
         return $result->result_array();
     }
@@ -43,7 +43,7 @@ class Msearch extends CI_Model{
             }
         }
         if (isset($data['id_loai_thiet_bi']) && ($data['id_loai_thiet_bi'] !== '')){
-            $this->db->where('ten_thiet_bi.id_loai_thiet_bi', $data['id_loai_thiet_bi']);
+            $this->db->where('dm_ten_thiet_bi.id_loai_thiet_bi', $data['id_loai_thiet_bi']);
         }
         if (isset($data['ngay_su_dung']) && ($data['ngay_su_dung'] !== '')){
             $this->db->where('ngay_su_dung', $data['ngay_su_dung']);
@@ -61,12 +61,12 @@ class Msearch extends CI_Model{
             $this->db->where("YEAR(ngay_su_dung) BETWEEN '".$data['tu_nam']."' AND '".$data['den_nam']."'");
         }
         
-        $this->db->join('ten_thiet_bi', 'thiet_bi_su_dung.id_ten_thiet_bi = ten_thiet_bi.id', 'LEFT');
-        $this->db->join('don_vi', 'don_vi.id = thiet_bi_su_dung.id_don_vi_quan_ly', 'LEFT');
-        $this->db->join('khu_nha', 'khu_nha.id = thiet_bi_su_dung.id_khu_nha', 'LEFT');
+        $this->db->join('dm_ten_thiet_bi', 'thiet_bi_su_dung.id_ten_thiet_bi = dm_ten_thiet_bi.id', 'LEFT');
+        $this->db->join('dm_don_vi', 'dm_don_vi.id = thiet_bi_su_dung.id_don_vi_quan_ly', 'LEFT');
+        $this->db->join('dm_khu_nha', 'dm_khu_nha.id = thiet_bi_su_dung.id_khu_nha', 'LEFT');
         
         $this->db->select('thiet_bi_su_dung.id, thiet_bi_su_dung.ngay_su_dung, thiet_bi_su_dung.phong, 
-        don_vi.ten as don_vi, khu_nha.ten as khu_nha, ten_thiet_bi.ten');
+        dm_don_vi.ten as don_vi, dm_khu_nha.ten as khu_nha, dm_ten_thiet_bi.ten');
         $result = $this->db->get('thiet_bi_su_dung');
         
         return $result->result_array();
@@ -77,20 +77,20 @@ class Msearch extends CI_Model{
         $this->db->like('ten', $ten);
         $this->db->limit(1);
         
-        $result = $this->db->get('ten_thiet_bi');
+        $result = $this->db->get('dm_ten_thiet_bi');
         return $result->row_array();
     }
     
     public function getAllTenThietBi(){
         $this->db->select('id, ten, id_loai_thiet_bi');
-        $result = $this->db->get('ten_thiet_bi');
+        $result = $this->db->get('dm_ten_thiet_bi');
         
         return $result->result_array();
     }
     
     public function getAllLoaiThietBi(){
         $this->db->select('id, ten');
-        $result = $this->db->get('loai_thiet_bi');
+        $result = $this->db->get('dm_loai_thiet_bi');
         
         return $result->result_array();
     }
