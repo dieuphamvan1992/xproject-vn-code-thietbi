@@ -23,21 +23,32 @@ class Ajax extends Tb_controller {
         $this->load->Model("Mhoadonnhap");
 
         $listsanpham = $this->session->userdata('listsanpham');
-        if (isset($listsanpham[$id_ten])) {
+        if (!isset($listsanpham[$id_ten])) {
             
-            $list_chi_tiet_nhap = $this->Mhoadonnhap->getListChiTietNhapByIDTen($id_ten);
-            $listsanpham[$id_ten] = $list_chi_tiet_nhap;
-            $this->session->set_userdata('listsanpham', $listsanpham);
             
-        }
+            $list_chi_tiet_nhaps = $this->Mhoadonnhap->getListChiTietNhapByIDTen($id_ten);
+            $list = array();
+            foreach ($list_chi_tiet_nhaps as $an) {
+                $id = $an['id'];
+                $list[$id] = $an;
+            }
 
+            $listsanpham[$id_ten] = $list;
+            $this->session->set_userdata('listsanpham', $listsanpham);
+        }
+        $listsanpham = $this->session->userdata('listsanpham');
+       // var_dump($listsanpham);
+        $list_chi_tiet_nhap = $listsanpham[$id_ten];
+        //  var_dump($list_chi_tiet_nhap);
 
         if (!empty($list_chi_tiet_nhap)) {
             ?>
             <select name="hoa_don_nhap" >
             <?php
             foreach ($list_chi_tiet_nhap as $item) {
-                echo '<option value="' . $item['id'] . '-' . $item['so_luong_con'] . '">' . 'Số hoá đơn: ' . $item['so_hoa_don'] . ' - Số lượng: ' . $item['so_luong_con'] . ' </option>    ';
+
+                if (intval($item['so_luong_con']) > 0)
+                    echo '<option value="' . $item['id'] . '-' . $item['so_luong_con'] . '">' . 'Số hoá đơn: ' . $item['so_hoa_don'] . ' - Số lượng: ' . $item['so_luong_con'] . ' </option>    ';
             }
             ?>
             </select>

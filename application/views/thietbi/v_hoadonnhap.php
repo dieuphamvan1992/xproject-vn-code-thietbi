@@ -50,6 +50,7 @@
  });
  // ]]>
  </script>
+ <div class="container-box">
  <h3><?php echo $title; ?></h3>
  <?php
  echo form_open('hoadon/doCreateHoaDonNhap');
@@ -107,10 +108,10 @@
  			<thead>
  				<tr>
  					<th width="25%">Tên Thiết Bị</th>
- 					
+
  					<th width="65px">Số lượng</th>
                                         <th width="25%">Đơn giá</th>
-                                        
+
                                         <th width="25%">Quốc gia</th>
  					<th colspan="2"></th>
  				</tr>
@@ -127,11 +128,11 @@
                            <td> <input type="text" name="ten_thiet_bis[<?php echo $item[0]; ?>]" value="<?php echo $item[1]; ?>" /></td>
                             <td> <input type="text" name="so_luongs[<?php echo $item[0]; ?>]" value="<?php echo $item[2]; ?>" /></td>
                             <td> <input type="text" name="don_gias[<?php echo $item[0]; ?>]" value="<?php echo $item[3]; ?>" /></td>
-                            
+
                            <td> <input type="text" name="quoc_gias[<?php echo $item[0]; ?>]" value="<?php echo $item[4]; ?>" /></td>
-                           
-                           
-                           
+
+
+
                             </tr>
                             <?php
                                         }
@@ -140,7 +141,9 @@
  			</tbody>
  		</table>
  	</div>
+
  	<input type="submit" name="btnCreateHoaDon" class="btn btn-inverse add_data" value="Hoàn thành Hoá đơn" style="margin-left: auto; margin-right: auto; display: block">
+ </div>
  </div>
  <div style="clear:both"></div>
  <?php echo form_close();?>
