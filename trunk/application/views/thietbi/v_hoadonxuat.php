@@ -76,6 +76,7 @@ if ($this->session->flashdata('editThietBiID')) {
     });
 // ]]>
 </script>
+<div class="container-box">
 <h3><?php echo $title; ?></h3>
 <?php
 echo form_open('hoadon/doCreateHoaDonXuat');
@@ -163,7 +164,7 @@ if ($this->session->flashdata('ketqua')) {
 </div>
 <div style="clear:both"></div>
 <?php echo form_close(); ?>
-
+</div>
 
 <!-- Button to trigger modal -->
 
@@ -217,7 +218,7 @@ foreach ($list_tenthietbi as $item) {
             <label>Chi phí chạy thử</label>
             <input type="text" name="chi_phi_chay_thu" value="">
 
-           
+
 
             <input type="submit" name="btnThemThietBiXuat" class="btn btn-primary" value="Thêm Thiết bị" />
 <?php echo form_close(); ?>

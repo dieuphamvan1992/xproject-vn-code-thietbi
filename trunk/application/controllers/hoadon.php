@@ -188,6 +188,27 @@ class Hoadon extends Tb_controller {
             {
                  redirect('hoadon/createHoaDonXuat');
             }
+            else 
+            {
+                 $listsanpham = $this->session->userdata('listsanpham');
+              //    var_dump($listsanpham);
+               //   echo "<Br>";
+                 $aItem = $listsanpham[$id_thiet_bi];
+                 $anItem = $aItem[$id_hoa_don_nhap];
+                // echo $aItem['so_luong_con'];
+             //   print_r($anItem);
+              //  echo "<Br>";
+                $so_luong_tru = $so_luong_con-$so_luong;
+                unset ($anItem["so_luong_con"]);
+                $anItem['so_luong_con'] = $so_luong_tru;
+               // print_r($anItem);
+                // unset($listsanpham[$id_thiet_bi]);
+                $aItem[$id_hoa_don_nhap] = $anItem;
+                 $listsanpham[$id_thiet_bi] = $aItem;
+                 print_r($listsanpham);
+                 $this->session->set_userdata('listsanpham',$listsanpham);
+                 
+            }
             $xuat = $this->session->userdata('xuat');
             $new_xuat = array();
             $new_xuat[0] = $id_thiet_bi;
