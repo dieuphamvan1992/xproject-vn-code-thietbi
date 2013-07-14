@@ -147,8 +147,10 @@
                     <th>Tên thiết bị</th>
                     <th>Quốc gia</th>
                     <th>Số lượng</th>
-                    <th>Số tháng bảo hành</th>
-                    <th>Chi phí</th>
+                    <th>Số tbh</th>
+                    <th>Cpld</th>
+                    <th>Cpvc</th>
+                    <th>Cpct</th>
                     <th>Khấu hao</th>
                     <th>Đơn giá</th>
                     <th>Chức năng</th>
@@ -194,11 +196,11 @@
                 var qg_ = ds[1].getAttribute("data");
                 var sl_ = ds[2].innerHTML;
                 var stbh_ = ds[3].innerHTML;
-                var cpld_ = ds[4].getAttribute("ld");
-                var cpvc_ = ds[4].getAttribute("vc");
-                var cpct_ = ds[4].getAttribute("ct");
-                var kh_ = ds[5].innerHTML;
-                var dg_ = ds[6].innerHTML;
+                var cpld_ = ds[4].innerHTML;
+                var cpvc_ = ds[5].innerHTML;
+                var cpct_ = ds[6].innerHTML;
+                var kh_ = ds[7].innerHTML;
+                var dg_ = ds[8].innerHTML;
 
                 txt = txt +
                     '"' + i + '"' + ':{' +

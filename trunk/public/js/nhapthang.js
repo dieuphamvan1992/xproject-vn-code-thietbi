@@ -8,32 +8,16 @@ function appendText(index){
     var cpct = $("#cpct").val();
     var kh = $("#kh").val();
     var dg = $("#dg").val();
-    var cp = 0;
-    if (!isNaN(parseInt(cpld))){
-        cpld = parseInt(cpld);
-        cp = cp + cpld;
-    }else{
-        cpld = 0;
-    }
-    if (!isNaN(parseInt(cpvc))){
-        cpvc = parseInt(cpvc);
-        cp = cp + cpvc;
-    }else{
-        cpvc = 0;
-    }
-    if (!isNaN(parseInt(cpct))){
-        cpct = parseInt(cpct);
-        cp = cp + cpct;
-    }else{
-        cpct = 0;
-    }
     
+    var cp = cpld + " , " + cpvc + " , " + cpct;
     var txt =   '<tr id="' + index + '">'
                     + '<td data="' + ten + '">' + $("#ten option:selected").text() + '</td>'
                     + '<td data="' + qg + '">' + $("#qg option:selected").text() + '</td>'
                     + '<td>' + sl + '</td>'
                     + '<td>' + stbh + '</td>'
-                    + '<td ld="' + cpld + '" vc="' + cpvc + '" ct="' + cpct + '">' + (cp == 0? '' : cp) + '</td>'
+                    + '<td>' + cpld + '</td>'
+                    + '<td>' + cpvc + '</td>'
+                    + '<td>' + cpct + '</td>'
                     + '<td>' + kh + '</td>'
                     + '<td>' + dg + '</td>'
                     + '<td>'
@@ -56,11 +40,11 @@ function readText(id){
     var qg = tag_tb[1].getAttribute("data");
     var sl = tag_tb[2].innerHTML;
     var stbh = tag_tb[3].innerHTML;
-    var cpld = tag_tb[4].getAttribute('ld');
-    var cpvc = tag_tb[4].getAttribute('vc');
-    var cpct = tag_tb[4].getAttribute('ct');
-    var kh = tag_tb[5].innerHTML;
-    var dg = tag_tb[6].innerHTML;
+    var cpld = tag_tb[4].innerHTML;
+    var cpvc = tag_tb[5].innerHTML;
+    var cpct = tag_tb[6].innerHTML;
+    var kh = tag_tb[7].innerHTML;
+    var dg = tag_tb[8].innerHTML;
     
     $("#ma").val(id);
     $("#ten").val(ten);
@@ -87,26 +71,8 @@ function editText(){
     var cpct = $("#cpct").val();
     var kh = $("#kh").val();
     var dg = $("#dg").val();
-    var cp = 0;
-    if (!isNaN(parseInt(cpld))){
-        cpld = parseInt(cpld);
-        cp = cp + cpld;
-    }else{
-        cpld = 0;
-    }
-    if (!isNaN(parseInt(cpvc))){
-        cpvc = parseInt(cpvc);
-        cp = cp + cpvc;
-    }else{
-        cpvc = 0;
-    }
-    if (!isNaN(parseInt(cpct))){
-        cpct = parseInt(cpct);
-        cp = cp + cpct;
-    }else{
-        cpct = 0;
-    }
     
+    var cp = cpld + " , " + cpvc + " , " + cpct;
     var tb = document.getElementById(ma);
     var tag_tb = tb.getElementsByTagName('td');
     tag_tb[0].setAttribute("data", ten);
@@ -115,12 +81,11 @@ function editText(){
     tag_tb[1].innerHTML = $("#qg option:selected").text();
     tag_tb[2].innerHTML = sl;
     tag_tb[3].innerHTML = stbh;
-    tag_tb[4].innerHTML = cp;
-    tag_tb[4].setAttribute("ld", cpld);
-    tag_tb[4].setAttribute("vc", cpvc);
-    tag_tb[4].setAttribute("ct", cpct);
-    tag_tb[5].innerHTML = kh;
-    tag_tb[6].innerHTML = dg;
+    tag_tb[4].innerHTML = cpld;
+    tag_tb[5].innerHTML = cpvc;
+    tag_tb[6].innerHTML = cpct;
+    tag_tb[7].innerHTML = kh;
+    tag_tb[8].innerHTML = dg;
     
     $("#edit").hide();
 }
