@@ -88,7 +88,7 @@
                 <div class="box-horizontal">
                 	<label for="" >Đến năm</label>
                     <div class="input-box">
-                    	<select name="den" id="den">
+                    	<select name="den" id="den" class="span1">
                     <option value=""></option>
                     <?php
                         for ($i = $year; $i > $year - 10; $i--){
