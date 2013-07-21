@@ -11,6 +11,7 @@
     <link href='<?php echo base_url(); ?>public/bootstrap/css/bootstrap-responsive.min.css' rel="stylesheet" type="text/css" />
     <link href='<?php echo base_url(); ?>public/select2/select2.css' rel="stylesheet" type="text/css" />
     <link href='<?php echo base_url(); ?>public/css/styles.css' rel="stylesheet" type="text/css" />
+    <link href='<?php echo base_url(); ?>public/css/search.css' rel="stylesheet" type="text/css" />
 
     <script src="<?php echo base_url(); ?>public/js/jquery.js" type="text/javascript"> </script>
 

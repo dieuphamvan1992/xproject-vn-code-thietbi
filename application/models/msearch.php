@@ -123,6 +123,27 @@ class Msearch extends CI_Model{
     
     public function searchBatch($data){
         
+        if (isset($data['shdn']) && ($data['shdn'] !== '')){
+            $nhap = $this->getIdNhap($data['shdn']);
+            if (isset($nhap['id'])){
+                $chi_tiet_xuat = $this->getXuatNhap($nhap['id']);
+                $temp = array();
+                foreach ($chi_tiet_xuat as $item){
+                    $temp[] = $item['id'];
+                }
+                $this->db->where_in('id_chi_tiet_xuat', $temp);
+            }else{
+                return array();
+            }
+        }
+        if (isset($data['shdx']) && ($data['shdx']) !== ''){
+            $xuat = $this->getIdXuat($data['shdx']);
+            if (isset($xuat['id'])){
+                $this->db->where("id_chi_tiet_xuat IN (SELECT id FROM chi_tiet_xuat WHERE id_xuat='".$xuat['id']."')");
+            }else{
+                return array();
+            }
+        }
         if (isset($data['phong']) && ($data['phong'] !== '')){
             $this->db->like('phong', $data['phong']);
         }
@@ -141,30 +162,64 @@ class Msearch extends CI_Model{
         if (isset($data['id_loai_thiet_bi']) && ($data['id_loai_thiet_bi'] !== '')){
             $this->db->where('dm_ten_thiet_bi.id_loai_thiet_bi', $data['id_loai_thiet_bi']);
         }
-        if (isset($data['shdn']) && ($data['shdn'] !== '')){
-            $nhap = $this->getIdNhap($data['shdn']);
-            if (isset($nhap['id'])){
-                $chi_tiet_xuat = $this->getXuatNhap($nhap['id']);
-                $this->db->where_in('id_chi_tiet_xuat', $chi_tiet_xuat);
-            }else{
-                return array();
-            }
-        }
-        if (isset($data['shdx']) && ($data['shdx']) !== ''){
-            $xuat = $this->getIdXuat($data['shdx']);
-            if (isset($xuat['id'])){
-                $this->db->where("id_chi_tiet_xuat IN (SELECT id FROM chi_tiet_xuat WHERE id_xuat='".$xuat['id']."')");
-            }else{
-                return array();
-            }
-        }
         
         $this->db->join('dm_ten_thiet_bi', 'thiet_bi_su_dung.id_ten_thiet_bi = dm_ten_thiet_bi.id', 'LEFT');
         $this->db->join('dm_loai_thiet_bi', 'dm_loai_thiet_bi.id = dm_ten_thiet_bi.id_loai_thiet_bi', 'LEFT');
-        $this->db->group_by('id_ten_thiet_bi');
-        $this->db->select('COUNT(thiet_bi_su_dung.id),dm_ten_thiet_bi.ten as ten, dm_ten_thiet_bi.id, dm_loai_thiet_bi.ten as loai');
+        $this->db->join('dm_don_vi', 'dm_don_vi.id = thiet_bi_su_dung.id_don_vi_quan_ly', 'LEFT');
+        $this->db->join('chi_tiet_xuat', 'chi_tiet_xuat.id = thiet_bi_su_dung.id_chi_tiet_xuat', 'LEFT');
+        $this->db->join('xuat', 'chi_tiet_xuat.id_xuat = xuat.id', 'LEFT');
+        $this->db->group_by('id_chi_tiet_xuat');
+        $this->db->select('COUNT(thiet_bi_su_dung.id),dm_ten_thiet_bi.ten as ten, dm_ten_thiet_bi.id, 
+            dm_don_vi.ten as don_vi, dm_loai_thiet_bi.ten as loai, id_chi_tiet_xuat, xuat.so_hoa_don, 
+            MAX(thiet_bi_su_dung.id), MIN(thiet_bi_su_dung.id)');
         
         $result = $this->db->get('thiet_bi_su_dung');
         return $result->result_array();
+    }
+    
+    public function getThietBiByIdChiTietXuat($id_chi_tiet_xuat){
+        
+        $this->db->where('thiet_bi_su_dung.id_chi_tiet_xuat', $id_chi_tiet_xuat);
+        $this->db->join('dm_ten_thiet_bi', 'thiet_bi_su_dung.id_ten_thiet_bi = dm_ten_thiet_bi.id', 'LEFT');
+        $this->db->join('dm_don_vi', 'dm_don_vi.id = thiet_bi_su_dung.id_don_vi_quan_ly', 'LEFT');
+        $this->db->join('dm_khu_nha', 'dm_khu_nha.id = thiet_bi_su_dung.id_khu_nha', 'LEFT');
+        
+        $this->db->select('thiet_bi_su_dung.id, thiet_bi_su_dung.ngay_su_dung, thiet_bi_su_dung.phong, 
+        dm_don_vi.ten as don_vi, dm_khu_nha.ten as khu_nha, dm_ten_thiet_bi.ten, thiet_bi_su_dung.trang_thai');
+        $result = $this->db->get('thiet_bi_su_dung');
+        
+        return $result->result_array();
+    }
+    
+    public function getSoHoaDonByChiTiet($id_chi_tiet_xuat){
+        $this->db->where('id', $id_chi_tiet_xuat);
+        $this->db->limit(1);
+        $this->db->select('id_xuat');
+        $temp = $this->db->get('chi_tiet_xuat');
+        
+        $xuat = $temp->row_array();
+        $id_xuat = $xuat['id_xuat'];
+        
+        $this->db->where('id', $id_xuat);
+        $this->db->limit(1);
+        $this->db->select('so_hoa_don');
+        $result = $this->db->get('xuat');
+        
+        return $result->row_array();
+    }
+    
+    public function getThietBiSuDung($id){
+        $this->db->where('sd.id', $id);
+        $this->db->join('dm_ten_thiet_bi', 'sd.id_ten_thiet_bi = dm_ten_thiet_bi.id', 'LEFT');
+        $this->db->join('dm_don_vi', 'dm_don_vi.id = sd.id_don_vi_quan_ly', 'LEFT');
+        $this->db->join('dm_khu_nha', 'dm_khu_nha.id = sd.id_khu_nha', 'LEFT');
+        $this->db->join('dm_loai_thiet_bi', 'dm_loai_thiet_bi.id = dm_ten_thiet_bi.id_loai_thiet_bi', 'LEFT');
+        
+        $this->db->select('sd.id, ngay_su_dung, sd.trang_thai, phong, sd.mo_ta, 
+        dm_ten_thiet_bi.ten, dm_loai_thiet_bi.ten as loai, dm_don_vi.ten as don_vi, 
+        dm_khu_nha.ten as khu_nha, tinh_trang, id_chi_tiet_xuat');
+        
+        $result = $this->db->get('thiet_bi_su_dung as sd');
+        return $result->row_array();
     }
 }

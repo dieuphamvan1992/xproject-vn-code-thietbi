@@ -165,9 +165,10 @@
         ?>
             <h3 align="center">Danh sách thiết bị</h3>
             <label>Tổng số thiết bị: <?php echo count($list_thiet_bi); ?></label>
-            <table id="customers" class="table table-bordered table-striped">
+            <table id="customers" class="table table-dark-blue table-striped">
                 <thead>
                     <tr>
+                        <th>STT</th>
                         <th>Mã thiết bị</th>
                         <th>Tên thiết bị</th>
                         <th>Đơn vị quản lý</th>
@@ -181,14 +182,15 @@
                         $index = 0; 
                         foreach($list_thiet_bi as $thiet_bi){
                             $index++;
-                            if (($index%2) == 0){
-                                echo '<tr class="alt">';
-                            }else{
-                                echo '<tr>';
-                            }
                     ?>
+                        <tr>
+                            <td><?php echo $index; ?></td>
                             <td><?php echo $thiet_bi['id']; ?></td>
-                            <td><?php echo $thiet_bi['ten']; ?></td>
+                            <td>
+                                <a href="<?php echo base_url('index.php/search/detail/' . $thiet_bi['id']); ?>">
+                                    <?php echo $thiet_bi['ten']; ?>
+                                </a>
+                            </td>
                             <td><?php echo $thiet_bi['don_vi']; ?></td>
                             <td><?php echo $thiet_bi['phong']; ?></td>
                             <td><?php echo $thiet_bi['khu_nha']; ?></td>

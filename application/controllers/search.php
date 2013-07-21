@@ -49,7 +49,7 @@ class Search extends Tb_controller{
     }
     
     public function index2(){
-        $data['title'] = "Tím kiếm thiết bị";
+        $data['title'] = "Tìm kiếm thiết bị";
         $data['template'] = "search/index2";
         $data['data'] = array();
         
@@ -63,8 +63,8 @@ class Search extends Tb_controller{
         
         if (isset($_POST['submit'])){
             $temp = array();
-            $temp['shdn'] = $this->input->post('shdn', TRUE);
-            $temp['shdx'] = $this->input->post('shdx', TRUE);
+            $temp['shdn'] = $this->change_string($this->input->post('shdn', TRUE));
+            $temp['shdx'] = $this->change_string($this->input->post('shdx', TRUE));
             $temp['id_don_vi_quan_ly'] = $this->input->post('don_vi', TRUE);
             $temp['id_loai_thiet_bi'] = $this->input->post('loai_thiet_bi', TRUE);
             $temp['id_khu_nha'] = $this->input->post('khu_nha');
@@ -73,6 +73,7 @@ class Search extends Tb_controller{
             $temp['phong'] = $this->input->post('phong', TRUE);
             $temp['trang_thai'] = $this->input->post('tt', TRUE);
             
+            $this->session->set_userdata('search', $temp);
             $result = $this->Msearch->searchBatch($temp);
             $data['data']['list_thiet_bi'] = $result;
             
@@ -81,5 +82,30 @@ class Search extends Tb_controller{
             $data['is_first'] = true;
             $this->load->view('thietbi/layout', $data);
         }
+    }
+    
+    public function view($id){
+        $temp = array();
+        $temp = $this->Msearch->getThietBiByIdChiTietXuat($id);
+        $so_hoa_don = $this->Msearch->getSoHoaDonByChiTiet($id);
+        
+        $data['title'] = 'Chi tiết tìm kiếm';
+        $data['template'] = 'search/view';
+        $data['data']['list_thiet_bi'] = $temp;
+        $data['data']['so_hoa_don'] = $so_hoa_don;
+        $this->load->view('thietbi/layout', $data);
+    }
+    
+    public function detail($id){
+        $data['title'] = 'Chi tiết thiết bị';
+        $data['template'] = 'search/detail';
+        $data['data'] = array();
+        $thiet_bi = $this->Msearch->getThietBiSuDung($id);
+        $data['data']['thiet_bi'] = $thiet_bi;
+        if ($thiet_bi['id_chi_tiet_xuat'] != NULL){
+            $data['data']['so_hoa_don'] = $this->Msearch->getSoHoaDonByChiTiet($thiet_bi['id_chi_tiet_xuat']);
+        }
+        
+        $this->load->view('thietbi/layout', $data);
     }
 }
