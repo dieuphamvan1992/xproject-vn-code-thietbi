@@ -98,13 +98,16 @@
     <?php
         if (isset($list_thiet_bi) && count($list_thiet_bi) > 0){
     ?>
-        <h3 style="text-align: center;margin-top: 20px;margin-bottom: 30px;">Danh sách thiết bị</h3>
-        <table class="table table-bordered table-striped">
+        <h2 style="text-align: center;margin-top: 20px;margin-bottom: 30px;">Danh sách thiết bị</h2>
+        <table class="table table-dark-blue table-striped">
             <thead>
                 <tr>
                     <th>STT</th>
+                    <th>Mã thiết bị</th>
                     <th>Tên thiết bị</th>
                     <th>Số lượng</th>
+                    <th>Đơn vị</th>
+                    <th>Số hóa đơn xuất</th>
                     <th>Loại thiết bị</th>
                     <th>Action</th>
                 </tr>
@@ -117,11 +120,14 @@
                 ?>
                 <tr>
                     <td><?php echo $index; ?></td>
+                    <td><?php echo $item['MIN(thiet_bi_su_dung.id)'].' - '.$item['MAX(thiet_bi_su_dung.id)']; ?></td>
                     <td><?php echo $item['ten']; ?></td>
                     <td><?php echo $item['COUNT(thiet_bi_su_dung.id)']; ?></td>
+                    <td><?php echo $item['don_vi']; ?></td>
+                    <td><?php echo $item['so_hoa_don']; ?></td>
                     <td><?php echo $item['loai']; ?></td>
                     <td>
-                        <a href="<?php echo base_url('index.php/search/view/' . $item['id']); ?>">
+                        <a href="<?php echo base_url('index.php/search/view/' . $item['id_chi_tiet_xuat']); ?>">
                             <span class="btn">Xem</span>
                         </a>
                     </td>

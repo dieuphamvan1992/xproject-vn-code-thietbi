@@ -1,4 +1,4 @@
-<div class="container-box">
+
 <?php
 
     echo form_open('nhap', array("name" => "thietbi"));
@@ -9,17 +9,11 @@
         }
     }
 ?>
-<style type="text/css">
-    .pad td{
-        padding-left: 20px;
-    }
-</style>
-<fieldset>
-<div style="margin-top: 30px;">
-    <table class="pad">
+<div class="container-box">
+    <table width="100%">
         <tr>
             <td><label>Số hóa đơn</label></td>
-            <td><input type="text" name="so_hd" id="so_hd" onkeypress="onlyNumber(event)" /></td>
+            <td><input type="text" name="so_hd" id="so_hd" onkeypress="onlyNumber(event)"/></td>
             <td><label>Nhà cung cấp</label></td>
             <td>
                 <select name="nha_cung_cap" id="nha_cung_cap">
@@ -75,14 +69,9 @@
 
         </tr>
     </table>
-</div>
-</fieldset>
-<hr />
-<fieldset>
-<div>
-    <div>
-        <input type="hidden" id="ma" value="" />
-        <table class="pad">
+    <div class="sub-box">
+    	<input type="hidden" id="ma" value="" />
+        <table width="100%">
             <tr>
                 <td><label>Tên thiết bị</label></td>
                 <td>
@@ -104,7 +93,7 @@
                 </td>
                 <td><label>Số lượng</label></td>
                 <td>
-                    <input type="text" name="so_luong" id="sl" onkeypress="onlyNumber(event)" onclick="checkAmount(this)" />
+                    <input type="text" name="so_luong" id="sl" onkeypress="onlyNumber(event)" />
                 </td>
             </tr>
             <tr>
@@ -135,20 +124,16 @@
                     <input type="text" name="don_gia" id="dg" onkeypress="onlyNumber(event)" />
                 </td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td colspan="2">
-                    <input type="button" value="Thêm mới" id="add" class="btn" />
-                    <input type="button" value="Cập nhật" id="edit" class="btn" />
-                </td>
-                <td></td>
-            </tr>
+           
         </table>
     </div>
-    <hr />
-    <div>
-        <table id="customers" data="" class="table table-bordered table-striped">
+	<div class="button-box">
+    	 <input type="button" value="Thêm mới" class="btn btn-success" id="add" />
+         <input type="button" value="Cập nhật" class="btn btn-success" id="edit" />
+    </div>
+</div>
+        
+        <table id="customers" data="" class="table table-dark-blue">
             <thead>
                 <tr>
                     <th>Tên thiết bị</th>
@@ -160,21 +145,19 @@
                     <th>Cpct</th>
                     <th>Khấu hao</th>
                     <th>Đơn giá</th>
-                    <th>Chức năng</th>
+                    <th width="50px">Sửa</th>
+                    <th width="50px">Xóa</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
+    <div align="center">
+    <input type="button" id="hoantat" name="submit" value="Hoàn tất" class="btn btn-success" 
+    style="width: auto; margin: auto;" />
     </div>
-</div>
-</fieldset>
-<div>
-    <input type="button" id="hoantat" name="submit" value="Hoàn tất" class="btn btn-primary" />
-</div>
 <?php
     echo form_close();
 ?>
-<!-- Begin script -->
 <script type="text/javascript" src="<?php echo base_url('public/js/nhapthang.js'); ?>"></script>
 <script type="text/javascript">
     var index = 1;
@@ -195,6 +178,27 @@
        });
 
        $("#hoantat").click(function(){
+            
+            var tbl = document.getElementById('customers');
+            var ls = tbl.getElementsByTagName('tr');
+            var sl = 0;
+            for (i = 1; i < ls.length; i++){
+                var ds = ls[i].getElementsByTagName('td');
+                var temp = ds[2].innerHTML;
+                if (!isNaN(parseInt(temp))){
+                    sl = sl + parseInt(temp);
+                }
+            }
+            var str = "Bạn có chắc chắn với những thông tin trên?";
+            if (sl > 100){
+                str = str + "\n\nCảnh báo: Số lượng của thiết bị vượt quá 100!" +
+                    "\n\nTổng số thiết bị: " + sl;
+            }
+            var test = confirm(str);
+            if (test == false){
+                return;
+            }
+            
             var txt ="{";
             var tbl = document.getElementById('customers');
             var ls = tbl.getElementsByTagName('tr');
@@ -252,5 +256,3 @@
        });
     });
 </script>
-<!-- End script -->
-</div>

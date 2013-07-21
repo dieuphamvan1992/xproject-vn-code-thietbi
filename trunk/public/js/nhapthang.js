@@ -22,6 +22,8 @@ function appendText(index){
                     + '<td>' + dg + '</td>'
                     + '<td>'
                     +    '<input type="button" onclick="readText(' + index + ')" value=Sửa name="sua" class="btn" />'
+					+ '</td>'
+					+ '<td>'
                     +    '<input type="button" onclick="removeText(' + index + ')" value="Xóa" name="xoa" class="btn" />'
                     + '</td>'
                 + '</tr>';
