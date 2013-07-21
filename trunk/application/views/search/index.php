@@ -8,13 +8,13 @@
                 <div class="box-horizontal">
                 	<label for="">Mã thiết bị</label>
                     <div class="input-box">
-                    <input type="text" name="ma" style="width: 200px;" onkeypress="onlyNumber(event)" />
+                    <input type="text" name="ma" style="" onkeypress="onlyNumber(event)" />
                     </div>
                 </div>
                 <div class="box-horizontal">
                 	<label for="" >Trạng thái</label>
                     <div class="input-box">
-                    <select name="tt" style="width: 200px;">
+                    <select name="tt" style="">
                     <option value=""></option>
                     <option value="0">Chưa thanh lý</option>
                     <option value="1">Đã thanh lý</option>
@@ -33,7 +33,7 @@
                             foreach($list_don_vi as $item){
                                 $don_vi[$item['id']] = $item['ten'];
                             }
-                            echo form_dropdown("don_vi", $don_vi, null, 'style="width:200px"');
+                            echo form_dropdown("don_vi", $don_vi, null, '');
                         ?>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 <div class="box-horizontal">
                 	<label for="">Tên thiết bị</label>
                     <div class="input-box">
-        				<select name="ten" id="ten" style="width: 200px;">
+        				<select name="ten" id="ten">
                             <option value="" loai="first"></option>
                             <?php
                                 foreach ($list_ten_thiet_bi as $item){
@@ -63,7 +63,7 @@
                             foreach ($list_loai_thiet_bi as $item){
                                 $loai[$item['id']] = $item['ten'];
                             }
-                            echo form_dropdown("loai_thiet_bi", $loai, null, 'style="width:200px" id="loai"');
+                            echo form_dropdown("loai_thiet_bi", $loai, null, 'id="loai"');
                 		?>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
                 <div class="box-horizontal">
                 	<label for="">Phòng</label>
                     <div class="input-box">
-						<input type="text" name="phong" class="sea" />
+						<input type="text" name="phong" />
                     </div>
                 </div>
                 <div class="box-horizontal">
@@ -116,7 +116,7 @@
                             foreach($list_khu_nha as $item){
                                 $khu_nha[$item['id']] = $item['ten'];
                             }
-                            echo form_dropdown("khu_nha", $khu_nha, null, 'style="width:200px"');
+                            echo form_dropdown("khu_nha", $khu_nha, null, '');
                         ?>
                     </div>
                 </div>
@@ -146,7 +146,8 @@
                 <div class="clearfix"></div>
             </div>
             -->
-            <div class="button-box">
+            <hr />
+            <div>
             	<button class="btn btn-success" type="submit" name="submit">Tìm kiếm</button>
             </div>
           </div>
@@ -200,31 +201,14 @@
             </table>
         <?php
             }else if(!isset($is_first)){
-                echo '<p class="notfound">No matches were found</p>';
+                echo '<p style="color:red;">No matches were found</p>';
             }
         ?>
             </div>     
-    
+    <!-- Begin script -->
     <script type="text/javascript" src="<?php echo base_url('public/js/nhapthang.js'); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('public/js/search.js'); ?>"></script>
     <script type="text/javascript">
-        $("#tu").click(function(){
-           var den = $("#den").val();
-           var tu = $("#tu").val();
-           if (den != ''){
-                if (tu > den){
-                    $("#tu").val(den);
-                }
-           } 
-        });
-        $("#den").click(function(){
-           var tu = $("#tu").val();
-           var den = $("#den").val();
-           if (tu != ''){
-            if (den < tu){
-                $("#den").val(tu);
-            }
-           } 
-        });
         $("#loai").click(function(){
            var loai = $("#loai").val();
            if (loai != ""){
@@ -236,3 +220,4 @@
            } 
         });
     </script>
+    <!-- End script -->
