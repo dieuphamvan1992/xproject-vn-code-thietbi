@@ -47,4 +47,39 @@ class Search extends Tb_controller{
     public function change_string($str){
         return preg_replace('/\s+/', ' ', trim($str));
     }
+    
+    public function index2(){
+        $data['title'] = "Tím kiếm thiết bị";
+        $data['template'] = "search/index2";
+        $data['data'] = array();
+        
+        $don_vi = $this->Msearch->getAllDonVi();
+        $khu_nha = $this->Msearch->getAllKhuNha();
+        $loai_thiet_bi = $this->Msearch->getAllLoaiThietBi();
+        
+        $data['list_don_vi'] = $don_vi;
+        $data['list_khu_nha'] = $khu_nha;
+        $data['list_loai_thiet_bi'] = $loai_thiet_bi;
+        
+        if (isset($_POST['submit'])){
+            $temp = array();
+            $temp['shdn'] = $this->input->post('shdn', TRUE);
+            $temp['shdx'] = $this->input->post('shdx', TRUE);
+            $temp['id_don_vi_quan_ly'] = $this->input->post('don_vi', TRUE);
+            $temp['id_loai_thiet_bi'] = $this->input->post('loai_thiet_bi', TRUE);
+            $temp['id_khu_nha'] = $this->input->post('khu_nha');
+            $temp['tu_nam'] = $this->input->post('tu', TRUE);
+            $temp['den_nam'] = $this->input->post('den', TRUE);
+            $temp['phong'] = $this->input->post('phong', TRUE);
+            $temp['trang_thai'] = $this->input->post('tt', TRUE);
+            
+            $result = $this->Msearch->searchBatch($temp);
+            $data['data']['list_thiet_bi'] = $result;
+            
+            $this->load->view('thietbi/layout', $data);
+        }else{
+            $data['is_first'] = true;
+            $this->load->view('thietbi/layout', $data);
+        }
+    }
 }

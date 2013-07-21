@@ -9,9 +9,14 @@
         }
     }
 ?>
+<style type="text/css">
+    .pad td{
+        padding-left: 20px;
+    }
+</style>
 <fieldset>
-<div>
-    <table>
+<div style="margin-top: 30px;">
+    <table class="pad">
         <tr>
             <td><label>Số hóa đơn</label></td>
             <td><input type="text" name="so_hd" id="so_hd" onkeypress="onlyNumber(event)" /></td>
@@ -72,11 +77,12 @@
     </table>
 </div>
 </fieldset>
+<hr />
 <fieldset>
 <div>
     <div>
         <input type="hidden" id="ma" value="" />
-        <table style="border: 1px solid #666; background: ">
+        <table class="pad">
             <tr>
                 <td><label>Tên thiết bị</label></td>
                 <td>
@@ -98,7 +104,7 @@
                 </td>
                 <td><label>Số lượng</label></td>
                 <td>
-                    <input type="text" name="so_luong" id="sl" onkeypress="onlyNumber(event)" />
+                    <input type="text" name="so_luong" id="sl" onkeypress="onlyNumber(event)" onclick="checkAmount(this)" />
                 </td>
             </tr>
             <tr>
@@ -133,13 +139,14 @@
                 <td></td>
                 <td></td>
                 <td colspan="2">
-                    <input type="button" value="Thêm mới" id="add" />
-                    <input type="button" value="Cập nhật" id="edit" />
+                    <input type="button" value="Thêm mới" id="add" class="btn" />
+                    <input type="button" value="Cập nhật" id="edit" class="btn" />
                 </td>
                 <td></td>
             </tr>
         </table>
     </div>
+    <hr />
     <div>
         <table id="customers" data="" class="table table-bordered table-striped">
             <thead>
@@ -162,11 +169,12 @@
 </div>
 </fieldset>
 <div>
-    <input type="button" id="hoantat" name="submit" value="Hoàn tất" style="width: auto; margin: auto;" />
+    <input type="button" id="hoantat" name="submit" value="Hoàn tất" class="btn btn-primary" />
 </div>
 <?php
     echo form_close();
 ?>
+<!-- Begin script -->
 <script type="text/javascript" src="<?php echo base_url('public/js/nhapthang.js'); ?>"></script>
 <script type="text/javascript">
     var index = 1;
@@ -244,4 +252,5 @@
        });
     });
 </script>
+<!-- End script -->
 </div>
