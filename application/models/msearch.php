@@ -145,13 +145,13 @@ class Msearch extends CI_Model{
             }
         }
         if (isset($data['phong']) && ($data['phong'] !== '')){
-            $this->db->like('phong', $data['phong']);
+            $this->db->like('thiet_bi_su_dung.phong', $data['phong']);
         }
         if (isset($data['tu_nam']) && isset($data['den_nam']) && ($data['tu_nam'] !== '') && ($data['den_nam'] != '')){
             $this->db->where("YEAR(ngay_su_dung) BETWEEN '".$data['tu_nam']."' AND '".$data['den_nam']."'");
         }
         if (isset($data['id_khu_nha']) && ($data['id_khu_nha'] !== '')){
-            $this->db->where('id_khu_nha', $data['id_khu_nha']);
+            $this->db->where('thiet_bi_su_dung.id_khu_nha', $data['id_khu_nha']);
         }
         if (isset($data['id_don_vi_quan_ly']) && ($data['id_don_vi_quan_ly']) !==''){
             $this->db->where('id_don_vi_quan_ly', $data['id_don_vi_quan_ly']);
