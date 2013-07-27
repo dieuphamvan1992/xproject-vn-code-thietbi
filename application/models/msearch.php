@@ -84,24 +84,50 @@ class Msearch extends CI_Model{
     public function getIdXuat($xuat){
         $this->db->select('id');
         $this->db->like('so_hoa_don', $xuat);
-        $this->db->limit(1);
         
         $result = $this->db->get('xuat');
-        return $result->row_array();
+        return $result->result_array();
+    }
+    
+    public function getListIdChiTietXuat($xuat){
+        $ls = $this->getIdXuat($xuat);
+        $temp = array();
+        foreach ($ls as $item){
+            $temp[] = $item['id'];
+        }
+        $this->db->where_in('id_xuat', $temp);
+        $this->db->select('id');
+        $result = $this->db->get('chi_tiet_xuat');
+        return $result->result_array();
     }
     
     public function getIdNhap($nhap){
         $this->db->select('id');
         $this->db->like('so_hoa_don', $nhap);
-        $this->db->limit(1);
         
         $result = $this->db->get('nhap');
-        return $result->row_array();
+        return $result->result_array();
     }
     
-    public function getXuatNhap($id_nhap){
+    public function getListIdChiTietNhap($nhap){
+        $ls = $this->getIdNhap($nhap);
+        $temp = array();
+        foreach ($ls as $item){
+            $temp[] = $item['id'];
+        }
+        $this->db->where_in('id_nhap', $temp);
         $this->db->select('id');
-        $this->db->where("id_chi_tiet_nhap IN (SELECT id FROM chi_tiet_nhap WHERE id_nhap='".$id_nhap."')");
+        $result = $this->db->get('chi_tiet_nhap');
+        return $result->result_array();
+    }
+    
+    public function getXuatNhap($nhap){
+        $ls = $this->getListIdChiTietNhap($nhap);
+        foreach ($ls as $item){
+            $temp[] = $item['id'];
+        }
+        $this->db->select('id');
+        $this->db->where_in('id_chi_tiet_nhap', $temp);
         $result = $this->db->get('chi_tiet_xuat');
         
         return $result->result_array();
@@ -122,11 +148,15 @@ class Msearch extends CI_Model{
     }
     
     public function searchBatch($data){
-        
+        $chi_tiet_xuat_shdn = array();
+        $active = 0;
         if (isset($data['shdn']) && ($data['shdn'] !== '')){
-            $nhap = $this->getIdNhap($data['shdn']);
-            if (isset($nhap['id'])){
-                $chi_tiet_xuat = $this->getXuatNhap($nhap['id']);
+            $chi_tiet_xuat_shdn = $this->getXuatNhap($data['shdn']);
+            $active = 1;
+        }
+        if (isset($data['shdx']) && ($data['shdx']) !== ''){
+            $chi_tiet_xuat = $this->getListIdChiTietXuat($data['shdx']);
+            if (count($chi_tiet_xuat) > 0){                              
                 $temp = array();
                 foreach ($chi_tiet_xuat as $item){
                     $temp[] = $item['id'];
@@ -136,10 +166,13 @@ class Msearch extends CI_Model{
                 return array();
             }
         }
-        if (isset($data['shdx']) && ($data['shdx']) !== ''){
-            $xuat = $this->getIdXuat($data['shdx']);
-            if (isset($xuat['id'])){
-                $this->db->where("id_chi_tiet_xuat IN (SELECT id FROM chi_tiet_xuat WHERE id_xuat='".$xuat['id']."')");
+        if ($active == 1){
+            if (count($chi_tiet_xuat_shdn) > 0){
+                $temp = array();
+                foreach ($chi_tiet_xuat_shdn as $item){
+                    $temp[] = $item['id'];
+                }
+                $this->db->where_in('id_chi_tiet_xuat', $temp);
             }else{
                 return array();
             }
