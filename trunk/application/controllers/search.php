@@ -7,6 +7,7 @@ class Search extends Tb_controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('Msearch');
+        $this->load->library('session');
     }
     
     public function index(){
@@ -35,6 +36,7 @@ class Search extends Tb_controller{
             $data_form['phong'] = $this->change_string($this->input->post('phong', TRUE));
             
             $result = $this->Msearch->searchItem($data_form);
+            $this->session->set_userdata($data_form);
             $data['data']['list_thiet_bi'] = $result;
             
             $this->load->view('thietbi/layout', $data);
@@ -73,7 +75,7 @@ class Search extends Tb_controller{
             $temp['phong'] = $this->input->post('phong', TRUE);
             $temp['trang_thai'] = $this->input->post('tt', TRUE);
             
-            $this->session->set_userdata('search', $temp);
+            $this->session->set_userdata($temp);
             $result = $this->Msearch->searchBatch($temp);
             $data['data']['list_thiet_bi'] = $result;
             

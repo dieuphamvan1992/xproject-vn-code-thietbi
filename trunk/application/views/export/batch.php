@@ -27,7 +27,7 @@ function selectall() {
 </SCRIPT>
 <body topmargin="5" leftmargin="5">
 <center>
-<form method="post" name="formExport" action='<?php echo site_url(); ?>/export/exportoexel'>
+<form method="post" name="formExport" action='<?php echo site_url(); ?>/export/exportBatch'>
 <input type="hidden" name="listoexport">
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -53,7 +53,7 @@ function selectall() {
 		
 		<?php
 			$i=0;
-			foreach ($listexport as $key => $value)
+			foreach ($list_batch as $key => $value)
 			{
 				if (($i % 2) == 0) {
 				echo "<tr>";
@@ -62,8 +62,7 @@ function selectall() {
         
 		<td class="">
 			<?php
-				if($key == "thiet_bi_su_dung.id_ten_thiet_bi as tentb" ||
-					$key == "thiet_bi_su_dung.id_don_vi_quan_ly as dvql")
+				if($key == "chi_tiet_nhap.id_ten_thiet_bi as tentb")
 				{
 					echo "<input type='checkbox' name='".$key."' value='field' checked>";
 				}

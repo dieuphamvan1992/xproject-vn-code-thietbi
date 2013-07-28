@@ -134,6 +134,7 @@
         if (isset($list_thiet_bi) && count($list_thiet_bi) > 0){
     ?>
         <h2 style="text-align: center;margin-top: 20px;margin-bottom: 30px;">Danh sách thiết bị</h2>
+        <a href='<?php echo site_url(); ?>/export/batch'>Xuất</a>
         <table class="table table-striped table-dark-blue ">
             <thead>
                 <tr>

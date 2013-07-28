@@ -150,6 +150,7 @@
         ?>
             <h2 align="center">Danh sách thiết bị</h2>
             <label>Tổng số thiết bị: <font color="#42515f"><strong><?php echo count($list_thiet_bi); ?></strong></font> </label>
+            <a href='<?php echo site_url(); ?>/export'>
             <table id="customers" class="table table-striped table-dark-blue ">
                 <thead>
                     <tr>
