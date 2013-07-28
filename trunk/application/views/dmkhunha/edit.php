@@ -14,15 +14,7 @@
         <div class="box-title bg-chosen">
             <h2><?php echo $title; ?></h2>
         </div>
-        <div class="row-fluid">
-            <div class="span6">
-                <div class="control-group">
-                    <label class="control-label fix-width">Mã khu nhà</label>
-                    <div class="controls fix-margin">
-                        <input type="text" class="span10" name='ma' value="<?php echo $ma; ?>">
-                    </div> 
-                </div>  
-            </div> 
+        <div class="row-fluid"> 
             <div class="span6">
                 <div class="control-group">
                     <label class="control-label fix-width">Tên khu nhà</label>
