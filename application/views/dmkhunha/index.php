@@ -116,10 +116,10 @@
                 $ten = $value['ten'];
                 $trangthai = $value['trang_thai'];
                 $mota = $value['mo_ta'];
-                echo "<tr id='".$id."'><td class=''>".$ma."</td>";
-                echo "<td class=''>".$ten."</td>";
-                echo "<td class=''>".$trangthai."</td>";
-                echo "<td class=''>".$mota."</td>";
+                echo "<tr id='".$id."'>";
+		echo "<td class=''>".$ten."</td>";
+		echo "<td class=''>".$trangthai."</td>";
+            echo "<td class=''>".$mota."</td>";
         ?>
                 <td>
                     <img src="<?php echo base_url(); ?>public/images/edit.png" width="20" height="20" onclick="edit_dmkhunha('<?php echo $id; ?>')">
