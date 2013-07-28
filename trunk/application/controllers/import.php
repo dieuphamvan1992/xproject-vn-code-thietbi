@@ -13,12 +13,13 @@ class import extends Tb_controller{
         $allowInsertNhaCungCap = FALSE; 
         $allowInsertKhuNha = FALSE;
         $allowInsertNguonVon = FALSE;
+        $allowInsertLoaiThietBi = FALSE;
         $allowInsertTenThietBi = FALSE;
         $allowInsertQuocGia = FaLSE;
         $data['title'] = 'import thiet bi';
         $data['template'] = 'import/index';
         $data['data'] = array();
-        
+        $arrayImportFail = array();
         if(isset($_POST['btnsubmit'])) {
             $target = "file/";
             if(is_dir($target) == FALSE) {
@@ -34,24 +35,40 @@ class import extends Tb_controller{
                     //echo $target;
                 }
             }
-            $this->doImport($target, $allowInsertNhaCungCap, $allowInsertKhuNha, $allowInsertNguonVon, $allowInsertTenThietBi, $allowInsertQuocGia);
+            
+            $allowInsertNhaCungCap = $this->input->post('checkNhaCungCap', true);
+            $allowInsertKhuNha = $this->input->post('checkKhuNha', true);
+            $allowInsertNguonVon = $this->input->post('checkNguonVon', true);
+            $allowInsertLoaiThietBi = $this->input->post('checkLoaiThietBi', true);
+            $allowInsertTenThietBi = $this->input->post('checkTenThietBi', true);
+            $allowInsertQuocGia = $this->input->post('checkQuocGia', true);
+            $arrayImportFail = $this->doImport($target, $allowInsertNhaCungCap, $allowInsertKhuNha, $allowInsertNguonVon, $allowInsertLoaiThietBi, $allowInsertTenThietBi, $allowInsertQuocGia);
             //unlink($target);
+            $data['data']['arrayImportFail'] = $arrayImportFail;
         }
         $this->load->view('thietbi/layout', $data);
     }
     
-    public function doImport($fileName, $allowInsertNhaCungCap, $allowInsertKhuNha, $allowInsertNguonVon, $allowInsertTenThietBi, $allowInsertQuocGia) {
+    public function doImport($fileName, $allowInsertNhaCungCap, $allowInsertKhuNha, $allowInsertNguonVon, $allowInsertLoaiThietBi, $allowInsertTenThietBi, $allowInsertQuocGia) {
         require_once 'import/excel_reader.php';
         $dataExcel = new Spreadsheet_Excel_Reader($fileName, TRUE, "UTF-8");
         $rowsnum = $dataExcel->rowcount($sheet_index=0) + 1; // Số hàng của sheet
         //$colsnum =  $dataExcel->colcount($sheet_index=0);  //Số cột của sheet
         $arrayImportFail = array();
-        $arrayIndex = 0;
+        $arrayIndex = -1;
         
+        //<editor-fold defaultstate="collapsed" desc="Ghi Log">
+        $idNhaCungCapString = "";
+        $idKhuNhaString ="";
+        $idNguonVonString = "";
+        $idLoaiThietBiString = "";
+        $idTenThietBiString = "";
+        $idQuocGiaString = "";
         $idNhapString = "";
         $idChiTietNhapString = "";
         $idXuatString = "";
         $idChiTietXuatString = "";
+        // </editor-fold>
         for($i = 2; $i<$rowsnum; $i++) {
             $idNhap = 0;
             $idChiTietNhap = 0;
@@ -65,52 +82,122 @@ class import extends Tb_controller{
             $nguonVon = $dataExcel->val($i, 5);
             $choMuon = $dataExcel->val($i, 6);
             $tenThietBi = $dataExcel->val($i, 7);
-            $quocGia = $dataExcel->val($i, 8);
-            $soLuong = $dataExcel->val($i, 9);
-            $soThangBaoHanh = $dataExcel->val($i, 10);
-            $chiPhiLapDat = $dataExcel->val($i, 11);
-            $chiPhiVanChuyen = $dataExcel->val($i, 12);
-            $chiPhiChayThu = $dataExcel->val($i, 13);
-            $soNamKhauHao = $dataExcel->val($i, 14);
-            $donGia = $dataExcel->val($i, 15);
-            $phong = $dataExcel->val($i, 16);
+            $loaiThieBi = $dataExcel->val($i, 8);
+            $quocGia = $dataExcel->val($i, 9);
+            $soLuong = $dataExcel->val($i, 10);
+            $soThangBaoHanh = $dataExcel->val($i, 11);
+            $chiPhiLapDat = $dataExcel->val($i, 12);
+            $chiPhiVanChuyen = $dataExcel->val($i, 13);
+            $chiPhiChayThu = $dataExcel->val($i, 14);
+            $soNamKhauHao = $dataExcel->val($i, 15);
+            $donGia = $dataExcel->val($i, 16);
+            $phong = $dataExcel->val($i, 17);
             
-            $idNhaCungCap = $this->Mimport->getIdNhaCungCap($nhaCungCap, $allowInsertNhaCungCap);
+            // <editor-fold defaultstate="collapsed" desc="Nha cung cap">
+            $idNhaCungCap = $this->Mimport->getIdNhaCungCap($nhaCungCap);
+            if(!$idNhaCungCap && $allowInsertNhaCungCap) {
+                $idNhaCungCap = $this->Mimport->insertTenNhaCungCap($nhaCungCap);
+                if($idNhaCungCap) {
+                    $idNhaCungCapString .= $idNhaCungCap.",";
+                }
+            }
             if(!$idNhaCungCap) {
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Nha cung cap Fail";
+                continue;
             }
+            // </editor-fold>
+            
+            // <editor-fold defaultstate="collapsed" desc="Don vi nhan">
             $idDonViNhan = $this->Mimport->getIdDonVi($donViNhan);
             if(!$idDonViNhan) {
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Don vi nhan Fail";
+                continue;
             }
-            $idKhuNha = $this->Mimport->getIdKhuNha($khuNha, $allowInsertKhuNha);
+            // </editor-fold>
+            
+            // <editor-fold defaultstate="collapsed" desc="Khu Nha">
+            $idKhuNha = $this->Mimport->getIdKhuNha($khuNha);
+            if(!$idKhuNha && $allowInsertKhuNha) {
+                $idKhuNha = $this->Mimport->insertTenKhuNha($khuNha);
+                if($idKhuNha) {
+                    $idKhuNhaString .= $idKhuNha.",";
+                }
+            }
             if(!$idKhuNha) {
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Khu nha Fail";
+                continue;
             }
-            $idNguonVon = $this->Mimport->getIdNguonVon($nguonVon, $allowInsertNguonVon);
+            // </editor-fold>
+            
+            // <editor-fold defaultstate="collapsed" desc="Nguon von">
+            $idNguonVon = $this->Mimport->getIdNguonVon($nguonVon);
+            if(!$idNguonVon && $allowInsertNguonVon) {
+                $idNguonVon = $this->Mimport->insertTenNguonVon($nguonVon);
+                if($idNguonVon) {
+                    $idNguonVonString .= $idNguonVon.",";
+                }
+            }
             if(!$idNguonVon) {
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Nguon von Fail";
+                continue;
             }
-            $idTenThietBi = $this->Mimport->getIdTenThietBi($tenThietBi, $allowInsertTenThietBi);
+            // </editor-fold>
+            
+            // <editor-fold defaultstate="collapsed" desc="Loai thiet bi">
+            $idLoaiThietBi = $this->Mimport->getIdLoaiThietBi($loaiThieBi);
+            if(!$idLoaiThietBi && $allowInsertLoaiThietBi) {
+                $idLoaiThietBi = $this->Mimport->insertTenLoaiThietBi($loaiThieBi);
+                if($idLoaiThietBi) {
+                    $idLoaiThietBiString .= $idLoaiThietBi.",";
+                }
+            }
+            if(!$idLoaiThietBi) {
+                $arrayIndex++;
+                $arrayImportFail[$arrayIndex]["id"] = $i; 
+                $arrayImportFail[$arrayIndex]["fail"] = "Loai thiet bi Fail";
+                continue;
+            }
+            // </editor-fold>
+            
+            // <editor-fold defaultstate="collapsed" desc="Ten thiet bi">
+            $idTenThietBi = $this->Mimport->getIdTenThietBi($tenThietBi, $idLoaiThietBi);
+            if(!$idTenThietBi && $allowInsertTenThietBi) {
+                $idTenThietBi = $this->Mimport->insertTenThietBi($tenThietBi, $idLoaiThietBi);
+                if($idTenThietBi) {
+                    $idTenThietBiString .= $idTenThietBi.",";
+                }
+            }
             if(!$idTenThietBi) {
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
-                $arrayImportFail[$arrayIndex]["fail"] = "Ten thiet bi Fail";
+                $arrayImportFail[$arrayIndex]["fail"] = "Ten thiet bi Fail ".$tenThietBi. " ".$idLoaiThietBi;
+                continue;
             }
-            $idQuocGia = $this->Mimport->getIdQuocGia($quocGia, $allowInsertQuocGia);
+            // </editor-fold>
+            
+            // <editor-fold defaultstate="collapsed" desc="Quoc gia">
+            $idQuocGia = $this->Mimport->getIdQuocGia($quocGia);
+            if(!$idQuocGia && $allowInsertQuocGia) {
+                $idQuocGia = $this->Mimport->insertTenQuocGia($quocGia);
+                if($idQuocGia) {
+                    $idQuocGiaString .= $idQuocGia.",";
+                }
+            }
             if(!$idQuocGia) {
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Quoc gia Fail";
+                continue;
             }
+            // </editor-fold>
             
             $nhapObj = array();
             $nhapObj['id_nha_cung_cap'] = $idNhaCungCap;
@@ -118,6 +205,7 @@ class import extends Tb_controller{
             $idNhap = $this->doImportToNhap($nhapObj);
             
             if($idNhap) {
+                $idNhapString .= $idNhap.",";
                 $chiTietNhapObj = array();
                 $chiTietNhapObj['so_hoa_don'] = $soHoaDon;
                 $chiTietNhapObj['id_nhap'] = $idNhap;
@@ -131,9 +219,11 @@ class import extends Tb_controller{
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Hoa don Nhap Fail";
+                continue;
             }
             
             if($idChiTietNhap) {
+                $idChiTietNhapString .= $idChiTietNhap.",";
                 $xuatObj = array();
                 $xuatObj['so_hoa_don'] = $soHoaDon;
                 $idXuat = $this->doImportToXuat($xuatObj);
@@ -141,9 +231,11 @@ class import extends Tb_controller{
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Hoa don Chi tiet nhap Fail";
+                continue;
             }
             
             if($idXuat) {
+                $idXuatString .= $idXuat.",";
                 $chiTietXuatObj = array();
                 $chiTietXuatObj['id_xuat'] = $idXuat;
                 $chiTietXuatObj['id_chi_tiet_nhap'] = $idChiTietNhap;
@@ -163,9 +255,11 @@ class import extends Tb_controller{
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Hoa don Xuat Fail";
+                continue;
             }
             
             if($idChiTietXuat) {
+                $idChiTietXuatString .= $idChiTietXuat.",";
                 $resultTBSuDung = TRUE;
                 $thietBiSuDungObj = array();
                 $thietBiSuDungObj['id_don_vi_quan_ly'] = $idDonViNhan;
@@ -182,19 +276,17 @@ class import extends Tb_controller{
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Hoa don Chi tiet xuat Fail";
+                continue;
             }
             if(!$resultTBSuDung) {
                 $arrayIndex++;
                 $arrayImportFail[$arrayIndex]["id"] = $i; 
                 $arrayImportFail[$arrayIndex]["fail"] = "Dua vao Thiet bi su dung Fail";
-            }  
-            
-            $idNhapString .= $idNhap.",";
-            $idChiTietNhapString .= $idChiTietNhap.",";
-            $idXuatString .= $idXuat.",";
-            $idChiTietXuatString .= $idChiTietXuat.",";
+                continue;
+            }                         
         }
-        $this->doInsertToLogImport($idNhapString, $idChiTietNhapString, $idXuatString, $idChiTietXuatString, $rowsnum, $arrayIndex, $fileName); 
+        $this->doInsertToLogImport($idNhapString, $idChiTietNhapString, $idXuatString, $idChiTietXuatString, $idNhaCungCapString, $idKhuNhaString, $idNguonVonString, $idLoaiThietBiString, $idTenThietBiString, $idQuocGiaString,$rowsnum-2, $arrayIndex, $fileName); 
+        return $arrayImportFail;
     }
     
     public function doImportToNhap($nhapObj) {
@@ -226,7 +318,7 @@ class import extends Tb_controller{
         $result = $this->Mimport->insertChiTietNhap($data);
         return $result;
     }
-    
+        
     public function doImportToXuat($xuatObj) {
         $data = array();
         $data['so_hoa_don'] = $xuatObj['so_hoa_don'];
@@ -280,12 +372,19 @@ class import extends Tb_controller{
         return $result;
     }
     
-    public function doInsertToLogImport($idNhapString, $idChiTietNhapString, $idXuatString, $idChiTietXuatString, $total, $failTotal, $fileName) {
+    // <editor-fold defaultstate="collapsed" desc="Log">
+    public function doInsertToLogImport($idNhapString, $idChiTietNhapString, $idXuatString, $idChiTietXuatString, $idNhaCungCapString, $idKhuNhaString, $idNguonVonString, $idLoaiThietBiString, $idTenThietBiString, $idQuocGiaString, $total, $failTotal, $fileName) {
         $data = array();
         $data['id_nhap'] = $idNhapString;
         $data['id_chi_tiet_nhap'] = $idChiTietNhapString;
         $data['id_xuat'] = $idXuatString;
         $data['id_chi_tiet_xuat'] = $idChiTietXuatString;
+        $data['id_nha_cung_cap'] = $idNhaCungCapString;
+        $data['id_khu_nha'] = $idKhuNhaString;
+        $data['id_nguon_von'] = $idNguonVonString;
+        $data['id_loai_thiet_bi'] = $idLoaiThietBiString;
+        $data['id_ten_thiet_bi'] = $idTenThietBiString;
+        $data['id_quoc_gia'] = $idQuocGiaString;
         $data['thoi_gian'] = date("Y-m-d H:i:s");
         $data['total'] = $total;
         $data['total_fail'] = $failTotal;
@@ -295,7 +394,7 @@ class import extends Tb_controller{
         $result = $this->Mimport->insertLogImport($data);
         return $result;
     }
-    
+    // </editor-fold>
 }
 
 ?>

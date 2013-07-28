@@ -86,60 +86,107 @@ class mimport extends CI_Model {
         return $this->db->insert_id();
     }
 
-        public function getId($tenCot, $tenBang, $value, $allowInsert) {
+    //<editor-fold defaultstate="collapsed" desc="Get Id">
+    public function getId($tenCot, $tenBang, $value) {
         $this->db->select("id");
         $this->db->where($tenCot, $value);
         $this->db->limit(1, 0);
         $query = $this->db->get($tenBang);
         $row = $query->row(); 
-        $id = $row->id;
-        
-        if(!$id) {
-            if($allowInsert) {
-                $this->db->set($tenCot,$value);
-                $this->db->insert($tenBang);
-                $id = $this->db->insert_id();
-            }           
-        }
+        if($row) {
+            $id = $row->id; 
+        } else {
+            $id = 0;
+        }          
         return $id;
     }
     
-    public function getIdNhaCungCap($ten, $allowInsertNhaCungCap) {
-        return $this->getId("ten", "dm_nha_cung_cap", $ten, $allowInsertNhaCungCap);
+    public function getIdNhaCungCap($ten) {
+        return $this->getId("ten", "dm_nha_cung_cap", $ten);
     }
     
     public function getIdDonVi($ten) {
         return $this->getId("ten", "dm_don_vi", $ten);
     }
     
-    public function getIdKhuNha($ten, $allowInsertKhuNha) {
-        return $this->getId("ten", "dm_khu_nha", $ten, $allowInsertKhuNha);
+    public function getIdKhuNha($ten) {
+        return $this->getId("ten", "dm_khu_nha", $ten);
     }
     
-    public function getIdNguonVon($ten, $allowInsertNguonVon) {
-        return $this->getId("ten", "dm_nguon_von", $ten, $allowInsertNguonVon);
+    public function getIdNguonVon($ten) {
+        return $this->getId("ten", "dm_nguon_von", $ten);
     }
     
-    public function getIdTenThietBi($ten, $allowInsertTenThietBi) {
-        return $this->getId("ten", "dm_ten_thiet_bi", $ten, $allowInsertTenThietBi);
+    public function getIdLoaiThietBi($ten) {
+        return $this->getId("ten", "dm_loai_thiet_bi", $ten);
+    }
+
+    public function getIdTenThietBi($ten, $idLoaiThietBi) {
+        $this->db->select("id");
+        $this->db->where("ten", $ten);
+        $this->db->where("id_loai_thiet_bi", $idLoaiThietBi);
+        $this->db->limit(1, 0);
+        $query = $this->db->get("dm_ten_thiet_bi");
+        $row = $query->row(); 
+        if($row) {
+            $id = $row->id;  
+        } else {
+            $id = 0;
+        }    
+        return $id;       
     }
     
-    public function getIdQuocGia($ten, $allowInsertQuocGia) {
+    public function getIdQuocGia($ten) {
         $this->db->select("ma_qg");
         $this->db->where("qg", $ten);
         $this->db->limit(1, 0);
         $query = $this->db->get("dm_qg");
         $row = $query->row();
-        $ma_qg = $row->ma_qg;
-        if(!$ma_qg) {
-            if($allowInsertQuocGia) {
-                $this->db->set("qg",$ten);
-                $this->db->insert("dm_qg");
-                $ma_qg = $this->db->insert_id();
-            }
-        }
+        if($row) {
+            $ma_qg = $row->ma_qg;
+        } else {
+            $ma_qg = 0;
+        }       
         return $ma_qg;
     }
+    // </editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Insert Ten">
+    public function insertTen($tenCot, $tenBang, $value) {
+        $this->db->set($tenCot,$value);
+        $this->db->insert($tenBang);
+        $id = $this->db->insert_id();
+        return $id;
+    }
+    
+    public function insertTenNhaCungCap($ten) {
+        return $this->insertTen("ten", "dm_nha_cung_cap", $ten);
+    }
+    
+    public function insertTenKhuNha($ten) {
+        return $this->insertTen("ten", "dm_khu_nha", $ten);
+    }
+    
+    public function insertTenNguonVon($ten) {
+        return $this->insertTen("ten", "dm_nguon_von", $ten);
+    }
+    
+    public function insertTenLoaiThietBi($ten) {
+        return $this->insertTen("ten", "dm_loai_thiet_bi", $ten);
+    }
+    
+    public function insertTenThietBi($ten, $idLoaiThietBi) {
+        $this->db->set("ten",$ten);
+        $this->db->set("id_loai_thiet_bi",$idLoaiThietBi);
+        $this->db->insert("dm_ten_thiet_bi");
+        $id = $this->db->insert_id();
+        return $id;
+    }
+    
+    public function insertTenQuocGia($ten) {
+        return $this->insertTen("qg", "dm_quoc_gia", $ten);
+    }
+    // </editor-fold>
 }
 
 ?>
