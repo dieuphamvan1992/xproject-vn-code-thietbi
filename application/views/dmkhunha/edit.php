@@ -2,7 +2,6 @@
 	if(!empty($datas))
 	{	
 		$id = $datas->id;
-		$ma = $datas->ma;
 		$ten = $datas->ten;
 		$trangthai = $datas->trang_thai;
 		$mota = $datas->mo_ta;
