@@ -1,45 +1,54 @@
 <div class="container-box">
-    <div>
-        <h2 style="margin-bottom: 30px;text-align: center;">Danh sách thiết bị</h2>
-    </div>
-    <div style="margin: 10px;">
         <table>
             <tr>
                 <td><i>Tên thiết bị:</i></td>
                 <td>
-                    <?php
-                        if (count($list_thiet_bi) > 0){
-                            echo $list_thiet_bi[0]['ten'];
-                        }
-                    ?>
+                    <font color="#42515f">
+                       <strong> 
+					   <?php
+                            if (count($list_thiet_bi) > 0){
+                                echo $list_thiet_bi[0]['ten'];
+                            }
+                        ?>
+                        </strong>
+                     </font>
                 </td>
             </tr>
             <tr>
                 <td><i>Số lượng:</i></td>
-                <td><?php echo count($list_thiet_bi); ?></td>
+                <td><font color="#42515f"><strong><?php echo count($list_thiet_bi); ?></strong></font></td>
             </tr>
             <tr>
                 <td><i>Đơn vị quản lý:</i></td>
                 <td>
-                    <?php
-                        if (count($list_thiet_bi) > 0){
-                            echo $list_thiet_bi[0]['don_vi'];
-                        }
-                    ?>
+                    <font color="#42515f">
+                        <strong>
+						<?php
+                            if (count($list_thiet_bi) > 0){
+                                echo $list_thiet_bi[0]['don_vi'];
+                            }
+                        ?>
+                    	</strong>
+                   </font>     
                 </td>
             </tr>
             <tr>
                 <td><i>Số hóa đơn xuất:</i></td>
                 <td>
+                <font color="#42515f">
+                        <strong>
                     <?php
                         if (isset($so_hoa_don)){
                             echo $so_hoa_don['so_hoa_don'];
                         }
                     ?>
+                    </strong>
+                   </font>     
                 </td>
             </tr>
         </table>
     </div>
+    <h2 style="text-align: center;">Danh sách thiết bị</h2>
     <div class="table-box">
         <table id="customers" class="table table-dark-blue table-striped">
                 <thead>
@@ -61,7 +70,7 @@
                         <tr>
                             <td><?php echo $index; ?></td>
                             <td>
-                                <a href="<?php echo base_url('index.php/search/detail/'. $thiet_bi['id']); ?>">
+                                <a target="_blank" href="<?php echo base_url('index.php/search/detail/'. $thiet_bi['id']); ?>">
                                     <?php echo $thiet_bi['id']; ?>
                                 </a>
                             </td>
@@ -85,5 +94,4 @@
                     ?>
                 </tbody>
             </table>
-    </div>
 </div>
