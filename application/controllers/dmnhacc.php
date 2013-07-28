@@ -51,15 +51,17 @@ class Dmnhacc extends CI_Controller {
 	    }
 
 		$temp['data']['datas'] = $this->Mnhacc->selectAllNhacc();
+		$temp['data']['quocgia'] = $this->Mnhacc->getAllQuocGia();
 		//$temp['data']['test'] = $id;
 		
-		$this->load->view('thietbi/layout',$temp);
+		$this->load->view('layout',$temp);
 	}
 
 	public function add()
 	{
 		$temp['template']='dmnhacc/add';
         $temp['data']['title']='BỔ SUNG DỮ LIỆU';
+        $temp['data']['quocgia'] = $this->Mnhacc->getAllQuocGia();
         $this->load->view('layout',$temp);
 	}
 
@@ -68,6 +70,7 @@ class Dmnhacc extends CI_Controller {
 		$temp['data']['title']='CẬP NHẬT THÔNG TIN';
 		
 		$temp['data']['datas'] = $this->Mnhacc->getNhaccById($id);
+		$temp['data']['quocgia'] = $this->Mnhacc->getAllQuocGia();
 
 		$this->load->view('layout',$temp);
 	}

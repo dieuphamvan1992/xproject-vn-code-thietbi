@@ -44,7 +44,16 @@
                 <div class="control-group">
                     <label class="control-label fix-width">Quốc gia</label>
                     <div class="controls fix-margin">
-                        <input type="text" class="span10" name='id_quoc_gia'/>
+                        <select name='id_quoc_gia' class="span10">
+                            <option value=0 selected><?php echo "---Chọn quốc gia---" ?></option>
+                            <?php
+                            foreach ($quocgia as $key => $value) {
+                                ?>
+                                <option value="<?php echo $value['ma_qg'] ?>"><?php echo $value['qg']; ?></option>
+                                <?php
+                            }
+                            ?>	
+                        </select>
                     </div> 
                 </div>  
             </div> 
