@@ -138,7 +138,7 @@
                                 break;
                             }
                                 
-                            else
+                            if($idloaitb != $value1['id'])
                             {
                                 echo "Chưa có";
                                 break;
