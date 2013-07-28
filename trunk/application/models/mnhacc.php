@@ -37,5 +37,11 @@ class Mnhacc extends CI_Model{
 		$row = $query->row();
 		return $row;
 	}
+
+	public function getAllQuocGia()
+	{
+		$query=$this->db->get("dm_qg");
+        return $query->result_array();
+	}
 }
 ?>

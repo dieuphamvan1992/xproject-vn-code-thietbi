@@ -131,9 +131,16 @@
                 echo "<td class=''>".$sdt."</td>";
                 echo "<td class=''>".$email."</td>";
                 echo "<td class=''>".$diachi."</td>";
-                echo "<td class=''>".$idquocgia."</td>";
 
         ?>
+                <td class=''>
+                    <?php
+                    foreach ($quocgia as $key => $value1) {
+                        if ($idquocgia == $value1['ma_qg'])
+                            echo $value1['qg'];
+                    }
+                    ?>
+                </td>
                 <td class=''>
                     <img src="<?php echo base_url(); ?>public/images/edit.png" width="20" height="20" onclick="edit_dmnhacc('<?php echo $id; ?>')">
                     
