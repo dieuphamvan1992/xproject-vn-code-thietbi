@@ -9,8 +9,8 @@
                             <div class="dropdown">
                               <!-- Link or button to toggle dropdown -->
                               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <li><a tabindex="-1" href="<?php echo site_url('search') ?>">Quản lý bảng danh mục</a></li>
-                                <li><a tabindex="-1" href="<?php echo site_url('') ?>">Quản lý người dùng</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('search') ?>">Tìm kiếm theo lô</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('search/index1') ?>">Tìm kiếm theo thiết bị</a></li>
                               </ul>
                             </div>
                     	</li>
