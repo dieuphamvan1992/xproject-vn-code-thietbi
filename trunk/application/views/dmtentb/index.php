@@ -137,12 +137,6 @@
                                 echo $value1['ten'];
                                 break;
                             }
-                                
-                            if($idloaitb != $value1['id'])
-                            {
-                                echo "Chưa có";
-                                break;
-                            }
                     } ?>
                 </td>
         <?php
