@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 //require_once 'APPPATH./phpexcel/PHPExcel.php';;
-//kobe
+//kobe lkobe
 
 class Export extends CI_Controller {
 
