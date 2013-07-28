@@ -1,4 +1,7 @@
 <div class="container-box">
+	<div class="box-title">
+    	<h2>Chi tiết lô thiết bị</h2>
+    </div>
         <table>
             <tr>
                 <td><i>Tên thiết bị:</i></td>
@@ -48,7 +51,7 @@
             </tr>
         </table>
     </div>
-    <h2 style="text-align: center;">Danh sách thiết bị</h2>
+    <h2 style="text-align: center;">Danh sách thiết bị trong lô</h2>
     <div class="table-box">
         <table id="customers" class="table table-dark-blue table-striped">
                 <thead>
