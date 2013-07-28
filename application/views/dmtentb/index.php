@@ -137,6 +137,12 @@
                                 echo $value1['ten'];
                                 break;
                             }
+                                
+                            else
+                            {
+                                echo "Chưa có";
+                                break;
+                            }
                     } ?>
                 </td>
         <?php
