@@ -189,11 +189,17 @@ ul.menu-list li.list-item:hover .dropdown-menu{
 .table-dark-blue td{
 	border:1px solid #4d6175;
 }
+
+.table td{
+	padding-top:4px;
+	padding-bottom:4px;
+}
 .form-horizontal .fix-width{
-	width:100px;
+	width:120px;
+	text-align:left;
 }
 .form-horizontal .fix-margin{
-	margin-left:120px;
+	margin-left:130px;
 }
 .form-horizontal .control-group{
 	margin-bottom:2px;
