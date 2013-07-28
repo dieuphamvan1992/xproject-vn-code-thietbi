@@ -11,53 +11,38 @@ class Dmkhunha extends CI_Controller {
 
 	public function index()
 	{
-		$temp['data']['success'] = 0;
-		$temp['data']['warning'] = 0;
+            $temp['data']['success'] = 0;
+            $temp['data']['warning'] = 0;
 
-		$temp['title']="Danh mục Khu nhà";
-        $temp['template']='dmkhunha/index';
-        $temp['data']['title'] = "DANH MỤC KHU NHÀ";
+            $temp['title']="Danh mục Khu nhà";
+            $temp['template']='dmkhunha/index';
+            $temp['data']['title'] = "DANH MỤC KHU NHÀ";
 
-        if($this->input->post('submit'))
-        {
-	        $ma = $this->input->post('ma');
-	        $ten = $this->input->post('ten');
-	        $trangthai = $this->input->post('trang_thai');
-	        $mota = $this->input->post('mo_ta');
+            if($this->input->post('submit'))
+            {
+                $ten = $this->input->post('ten');
+                $trangthai = $this->input->post('trang_thai');
+                $mota = $this->input->post('mo_ta');
 
-	        if($ma != "")
-	        {
-	        	if(trim($ma) != "")
-	        	{
-	        		$dulieu = array(
-	        				"ma" => $ma,
-	        				"ten" => $ten,
-	        				"trang_thai" => $trangthai,
-	        				"mo_ta" => $mota
-	        			);
-	        		if($this->input->post('submit') == 'Thêm')
-	        		{
-	        			$this->Mkhunha->addKhunha($dulieu);
-	        			$temp['data']['success'] = 1;
-	        		}
-	        		else if($this->input->post('submit') == "Cập nhật")
-	        		{
-	        			$id = $this->input->post('id');
-	        			$this->Mkhunha->updateKhunha($dulieu, $id);
-	        			$temp['data']['success'] = 1;
-	        		}
-	        	}
-	        }
-	        else
-	        {
-	        	$temp['data']['warning'] = 1;
-	        }
-	    }
+                $dulieu = array(
+                    "ten" => $ten,
+                    "trang_thai" => $trangthai,
+                    "mo_ta" => $mota
+                );
+                if ($this->input->post('submit') == 'Thêm') {
+                    $this->Mkhunha->addKhunha($dulieu);
+                    $temp['data']['success'] = 1;
+                } else if ($this->input->post('submit') == "Cập nhật") {
+                    $id = $this->input->post('id');
+                    $this->Mkhunha->updateKhunha($dulieu, $id);
+                    $temp['data']['success'] = 1;
+                }
+            }
 
-		$temp['data']['datas'] = $this->Mkhunha->selectAllKhunha();
-		//$temp['data']['test'] = $id;
+            $temp['data']['datas'] = $this->Mkhunha->selectAllKhunha();
+            //$temp['data']['test'] = $id;
 		
-		$this->load->view('thietbi/layout',$temp);
+            $this->load->view('thietbi/layout',$temp);
 	}
 
 	public function add()
