@@ -13,55 +13,83 @@
 ?>
 <div id='formedit'>
 	<form method="post" class="form" action="" enctype="multipart/form-data">
-      	<table border=0 cellPadding=10 cellSpacing=0 width="100%" height="100%" style="border-collapse: collapse" bordercolor="#111111">
-	    	<tbody>
-	    		<tr>
-	    			<td class='bodytop' valign='top'>
-	    				<table border=0 cellPadding=4 cellSpacing=1 class=forumline width="100%">
-							<tr>
-								<th class='thHead' height='30' colspan='2'>
-									<?php echo $title; ?>
-								</th>
-							</tr>
-							<tr>
-								<input type='hidden' name='id' value="<?php echo $id; ?>">
-								<td class=row1>Nhà cung cấp</td>
-								<td class=row2><input type='text' name ='ten' size=70 value="<?php echo $ten; ?>"/></td>
-							</tr>
-							<tr>
-								<td class=row1>Điện thoại</td>
-								<td class=row2><input type='text' name ='so_dien_thoai' size=70 value="<?php echo $sdt; ?>"/></td>
-							</tr>
-							<tr>
-								<td class=row1>Email</td>
-								<td class=row2><input type='text' name ='email' size=70 value="<?php echo $email; ?>"/></td>
-							</tr>
-							<tr>
-								<td class=row1>Địa chỉ</td>
-								<td class=row2><input type='text' name ='dia_chi' size=70 value="<?php echo $diachi; ?>"/></td>
-							</tr>
-							<tr>
-								<td class=row1>Quốc gia</td>
-								<td class=row2><input type='text' name ='id_quoc_gia' size=70 value="<?php echo $idquocgia; ?>"/></td>
-							</tr>
-							<tr>
-								<td class=row1>Trạng thái</td>
-								<td class=row2><input type='text' name ='trang_thai' size=70 value="<?php echo $trangthai; ?>"/></td>
-							</tr>
-							<tr>
-								<td class=row1>Mô tả</td>
-								<td class=row2><input type='text' name ='mo_ta' size=70 value="<?php echo $mota; ?>"/></td>
-							</tr>
-							<tr>
-								<td class=row1></td>
-								<td class=row2><input class="blue" type="submit" name="submit" value="Cập nhật">
-								<input class="blue" type='button' value='Hủy' onclick = 'removeFormEdit()'>
-								</td>
-							</tr>
-						</table>
-	    			</td>
-	    		</tr>
-	    	</tbody>
-    	</table>
+    <input type='hidden' name='id' value="<?php echo $id; ?>">
+    <div class="container-box">
+        <div class="box-title bg-chosen">
+            <h2><?php echo $title; ?></h2>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Nhà cung cấp</label>
+                    <div class="controls fix-margin">
+                        <input type="text" class="span10" name='ten' value="<?php echo $ten; ?>">
+                    </div> 
+                </div>  
+            </div> 
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Điện thoại</label>
+                    <div class="controls fix-margin">
+                        <input type="text" class="span10" name='so_dien_thoai' value="<?php echo $sdt; ?>"/>
+                    </div> 
+                </div>  
+            </div> 
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Email</label>
+                    <div class="controls fix-margin">
+                       <input type="text" class="span10" name='email' value="<?php echo $email; ?>"/>
+                    </div> 
+                </div>  
+            </div> 
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Địa chỉ</label>
+                    <div class="controls fix-margin">
+                        <input type="text" class="span10" name='dia_chi' value="<?php echo $diachi; ?>"/>
+                    </div> 
+                </div>  
+            </div> 
+        </div>
+        <div class="row-fluid">
+             <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Quốc gia</label>
+                    <div class="controls fix-margin">
+                        <input type="text" class="span10" name='id_quoc_gia' value="<?php echo $idquocgia; ?>"/>
+                    </div> 
+                </div>  
+            </div> 
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Trạng thái</label>
+                    <div class="controls fix-margin">
+                       <textarea class="span12" name='trang_thai'>
+                       <?php echo $trangthai; ?>
+                        </textarea>
+                    </div> 
+                </div>  
+            </div> 
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Mô tả</label>
+                    <div class="controls fix-margin">
+                        <textarea class="span12" name='mo_ta'>
+                        	<?php echo $mota; ?>
+                        </textarea>
+                    </div> 
+                </div>  
+            </div> 
+        </div> 
+        <div class="button-box">
+            <input class="btn btn-success" type="submit" name="submit" value="Cập nhật">
+            <input type='button' class="btn btn-inverse" value='Hủy' onclick = 'removeFormEdit()'>
+        </div>  				
+    </div>
 	</form>
 </div>

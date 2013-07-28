@@ -10,7 +10,6 @@ class Bangdm extends CI_Controller {
 
 	public function index()
 	{
-
 		$temp['title'] = "Bảng Danh mục";
 		$temp['template'] = 'bangdm';
 		$temp['data']['title'] = "DANH SÁCH BẢNG DANH MỤC";

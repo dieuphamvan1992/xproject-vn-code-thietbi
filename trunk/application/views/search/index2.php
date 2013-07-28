@@ -1,8 +1,10 @@
+<?php
+  echo form_open('search/index2', array('name' => 'timkiem', 'id' => 'timkiem'));
+   echo form_fieldset();
+?>
+
 <div class="container-box">
-    <?php
-        echo form_open('search/index2', array('name' => 'timkiem', 'id' => 'timkiem'));
-        echo form_fieldset();
-    ?>
+  
     <style type="text/css">
         .pad td{
             padding-left: 20px;
@@ -98,16 +100,13 @@
     <?php
         if (isset($list_thiet_bi) && count($list_thiet_bi) > 0){
     ?>
-        <h2 style="text-align: center;margin-top: 20px;margin-bottom: 30px;">Danh sách thiết bị</h2>
-        <table class="table table-dark-blue table-striped">
+        <h3 style="text-align: center;margin-top: 20px;margin-bottom: 30px;">Danh sách thiết bị</h3>
+        <table class="table table-bordered table-striped">
             <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Mã thiết bị</th>
                     <th>Tên thiết bị</th>
                     <th>Số lượng</th>
-                    <th>Đơn vị</th>
-                    <th>Số hóa đơn xuất</th>
                     <th>Loại thiết bị</th>
                     <th>Action</th>
                 </tr>
@@ -120,14 +119,11 @@
                 ?>
                 <tr>
                     <td><?php echo $index; ?></td>
-                    <td><?php echo $item['MIN(thiet_bi_su_dung.id)'].' - '.$item['MAX(thiet_bi_su_dung.id)']; ?></td>
                     <td><?php echo $item['ten']; ?></td>
                     <td><?php echo $item['COUNT(thiet_bi_su_dung.id)']; ?></td>
-                    <td><?php echo $item['don_vi']; ?></td>
-                    <td><?php echo $item['so_hoa_don']; ?></td>
                     <td><?php echo $item['loai']; ?></td>
                     <td>
-                        <a href="<?php echo base_url('index.php/search/view/' . $item['id_chi_tiet_xuat']); ?>">
+                        <a href="<?php echo base_url('index.php/search/view/' . $item['id']); ?>">
                             <span class="btn">Xem</span>
                         </a>
                     </td>
