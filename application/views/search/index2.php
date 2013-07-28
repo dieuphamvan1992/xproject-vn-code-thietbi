@@ -3,6 +3,9 @@
 		echo form_fieldset();
 	?>
 <div class="container-box">
+	<div class="box-title">
+    	<h2>Tìm kiếm theo lô</h2>
+    </div>
 	<div class="form-horizontal">
     	<div class="row-fluid">
             <div class="span4">
