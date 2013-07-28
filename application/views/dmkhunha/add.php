@@ -12,14 +12,7 @@
                 </div> 
             </div>  
         </div> 
-        <div class="span6">
-            <div class="control-group">
-                <label class="control-label fix-width">Tên khu nhà</label>
-                <div class="controls fix-margin">
-                    <input type="text" class="span10" name='ten'>
-                </div> 
-            </div>  
-        </div> 
+       
     </div>
     <div class="row-fluid">
         <div class="span6">
