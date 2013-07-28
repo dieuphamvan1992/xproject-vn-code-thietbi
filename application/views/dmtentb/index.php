@@ -133,9 +133,16 @@
                 <td class=''>
                     <?php foreach ($listtb as $key => $value1) {
                             if($idloaitb == $value1['id'])
+                            {
                                 echo $value1['ten'];
+                                break;
+                            }
+                                
                             else
+                            {
                                 echo "Chưa có";
+                                break;
+                            }
                     } ?>
                 </td>
         <?php
