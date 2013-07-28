@@ -53,7 +53,7 @@ class Dmtentb extends CI_Controller {
 		$temp['data']['listtb'] = $this->Mloaitb->selectAllLoaitb();
 		//$temp['data']['test'] = $id;
 		
-		$this->load->view('layout',$temp);
+		$this->load->view('thietbi/layout',$temp);
 	}
 
 	public function add()

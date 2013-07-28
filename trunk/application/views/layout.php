@@ -19,14 +19,6 @@
 </head>
 
 <body>
-    <img id="anhlogo" src="<?php echo base_url(); ?>public/images/logo.png" width="120" height="180" /><!--header-->
-    <div id="header">
-
-        <?php $this->load->view("thietbi/header");?>
-
-    </div>
-
-
     <div class="page">
 
         <?php $this->load->view($template,$data);?>
