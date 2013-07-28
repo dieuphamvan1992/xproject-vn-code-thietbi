@@ -3,12 +3,17 @@
         	<a href="#"><img src="<?php echo base_url(); ?>public/images/logo.png"/></a>
             <div class="top-menu ">
            	  <ul class="menu-list">
-                	<a href="<?php echo site_url('search') ?>">
                     	<li class="list-item">
                         	<i class="icon-search icon-white"></i>
                     		Tìm kiếm
+                            <div class="dropdown">
+                              <!-- Link or button to toggle dropdown -->
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <li><a tabindex="-1" href="<?php echo site_url('search') ?>">Quản lý bảng danh mục</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('') ?>">Quản lý người dùng</a></li>
+                              </ul>
+                            </div>
                     	</li>
-                    </a>
                    
                     	<li class="list-item">
                         	<i class=" icon-wrench icon-white"></i>
@@ -32,8 +37,8 @@
                                 <li><a tabindex="-1" href="<?php echo site_url('hoadon/createHoaDonNhap') ?>">Tạo hoá đơn nhập</a></li>
                                 <li><a tabindex="-1" href="<?php echo site_url('hoadon/createHoaDonXuat') ?>">Tạo hoá đơn xuất</a></li>
                                 <li><a tabindex="-1" href="<?php echo site_url('nhapthang') ?>">Nhập thẳng</a></li>
-                                <li class="divider"></li>
-                                <li><a tabindex="-1" href="#">Separated link</a></li>
+                                <!--<li class="divider"></li>
+                                <li><a tabindex="-1" href="#">Separated link</a></li>-->
                               </ul>
                             </div>
                     	</li>
