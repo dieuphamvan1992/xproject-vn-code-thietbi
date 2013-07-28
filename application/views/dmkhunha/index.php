@@ -72,87 +72,79 @@
 ?>
 
 <div id='formnew'></div>
+<div class="row">
+	<div class="span12">
+    	<h2><?php echo $title; ?></h2>
+    </div>
+        <div style="float:right; padding:3px 0;">
+        	<input type='button' class=" btn btn-success" value="Thêm dữ liệu" onclick='add_dmkhunha()'>
+        </div>
+    	
+</div>
+<table class="table table-dark-blue">
+    <thead>
+        <tr>
+            <th>
+                Mã KN
+            </th>
+            <th width='45%'>
+                Tên Khu  nhà
+            </th>
+            <th>
+                Trạng thái
+            </th>
+            <th>
+                Mô tả
+            </th>
+            <th width='50px' >
+                Sửa
+            </th>
+            <th width='50px' >
+                Xóa
+            </th>
+        </tr>
+    </thead>
+    <?php
 
-<table border=0 cellPadding=10 cellSpacing=0 width="100%" height="100%" style="border-collapse: collapse" bordercolor="#111111">
-	<tbody>
-		<tr>
-			<td class='' valign='top'>
-				<table width='100%'>
-					<tr>
-						<td><strong><?php echo $title; ?></strong></td>
-						<td align='right'>
-							<input type='button' class="" value="Thêm dữ liệu" onclick='add_dmkhunha()'>
-						</td>
-					</tr>
-				</table>
+    $list = $datas;
+    if($list){
+    ?>
+        <?php
+            foreach($list as $key => $value)
+            {
+                $id = $value['id'];
+                $ma = $value['ma'];
+                $ten = $value['ten'];
+                $trangthai = $value['trang_thai'];
+                $mota = $value['mo_ta'];
+                echo "<tr id='".$id."'><td class=''>".$ma."</td>";
+                echo "<td class=''>".$ten."</td>";
+                echo "<td class=''>".$trangthai."</td>";
+                echo "<td class=''>".$mota."</td>";
+        ?>
+                <td>
+                    <img src="<?php echo base_url(); ?>public/images/edit.png" width="20" height="20" onclick="edit_dmkhunha('<?php echo $id; ?>')">
+                    
+                </td>
+                <td>
+                	<img src="<?php echo base_url(); ?>public/images/delete.png" width="20" height="20" onclick="delete_dmkhunha('<?php echo $id; ?>')">
+                </td>
+        <?php
+                echo "</tr>";
+            }
+        ?>
+    <?php
+    }
+    else{
+    ?>
 
-				<table class="table table-bordered">
-        			<thead>
-						<tr>
-							<th width='15%' class='' height='30'>
-								Mã KN
-							</th>
-							<th width='25%' class='' height='30'>
-								Tên Khu  nhà
-							</th>
-							<th width='25%' class='' height='30'>
-								Trạng thái
-							</th>
-							<th width='25%' class='' height='30'>
-								Mô tả
-							</th>
-							<th width='10%' class='' height='30'>
-								Thao tác
-							</th>
-						</tr>
-					</thead>
-					<?php
+        <tr align='center'>
+            <td colspan='5' class='row1'>
+                <strong><font color='red'>Không có dữ liệu</font></strong>
+            </td>
+        </tr>
 
-					$list = $datas;
-					if($list){
-					?>
-
-
-
-					<tbody>
-						<?php
-							foreach($list as $key => $value)
-							{
-								$id = $value['id'];
-								$ma = $value['ma'];
-								$ten = $value['ten'];
-								$trangthai = $value['trang_thai'];
-								$mota = $value['mo_ta'];
-								echo "<tr id='".$id."'><td class=''>".$ma."</td>";
-								echo "<td class=''>".$ten."</td>";
-								echo "<td class=''>".$trangthai."</td>";
-								echo "<td class=''>".$mota."</td>";
-						?>
-								<td class=''>
-									<img src="<?php echo base_url(); ?>public/images/edit.png" width="20" height="20" onclick="edit_dmkhunha('<?php echo $id; ?>')">
-									<img src="<?php echo base_url(); ?>public/images/delete.png" width="20" height="20" onclick="delete_dmkhunha('<?php echo $id; ?>')">
-								</td>
-						<?php
-								echo "</tr>";
-							}
-						?>
-					</tbody>
-					<?php
-					}
-					else{
-					?>
-
-						<tr align='center'>
-							<td colspan='5' class='row1'>
-								<strong><font color='red'>Không có dữ liệu</font></strong>
-							</td>
-						</tr>
-
-					<?php
-					 }
-					?>
-				</table>
-			</td>
-		</tr>
-	</tbody>
+    <?php
+     }
+    ?>
 </table>

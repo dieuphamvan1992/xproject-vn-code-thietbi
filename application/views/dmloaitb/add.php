@@ -1,34 +1,43 @@
 <form method="post" class="" action="" enctype="multipart/form-data">
-    <table border=0 cellPadding=10 cellSpacing=0 width="100%" height="100%" style="border-collapse: collapse" bordercolor="#111111">
-    	<tbody>
-    		<tr>
-    			<td class='' valign='top'>
-    				<table border=0 cellPadding=4 cellSpacing=1 class= width="100%">
-						<tr>
-							<th class='' height='30' colspan='2'>
-								<?php echo $title; ?>
-							</th>
-						</tr>
-						<tr>
-							<td class=>Loại Thiết bị</td>
-							<td class=><input type='text' name='ten' size=70/></td>
-						</tr>
-						<tr>
-							<td class=>Trạng thái</td>
-							<td class=><textarea name='trang_thai' cols='52'></textarea></td>
-						</tr>
-						<tr>
-							<td class=>Mô tả</td>
-							<td class=><textarea name='mo_ta' cols='52'></textarea></td>
-						</tr>
-						<tr>
-							<td class=></td>
-							<td class=><input class="" type="submit" name="submit" value="Thêm">
-							<input class="" type='button' value='Hủy' onclick = 'removeFormEdit()'></td>
-						</tr>
-					</table>
-    			</td>
-    		</tr>
-    	</tbody>
-    </table>
+    <div class="container-box">
+        <div class="box-title">
+            <h2><?php echo $title; ?></h2>
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Tên Loại thiết bị</label>
+                    <div class="controls fix-margin">
+                        <input type="text" class="span10" name='ten' >
+                    </div> 
+                </div>  
+            </div> 
+        </div>
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Trạng thái</label>
+                    <div class="controls fix-margin">
+                       <textarea class="span12" name='trang_thai'>
+                      
+                        </textarea>
+                    </div> 
+                </div>  
+            </div> 
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label fix-width">Mô tả</label>
+                    <div class="controls fix-margin">
+                        <textarea class="span12" name='mo_ta'>
+                        	
+                        </textarea>
+                    </div> 
+                </div>  
+            </div> 
+        </div> 
+        <div class="button-box">
+            <input class="btn btn-success" type="submit" name="submit" value="Thêm">
+            <input type='button' class="btn btn-inverse" value='Hủy' onclick = 'removeFormEdit()'>
+        </div>  				
+    </div>
 </form>

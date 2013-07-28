@@ -45,7 +45,7 @@
 <?php
 	if($success){
 	?>
-		<div class="notification success" >
+		<div class="notification success">
 			<span class="strong">Thao tác thành công.</span>
 			<span class="close" title="Dismiss"></span>
 		</div>
@@ -73,8 +73,7 @@
 
 <div id='formnew'></div>
 
-<table border=0 cellPadding=10 cellSpacing=0 width="100%" height="100%" style="border-collapse: collapse" bordercolor="#111111">
-	<tbody>
+<table class="table table-dark-blue">
 		<tr>
 			<td class='' valign='top'>
 				<table width='100%'>
@@ -136,7 +135,6 @@
 								echo "</tr>";
 							}
 						?>
-					</tbody>
 					<?php
 					}
 					else{

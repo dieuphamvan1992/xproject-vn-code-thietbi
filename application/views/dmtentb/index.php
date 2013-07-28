@@ -72,108 +72,99 @@
 ?>
 
 <div id='formnew'></div>
+<div class="row">
+	<div class="span12">
+    	<h2><?php echo $title; ?></h2>
+    </div>
+        <div style="float:right; padding:3px 0;">
+        	<input type='button' class=" btn btn-success" value="Thêm dữ liệu" onclick='add_dmtentb()'>
+        </div>
+    	
+</div>
+<table class="table table-dark-blue">
+    <thead>
+        <tr>
+            <th >
+                Thiết bị
+            </th>
+            <th >
+                Ảnh
+            </th>
+            <th >
+                Loại
+            </th>
+            <th >
+                Đơn vị tính
+            </th>
+            <th >
+                Trạng thái
+            </th>
+            <th >
+                Mô tả
+            </th>
+            <th width="50px">
+                Sửa
+            </th>
+            <th width="50px">
+                Xóa
+            </th>
+        </tr>
+    </thead>
+    <?php
 
-<table border=0 cellPadding=10 cellSpacing=0 width="100%" height="100%" style="border-collapse: collapse" bordercolor="#111111">
-	<tbody>
-		<tr>
-			<td class='' valign='top'>
-				<table width='100%'>
-					<tr>
-						<td><strong><?php echo $title; ?></strong></td>
-						<td align='right'>
-							<input type='button' class="" value="Thêm dữ liệu" onclick='add_dmtentb()'>
-						</td>
-					</tr>
-				</table>
-				<table border=0 cellPadding=4 cellSpacing=1 class=forumline
-        width="100%">
-        			<thead>
-						<tr>
-							<th class='' height='30'>
-								Thiết bị
-							</th>
-							<th class='' height='30'>
-								Ảnh
-							</th>
-							<th class='' height='30'>
-								Loại
-							</th>
-							<th class='' height='30'>
-								Đơn vị tính
-							</th>
-							<th class='' height='30'>
-								Trạng thái
-							</th>
-							<th class='' height='30'>
-								Mô tả
-							</th>
-							<th class='' height='30'>
-								Thao tác
-							</th>
-						</tr>
-					</thead>
-					<?php
+    $list = $datas;
+    if($list){
+    ?>
+        <?php
+            foreach($list as $key => $value)
+            {	
+                $id = $value['id'];
+                $ten = $value['ten'];
+                $anh = $value['anh'];
+                $idloaitb = $value['id_loai_thiet_bi'];
+                $donvitinh = $value['don_vi_tinh'];
+                $trangthai = $value['trang_thai'];
+                $mota = $value['mo_ta'];
 
-					$list = $datas;
-					if($list){
-					?>
-
-				
-				
-					<tbody>
-						<?php
-							foreach($list as $key => $value)
-							{	
-								$id = $value['id'];
-								$ten = $value['ten'];
-								$anh = $value['anh'];
-								$idloaitb = $value['id_loai_thiet_bi'];
-								$donvitinh = $value['don_vi_tinh'];
-								$trangthai = $value['trang_thai'];
-								$mota = $value['mo_ta'];
-
-								echo "<tr id='".$id."'>";
-								echo "<td class=''>".$ten."</td>";
-								echo "<td class=''>".$anh."</td>";
-						?>
-								<td class=''>
-									<?php foreach ($listtb as $key => $value1) {
-											if($idloaitb == $value1['id'])
-												echo $value1['ten'];
-											else
-												echo "Chưa có";
-									} ?>
-								</td>
-						<?php
-								echo "<td class=''>".$donvitinh."</td>";
-								echo "<td class=''>".$trangthai."</td>";
-								echo "<td class=''>".$mota."</td>";
-						?>
-								<td class=''>
-									<img src="<?php echo base_url(); ?>public/images/edit.png" width="20" height="20" onclick="edit_dmtentb('<?php echo $id; ?>')">
-									<img src="<?php echo base_url(); ?>public/images/delete.png" width="20" height="20" onclick="delete_dmtentb('<?php echo $id; ?>')">
-								</td>
-						<?php
-								echo "</tr>";
-							}
-						?>
-					</tbody>
-					<?php 
-					}
-					else{
-					?>
-					
-						<tr align='center'>
-							<td colspan='5' class='row1'>
-								<strong><font color='red'>Không có dữ liệu</font></strong>
-							</td>
-						</tr>
-					
-					<?php 	
-					 } 
-					?>
-				</table>
-			</td>
-		</tr>
-	</tbody>
+                echo "<tr id='".$id."'>";
+                echo "<td class=''>".$ten."</td>";
+                echo "<td class=''>".$anh."</td>";
+        ?>
+                <td class=''>
+                    <?php foreach ($listtb as $key => $value1) {
+                            if($idloaitb == $value1['id'])
+                                echo $value1['ten'];
+                            else
+                                echo "Chưa có";
+                    } ?>
+                </td>
+        <?php
+                echo "<td class=''>".$donvitinh."</td>";
+                echo "<td class=''>".$trangthai."</td>";
+                echo "<td class=''>".$mota."</td>";
+        ?>
+                <td class=''>
+                    <img src="<?php echo base_url(); ?>public/images/edit.png" width="20" height="20" onclick="edit_dmtentb('<?php echo $id; ?>')">
+               </td>
+               <td>
+                    <img src="<?php echo base_url(); ?>public/images/delete.png" width="20" height="20" onclick="delete_dmtentb('<?php echo $id; ?>')">
+                </td>
+        <?php
+                echo "</tr>";
+            }
+        ?>
+    <?php 
+    }
+    else{
+    ?>
+    
+        <tr align='center'>
+            <td colspan='5' class='row1'>
+                <strong><font color='red'>Không có dữ liệu</font></strong>
+            </td>
+        </tr>
+    
+    <?php 	
+     } 
+    ?>
 </table>
