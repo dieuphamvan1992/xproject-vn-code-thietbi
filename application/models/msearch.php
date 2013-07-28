@@ -57,9 +57,22 @@ class Msearch extends CI_Model{
         if (isset($data['phong']) && ($data['phong'] !== '')){
             $this->db->like('phong', $data['phong']);
         }
+        /* Search ngày của Điều
         if (isset($data['tu_nam']) && isset($data['den_nam']) && ($data['tu_nam'] !== '') && ($data['den_nam'] != '')){
             $this->db->where("YEAR(ngay_su_dung) BETWEEN '".$data['tu_nam']."' AND '".$data['den_nam']."'");
         }
+        */
+
+        //Search ngày của Trường Kobe
+        if (isset($data['tu_nam']) && ($data['tu_nam'] !== ''))
+        {
+            $this->db->where('YEAR(ngay_su_dung) >='.$data['tu_nam']);
+        }
+        if (isset($data['den_nam']) && ($data['den_nam'] !== ''))
+        {
+            $this->db->where('YEAR(ngay_su_dung) <='.$data['den_nam']);
+        }
+        //Kết thúc search ngày của Trường Kobe
         
         $this->db->join('dm_ten_thiet_bi', 'thiet_bi_su_dung.id_ten_thiet_bi = dm_ten_thiet_bi.id', 'LEFT');
         $this->db->join('dm_don_vi', 'dm_don_vi.id = thiet_bi_su_dung.id_don_vi_quan_ly', 'LEFT');
@@ -180,9 +193,24 @@ class Msearch extends CI_Model{
         if (isset($data['phong']) && ($data['phong'] !== '')){
             $this->db->like('thiet_bi_su_dung.phong', $data['phong']);
         }
+
+        /* Search ngày của Điều
         if (isset($data['tu_nam']) && isset($data['den_nam']) && ($data['tu_nam'] !== '') && ($data['den_nam'] != '')){
             $this->db->where("YEAR(ngay_su_dung) BETWEEN '".$data['tu_nam']."' AND '".$data['den_nam']."'");
         }
+        */
+
+        //Search ngày của Trường Kobe
+        if (isset($data['tu_nam']) && ($data['tu_nam'] !== ''))
+        {
+            $this->db->where('YEAR(ngay_su_dung) >='.$data['tu_nam']);
+        }
+        if (isset($data['den_nam']) && ($data['den_nam'] !== ''))
+        {
+            $this->db->where('YEAR(ngay_su_dung) <='.$data['den_nam']);
+        }
+        //Kết thúc search ngày của Trường Kobe
+
         if (isset($data['id_khu_nha']) && ($data['id_khu_nha'] !== '')){
             $this->db->where('thiet_bi_su_dung.id_khu_nha', $data['id_khu_nha']);
         }
@@ -207,6 +235,8 @@ class Msearch extends CI_Model{
             MAX(thiet_bi_su_dung.id), MIN(thiet_bi_su_dung.id)');
         
         $result = $this->db->get('thiet_bi_su_dung');
+        // echo $this->db->last_query(); 
+        // die();
         return $result->result_array();
     }
     
@@ -256,3 +286,5 @@ class Msearch extends CI_Model{
         return $result->row_array();
     }
 }
+
+        
