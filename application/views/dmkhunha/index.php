@@ -113,7 +113,6 @@
             foreach($list as $key => $value)
             {
                 $id = $value['id'];
-                $ma = $value['ma'];
                 $ten = $value['ten'];
                 $trangthai = $value['trang_thai'];
                 $mota = $value['mo_ta'];
