@@ -81,7 +81,7 @@
             </div> 
         </div> 
         <div class="button-box">
-            <input class="btn btn-success" type="submit" name="submit" value="Cập nhật">
+            <input class="btn btn-success" type="submit" name="submit" value="Thêm">
             <input type='button' class="btn btn-inverse" value='Hủy' onclick = 'removeFormEdit()'>
         </div>  	
     </div>
