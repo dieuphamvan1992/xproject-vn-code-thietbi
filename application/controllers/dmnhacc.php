@@ -53,7 +53,7 @@ class Dmnhacc extends CI_Controller {
 		$temp['data']['datas'] = $this->Mnhacc->selectAllNhacc();
 		//$temp['data']['test'] = $id;
 		
-		$this->load->view('layout',$temp);
+		$this->load->view('thietbi/layout',$temp);
 	}
 
 	public function add()

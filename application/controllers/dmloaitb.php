@@ -44,7 +44,7 @@ class Dmloaitb extends CI_Controller {
 		$temp['data']['datas'] = $this->Mloaitb->selectAllLoaitb();
 		//$temp['data']['test'] = $id;
 		
-		$this->load->view('layout',$temp);
+		$this->load->view('thietbi/layout',$temp);
 	}
 
 	public function add()
