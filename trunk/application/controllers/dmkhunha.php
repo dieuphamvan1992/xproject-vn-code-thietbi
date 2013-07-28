@@ -30,13 +30,13 @@ class Dmkhunha extends CI_Controller {
 	        );
 	        if($this->input->post('submit') == 'Thêm')
 	        {
-	        	$this->Mloaitb->addKhunha($dulieu);
+	        	$this->Mkhunha->addKhunha($dulieu);
 	        	$temp['data']['success'] = 1;
 	        }
 	        else if($this->input->post('submit') == "Cập nhật")
 	        {
 	        	$id = $this->input->post('id');
-	        	$this->Mloaitb->updateKhunha($dulieu, $id);
+	        	$this->Mkhunha->updateKhunha($dulieu, $id);
 	        	$temp['data']['success'] = 1;
 	        }
 	    }
