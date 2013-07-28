@@ -84,9 +84,6 @@
 <table class="table table-dark-blue">
     <thead>
         <tr>
-            <th>
-                Mã KN
-            </th>
             <th width='45%'>
                 Tên Khu  nhà
             </th>
