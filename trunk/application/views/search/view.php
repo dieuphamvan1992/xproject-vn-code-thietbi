@@ -56,12 +56,13 @@
         <table id="customers" class="table table-dark-blue table-striped">
                 <thead>
                     <tr>
-                        <th>STT</th>
-                        <th>Mã thiết bị</th>
-                        <th>Ngày sử dụng</th>
+                        <th width="50px">STT</th>
+                        <th width="90px">Mã thiết bị</th>
+                        <th>Tên thiết bị</th>
+                        <th width="120px">Ngày sử dụng</th>
                         <th>Phòng</th>
                         <th>Khu nhà</th>
-                        <th>Trạng thái</th>
+                        <th width="120px">Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,10 +74,11 @@
                         <tr>
                             <td><?php echo $index; ?></td>
                             <td>
-                                <a target="_blank" href="<?php echo base_url('index.php/search/detail/'. $thiet_bi['id']); ?>">
+                                
                                     <?php echo $thiet_bi['id']; ?>
-                                </a>
+                                
                             </td>
+                            <td><a target="_blank" href="<?php echo base_url('index.php/search/detail/'. $thiet_bi['id']); ?>"><?php echo $thiet_bi['ten']; ?></a></td>
                             <td><?php echo $thiet_bi['ngay_su_dung']; ?></td>
                             <td><?php echo $thiet_bi['phong']; ?></td>
                             <td><?php echo $thiet_bi['khu_nha']; ?></td>
