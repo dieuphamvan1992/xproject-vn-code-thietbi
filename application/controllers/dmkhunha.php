@@ -19,25 +19,27 @@ class Dmkhunha extends CI_Controller {
             $temp['data']['title'] = "DANH MỤC KHU NHÀ";
 
             if($this->input->post('submit'))
-            {
-                $ten = $this->input->post('ten');
-                $trangthai = $this->input->post('trang_thai');
-                $mota = $this->input->post('mo_ta');
-
-                $dulieu = array(
-                    "ten" => $ten,
-                    "trang_thai" => $trangthai,
-                    "mo_ta" => $mota
-                );
-                if ($this->input->post('submit') == 'Thêm') {
-                    $this->Mkhunha->addKhunha($dulieu);
-                    $temp['data']['success'] = 1;
-                } else if ($this->input->post('submit') == "Cập nhật") {
-                    $id = $this->input->post('id');
-                    $this->Mkhunha->updateKhunha($dulieu, $id);
-                    $temp['data']['success'] = 1;
-                }
-            }
+        {
+	        $ten = $this->input->post('ten');
+	        $trangthai = $this->input->post('trang_thai');
+	        $mota = $this->input->post('mo_ta');
+	       	$dulieu = array(
+	        		"ten" => $ten,
+	        		"trang_thai" => $trangthai,
+	        		"mo_ta" => $mota
+	        );
+	        if($this->input->post('submit') == 'Thêm')
+	        {
+	        	$this->Mloaitb->addKhunha($dulieu);
+	        	$temp['data']['success'] = 1;
+	        }
+	        else if($this->input->post('submit') == "Cập nhật")
+	        {
+	        	$id = $this->input->post('id');
+	        	$this->Mloaitb->updateKhunha($dulieu, $id);
+	        	$temp['data']['success'] = 1;
+	        }
+	    }
 
             $temp['data']['datas'] = $this->Mkhunha->selectAllKhunha();
             //$temp['data']['test'] = $id;
