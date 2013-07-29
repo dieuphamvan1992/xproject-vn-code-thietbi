@@ -6,6 +6,7 @@ class import extends Tb_controller{
     public function __construct() {
         parent::__construct();
         $this->load->model('Mimport');
+        $this->load->library('excel');
     }
     
     public function index(){
@@ -90,6 +91,115 @@ class import extends Tb_controller{
 //            $data['total'] = $result['total'];
             $data['data']['array_import_fail'] = $result;
         }
+        
+        if($this->input->post('submit') == 'Xuất')
+        {
+            $objPHPExcel = new Excel();
+		$objPHPExcel->setActiveSheetIndex(0);
+		$objPHPExcel->getProperties()->setCreator("tiêu đề cho file xuất")->setLastModifiedBy("Maarten Balliauw")->setTitle("Office 2007 XLSX Test Document")->setSubject("Office 2007 XLSX Test Document")->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")->setKeywords("office 2007 openxml php")->setCategory("Test result file");
+                
+                $header = array(
+                    "1" => "STT",
+                    "2" => "Dòng",
+                    "3" => "Số hóa đơn",
+                    "4" => "Nhà cung cấp",
+                    "5" => "Đơn vị nhận",
+                    "6" => "Khu nhà",
+                    "7" => "Nguồn vốn",
+                    "8" => "Cho mượn",
+                    "9" => "Tên thiết bị",
+                    "10" => "Loại thiết bị",
+                    "11" => "Quốc gia",
+                    "12" => "Số lượng",
+                    "13" => "Bảo hành",
+                    "14" => "Chi phí lắp đặt",
+                    "15" => "Chi phí vận chuyển",
+                    "16" => "Chi phí chạy thử",
+                    "17" => "Số năm khấu hao",
+                    "18" => "Đơn giá",
+                    "19" => "Phòng",
+                    "20" => "Lỗi",
+                );
+                
+		$rowCount = 1;  
+
+		//bắt đầu in tên cột như tên các trường 
+
+		 $column = 'A';
+
+		foreach($header as $key=>$value)
+
+		{
+			$objPHPExcel->getActiveSheet()->getColumnDimension( $column )->setWidth( 20 );
+		    $objPHPExcel->getActiveSheet()->setCellValue($column.$rowCount, $value);
+		    $column++;
+		}
+
+		//kết thúc in tên cột
+
+		//vòng lặp lấy dữ liệu
+		$rowCount = 2;  
+
+		if(count($result))
+
+		{  
+
+		   for($i=0; $i<count($result); $i++)
+		    {  
+//		        $objPHPExcel->getActiveSheet()->setCellValue("A".$rowCount, $result[$i]['id']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("B".$rowCount, $result[$i]['data']['so_hoa_don']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("C".$rowCount, $result[$i]['data']['nha_cung_cap']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("D".$rowCount, $result[$i]['data']['don_vi_nhan']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("E".$rowCount, $result[$i]['data']['khu_nha']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("F".$rowCount, $result[$i]['data']['nguon_von']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("G".$rowCount, $result[$i]['data']['cho_muon']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("H".$rowCount, $result[$i]['data']['ten_thiet_bi']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("I".$rowCount, $result[$i]['data']['loai_thiet_bi']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("J".$rowCount, $result[$i]['data']['quoc_gia']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("K".$rowCount, $result[$i]['data']['so_luong']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("L".$rowCount, $result[$i]['data']['so_thang_bao_hanh']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("M".$rowCount, $result[$i]['data']['chi_phi_lap_dat']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("N".$rowCount, $result[$i]['data']['chi_phi_van_chuyen']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("O".$rowCount, $result[$i]['data']['chi_phi_chay_thu']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("P".$rowCount, $result[$i]['data']['so_nam_khau_hao']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("R".$rowCount, $result[$i]['data']['don_gia']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("S".$rowCount, $result[$i]['data']['phong']);
+//                        $objPHPExcel->getActiveSheet()->setCellValue("T".$rowCount, $result[$i]['fail']);
+                       $objPHPExcel->getActiveSheet()->setCellValue("A".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("B".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("C".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("D".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("E".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("F".$rowCount,"a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("G".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("H".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("I".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("J".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("K".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("L".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("M".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("N".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("O".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("P".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("R".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("S".$rowCount, "a");
+                        $objPHPExcel->getActiveSheet()->setCellValue("T".$rowCount, "a");
+                        
+		    }  
+
+		    $rowCount++;
+		} 
+
+        $objPHPExcel->createSheet();
+        header('Content-Type: application/vnd.ms-excel');
+		        header('Content-Disposition: attachment;filename="ban ghi chua import_' . '_' . '.xls"');
+		        header('Cache-Control: max-age=0');
+		        
+		        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+		        $objWriter->save('php://output');
+        }
+        
+        
         $this->load->view('thietbi/layout', $data);
     }
     
