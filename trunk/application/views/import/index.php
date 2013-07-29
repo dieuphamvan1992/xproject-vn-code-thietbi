@@ -1,5 +1,5 @@
 <?php
-    echo form_open('import/index', array('name' => "importForm", 'method' => 'post', 'enctype' => "multipart/form-data"));
+    echo form_open('import/importAction', array('name' => "importForm", 'method' => 'post', 'enctype' => "multipart/form-data"));
     echo form_fieldset();
 ?>
 <!--<form enctype='multipart/form-data' action='importluong.php' method='post' >-->
@@ -33,12 +33,3 @@
 <?php 
 echo form_close();
 ?>
-<?php
-  if(count($arrayImportFail)){
-      for($i=0; $i<count($arrayImportFail); $i++) {
-          echo $arrayImportFail[$i]['id']."   ".$arrayImportFail[$i]['fail']."<br>";
-      }
-  }     
-?>
-<div id="result">
-</div>
