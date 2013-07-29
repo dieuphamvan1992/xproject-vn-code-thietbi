@@ -2,6 +2,9 @@
     <h2><a href="../import">Back</a></h2>
     <h2 style="text-align: center;">Kết quả Import </h2>
     <div style="font-size: 12px;">Tổng số dòng chưa được Import là : <span style="color: red;"><?php echo count($array_import_fail); ?> </span></div>
+    <form method="post" name="formExport" action='<?php echo site_url(); ?>/import/importAction'>
+    <input type="submit" name="submit" value="Xuất">
+    </form>
     <table style="border: solid; ">
         <tr style="text-align: center;">
             <th>STT</th>
