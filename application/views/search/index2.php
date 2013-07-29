@@ -133,11 +133,24 @@
 </div>
 
 <div class="table-box">
-    <?php
-        if (isset($list_thiet_bi) && count($list_thiet_bi) > 0){
-    ?>
-        <h2 style="text-align: center;margin-top: 20px;margin-bottom: 30px;">Danh sách thiết bị</h2>
-        <a href='<?php echo site_url(); ?>/export/batch'>Xuất</a>
+	 <?php
+        	if (isset($list_thiet_bi) && count($list_thiet_bi) > 0){
+    	?>
+	<div class="table-box-title">
+        <div style="float:left">
+            <h3><i class=" icon-chevron-right">&nbsp;</i>&nbsp;Danh sách lô thiết bị</h3>
+        </div>
+        <div style="float:right">
+            Tổng số thiết bị: <font color="#42515f"><strong><?php echo count($list_thiet_bi); ?></strong></font>
+            <span></span>
+            <a href='<?php echo site_url(); ?>/export/batch'>
+            <button type="button" class="btn btn-small btn-info" ><i class="icon-list-alt icon-white"></i> Xuất</button>
+            </a>
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+
         <table class="table table-striped table-dark-blue ">
             <thead>
                 <tr>

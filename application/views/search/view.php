@@ -51,8 +51,13 @@
             </tr>
         </table>
     </div>
-    <h2 style="text-align: center;">Danh sách thiết bị trong lô</h2>
     <div class="table-box">
+    <div class="table-box-title">
+        <div style="float:left">
+            <h3><i class=" icon-chevron-right">&nbsp;</i>&nbsp;Danh sách thiết bị trong lô</h3>
+        </div>
+        <div class="clear"></div>
+   		 </div>
         <table id="customers" class="table table-dark-blue table-striped">
                 <thead>
                     <tr>
