@@ -228,25 +228,8 @@ class import extends Tb_controller{
             $idChiTietNhap = 0;
             $idXuat = 0;
             $idChiTietXuat = 0;
-            $result = 1;
-//            $soHoaDon = $dataExcel->val($i, 1);
-//            $nhaCungCap = $dataExcel->val($i, 2);
-//            $donViNhan = $dataExcel->val($i, 3);
-//            $khuNha = $dataExcel->val($i, 4);
-//            $nguonVon = $dataExcel->val($i, 5);
-//            $line['cho_muon'] = $dataExcel->val($i, 6);
-//            $line['ten_thiet_bi'] = $dataExcel->val($i, 7);
-//            $line['loai_thiet_bi'] = $dataExcel->val($i, 8);
-//            $line['quoc_gia'] = $dataExcel->val($i, 9);
-//            $line['so_luong'] = $dataExcel->val($i, 10);
-//            $line['so_thang_bao_hanh'] = $dataExcel->val($i, 11);
-//            $line['chi_phi_lap_dat'] = $dataExcel->val($i, 12);
-//            $line['chi_phi_van_chuyen'] = $dataExcel->val($i, 13);
-//            $line['chi_phi_chay_thu'] = $dataExcel->val($i, 14);
-//            $line['so_nam_khau_hao'] = $dataExcel->val($i, 15);
-//            $line['don_gia'] = $dataExcel->val($i, 16);
-//            $line['phong'] = $dataExcel->val($i, 17);
-            
+            //$result = 1;
+            $result = array();
             $line['so_hoa_don'] = $dataExcel->val($i, 1);
             $line['nha_cung_cap'] = $dataExcel->val($i, 2);
             $line['don_vi_nhan'] = $dataExcel->val($i, 3);
