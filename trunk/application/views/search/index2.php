@@ -26,16 +26,16 @@
             </div>  
             <div class="span4">
                   <div class="control-group">
-                      <label class="control-label fix-width">Loại thiết bị</label>
-                      <div class="controls fix-margin">
-                          <?php
-								$loai = array('' => '');
-								foreach ($list_loai_thiet_bi as $item){
-									$loai[$item['id']] = $item['ten'];
-								}
-								echo form_dropdown("loai_thiet_bi", $loai, null, 'id="loai" class="fix-height"');
-            				?>
-                      </div>
+                    <label class="control-label fix-width">Khu nhà</label>
+                    <div class="controls fix-margin">
+                        <?php
+                        $khu_nha = array('' => 'Tất cả các khu nhà');
+                        foreach($list_khu_nha as $item){
+                            $khu_nha[$item['id']] = $item['ten'];
+                        }
+                        echo form_dropdown("khu_nha", $khu_nha, null, 'class="fix-height" chosen=""');
+                    ?>
+                    </div>
                   </div>
               </div>
        </div>
@@ -49,7 +49,7 @@
                             foreach($list_don_vi as $item){
                                 $don_vi[$item['id']] = $item['ten'];
                             }
-                            echo form_dropdown("don_vi", $don_vi, null, 'class="fix-height"');
+                            echo form_dropdown("don_vi", $don_vi, null, 'class="fix-height" chosen=""');
                         ?>
                     </div>
                 </div>
@@ -60,32 +60,41 @@
                 <div class="control-group">
                     <label class="control-label fix-width">Tên thiết bị</label>
                     <div class="controls fix-margin">
-                        <input type="text" class="fix-height" name="phong" id="phong" />
+                        <select name="ten" id="ten" class="fix-height" chosen="">
+                            <option value="" loai="first"></option>
+                            <?php
+                                foreach ($list_ten_thiet_bi as $item){
+                                    echo '<option value="'.$item['id'].'" loai="'.$item['id_loai_thiet_bi'] 
+                                    .'">' . $item['ten'] . '</option>';
+                                }
+                            ?>
+                        </select>
                     </div>
                 </div>
-            </div>  
+            </div>
             <div class="span4">
                 <div class="control-group">
-                    <label class="control-label fix-width">Khu nhà</label>
-                    <div class="controls fix-margin">
-                        <?php
-                        $khu_nha = array('' => 'Tất cả các khu nhà');
-                        foreach($list_khu_nha as $item){
-                            $khu_nha[$item['id']] = $item['ten'];
-                        }
-                        echo form_dropdown("khu_nha", $khu_nha, null, 'class="fix-height"');
-                    ?>
-                    </div>
+                    
+                    <label class="control-label fix-width">Loại thiết bị</label>
+                      <div class="controls fix-margin">
+                          <?php
+								$loai = array('' => '');
+								foreach ($list_loai_thiet_bi as $item){
+									$loai[$item['id']] = $item['ten'];
+								}
+								echo form_dropdown("loai_thiet_bi", $loai, null, 'id="loai" class="fix-height" chosen=""');
+            				?>
+                      </div>
                 </div>
             </div>  
             <div class="span4">
                 <div class="control-group">
                     <label class="control-label fix-width">Trạng thái</label>
                     <div class="controls fix-margin">
-                        <select name="tt" class="fix-height" id="tt">
+                        <select name="tt" class="fix-height" id="tt" chosen="">
                             <option value=""></option>
                             <option value="0">Chưa thanh lý</option>
-                            <option>Đã thanh lý</option>
+                            <option value="1">Đã thanh lý</option>
                     	</select>
                     </div>
                 </div>
@@ -97,11 +106,11 @@
                     <div class="control-group">
                         <label class="control-label fix-width">Từ năm</label>
                         <div class="controls fix-margin">
-                            <select name="tu" id="tu" class="fix-height" style="width:50px">
+                            <select name="tu" id="tu" class="fix-height" style="width:70px">
                                 <option value=""></option>
                                 <?php
                                     $year = (int) date('Y');
-                                    for ($i = $year; $i > $year - 10; $i--){
+                                    for ($i = $year; $i > 2003; $i--){
                                         echo '<option value="' . $i . '">' . $i . '</option>';
                                     }
                                 ?>
@@ -109,14 +118,14 @@
                         </div>
                     </div>
                 </div>  
-                <div class="span4">
+                <div class="span3">
                     <div class="control-group">
                         <label class="control-label" style="width:60px;">Đến năm</label>
                         <div class="controls" style="margin-left:70px;">
-                            <select name="den" id="den" class="fix-height" style="width:50px">
+                            <select name="den" id="den" class="fix-height" style="width:70px">
                                 <option value=""></option>
                                 <?php
-                                    for ($i = $year; $i > $year - 10; $i--){
+                                    for ($i = $year; $i > 2003; $i--){
                                         echo '<option value="' . $i . '">' . $i . '</option>';
                                     }
                                 ?>
@@ -151,7 +160,7 @@
         <div class="clear"></div>
     </div>
 
-        <table class="table table-striped table-dark-blue ">
+        <table class="table table-striped table-dark-blue " id="customers">
             <thead>
                 <tr>
                     <th width="40px">STT</th>
@@ -161,7 +170,7 @@
                     <th>Đơn vị</th>
                     <th width="90px">Số h/đ xuất</th>
                     <th>Loại thiết bị</th>
-                    <th width="70px">Action</th>
+                    <th width="90px">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -193,8 +202,60 @@
         }else if (!isset($is_first)){
             echo '<p style="color:red;">No matches were found</p>';
         }
+        $hdn = $hdx = '';
+        foreach ($ds_hdn as $item){
+            $hdn = $hdn . '"' . $item['so_hoa_don'] . '"' . ',';
+        }
+        foreach ($ds_hdx as $item){
+            $hdx = $hdx . '"' . $item['so_hoa_don'] . '"' . ',';
+        }
+        $hdn = $hdn . '" "';
+        $hdx = $hdx . '" "';
     ?>
 </div>
 <!-- Begin script -->
 <script type="text/javascript" src="<?php echo base_url('public/js/search.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/jquery.dataTables.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/DT_bootstrap.js'); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url('public/js/jquery-ui.js'); ?>"></script>
+<script type="text/javascript">
+    $('document').ready(function(){
+            $('[chosen]').select2();
+            var temp_n = [<?php echo $hdn; ?>];
+            var temp_x = [<?php echo $hdx; ?>];
+            $('#shdn').autocomplete({
+                source: temp_n
+            });
+            $('#shdx').autocomplete({
+               source: temp_x 
+            });
+        });
+    $(document).ready(function(){
+     	$('#loai').change(function(){
+     		$('#ten option:gt(0)').remove();
+    
+     		var loaithietbi_ID = $('#loai').val();
+    		// alert("<?php echo site_url('ajax/getListThietBiByIDLoai/'); ?>/"+loaithietbi_ID);
+    		$.ajax({
+    			type: "GET",
+    			url: "<?php echo site_url('ajax/getListThietBiByIDLoai/'); ?>/"+loaithietbi_ID,
+    			dataType: "json",
+    			success: function(data)
+    			{
+    
+    				$.each(data,function(id,ten)
+    				{
+    					$('#ten').append($("<option></option>")
+    						.attr("value", id) .text(ten));
+    				});
+    			},
+    			error: function(error){
+    				console.log(error);
+    			}
+    
+    		});
+    
+    	});
+     });
+</script>
 <!-- End script -->

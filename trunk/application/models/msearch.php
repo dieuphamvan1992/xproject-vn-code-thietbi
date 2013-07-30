@@ -223,6 +223,9 @@ class Msearch extends CI_Model{
         if (isset($data['id_loai_thiet_bi']) && ($data['id_loai_thiet_bi'] !== '')){
             $this->db->where('dm_ten_thiet_bi.id_loai_thiet_bi', $data['id_loai_thiet_bi']);
         }
+        if (isset($data['id_ten_thiet_bi']) && ($data['id_ten_thiet_bi'] !== '')){
+            $this->db->where('id_ten_thiet_bi', $data['id_ten_thiet_bi']);
+        }
         
         $this->db->join('dm_ten_thiet_bi', 'thiet_bi_su_dung.id_ten_thiet_bi = dm_ten_thiet_bi.id', 'LEFT');
         $this->db->join('dm_loai_thiet_bi', 'dm_loai_thiet_bi.id = dm_ten_thiet_bi.id_loai_thiet_bi', 'LEFT');
@@ -284,6 +287,32 @@ class Msearch extends CI_Model{
         
         $result = $this->db->get('thiet_bi_su_dung as sd');
         return $result->row_array();
+    }
+    
+    public function updateThietBi($data){
+        if (is_numeric($data['id'])){
+            $this->db->where('id', $data['id']);
+            $result = $this->db->update('thiet_bi_su_dung', $data);
+            return $result;
+        }else{
+            return false;
+        }
+    }
+    
+    public function getAllHoaDonNhap(){
+        $this->db->select('so_hoa_don');
+        $this->db->distinct();
+        $result = $this->db->get('nhap');
+        
+        return $result->result_array();
+    }
+    
+    public function getAllHoaDonXuat(){
+        $this->db->select('so_hoa_don');
+        $this->db->distinct();
+        $result = $this->db->get('xuat');
+        
+        return $result->result_array();
     }
 }
 

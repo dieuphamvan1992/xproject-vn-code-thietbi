@@ -20,6 +20,7 @@ class NhapThang extends Tb_controller{
         $data['data']['ds_don_vi'] = $this->Mnhapthang->getAllDonVi();
         $data['data']['ds_khu_nha'] = $this->Mnhapthang->getAllKhuNha();
         $data['data']['ds_nguon_von'] = $this->Mnhapthang->getAllNguonVon();
+        $data['data']['list_loai_thiet_bi'] = $this->Mnhapthang->getAllLoaiThietBi();
         
         $this->load->view('thietbi/layout', $data);
     }
@@ -88,6 +89,12 @@ class NhapThang extends Tb_controller{
                 }
             }
             echo "Nhập dữ liệu thành công!";
+            /**
+             * Lưu dữ liệu để back up
+             * id_user = $this->session->user_data("user")
+             */
+            $id_user = 0;
+            $this->addLog($id_nhap, $id_xuat, $id_user, date('Y-m-d'));
         }
     }
     
@@ -172,5 +179,89 @@ class NhapThang extends Tb_controller{
         
         $result = $this->Mnhapthang->insertThietBiSuDung($data);
         return $result;
+    }
+    
+    public function backup($id){
+        $this->load->model('Mlog_nhapthang');
+        $log = new Mlog_nhapthang();
+        $log->backup($id);
+        redirect('nhapthang/viewLog/');
+    }
+    
+    public function viewLog(){
+        $this->load->model('Mlog_nhapthang');
+        $log = new Mlog_nhapthang();
+        
+        $list = $log->getAllItems();
+        $data['title'] = 'back up dữ liệu nhập thẳng';
+        $data['template'] = 'nhapthang/viewlog';
+        $data['data']['list'] = $list;
+        
+        $this->load->view('thietbi/layout', $data);
+    }
+    
+    protected function addLog($id_nhap, $id_xuat, $id_user, $ngay){
+        $this->load->model('Mlog_nhapthang');
+        $log = new Mlog_nhapthang();
+        
+        $data = array(
+            'id_user' => $id_user,
+            'id_nhap' => $id_nhap,
+            'id_xuat' => $id_xuat,
+            'ngay' => $ngay,
+        );
+        $result = $log->addItem($data);
+        return $result;
+    }
+    
+    public function deleteLog($id){
+        $this->load->model('Mlog_nhapthang');
+        $log = new Mlog_nhapthang();
+        $log->deleteItem($id);
+        redirect('nhapthang/viewLog/');
+    }
+    
+    public function addTenThietBi(){
+        if (!isset($_POST['new_ten'])){
+            redirect('nhapthang/');
+        }else{
+            $ten = $this->input->post('ten_thiet_bi');
+            $don_vi_tinh = $this->input->post('don_vi_tinh');
+            $loai = $this->input->post('loai');
+            $loai_moi = $this->input->post('loai_moi');
+            
+            $this->load->model('Mtentb');
+            $this->load->model('Mloaitb');
+            
+            $data = array(
+                "ten" => $ten,
+                "don_vi_tinh" => $don_vi_tinh
+            );
+            
+            if ($loai != ""){
+                $loai = (int) $loai;
+                $temp = $this->Mloaitb->getLoaitbById($loai);
+                if (count($temp) >0){
+                    $data['id_loai_thiet_bi'] = $loai;
+                }
+            }else if ($loai_moi != ""){
+                $temp = $this->Mloaitb->getLoaiThietBiByTen($loai_moi);
+                if (isset($temp['id'])){
+                    $data['id_loai_thiet_bi'] = $temp['id'];
+                }else{
+                    $input['ten'] = preg_replace('/\s+/', ' ', trim($loai_moi));
+                    $result = $this->Mloaitb->addLoaitb($input);
+                    if (is_numeric($result)){
+                        $data['id_loai_thiet_bi'] = $result;
+                    }
+                }
+            }
+            $id_ten_thiet_bi = $this->Mtentb->addTentb($data);
+            $id_loai_thiet_bi = '';
+            if (isset($data['id_loai_thiet_bi'])){
+                $id_loai_thiet_bi = $data['id_loai_thiet_bi'];
+            }
+            echo '{"id_ten" : '.$id_ten_thiet_bi.', "id_loai" : '.$id_loai_thiet_bi.'}';
+        }
     }
 }

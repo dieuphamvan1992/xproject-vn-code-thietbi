@@ -1,6 +1,6 @@
 <?php
 class Mnhacungcap extends CI_Model{
-    var $table = "nha_cung_cap";
+    var $table = "dm_nha_cung_cap";
     public function __construct(){
         parent::__construct();
         $this->load->database();

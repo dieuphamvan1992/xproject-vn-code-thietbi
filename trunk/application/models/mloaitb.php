@@ -14,6 +14,7 @@ class Mloaitb extends CI_Model{
 
 	public function addLoaitb($data){
 		$this->db->insert("dm_loai_thiet_bi", $data);
+        return $this->db->insert_id();
 	}
 
 	public function updateLoaitb($data, $id)
@@ -37,5 +38,13 @@ class Mloaitb extends CI_Model{
 		$row = $query->row();
 		return $row;
 	}
+    
+    public function getLoaiThietBiByTen($ten){
+        $this->db->select('id');
+        $this->db->where("ten", $ten);
+        $result = $this->db->get('dm_loai_thiet_bi');
+        
+        return $result->row_array();
+    }
 }
 ?>

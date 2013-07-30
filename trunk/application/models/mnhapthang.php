@@ -20,6 +20,13 @@ class Mnhapthang extends CI_Model{
         return $result->result_array();
     }
     
+    public function getAllLoaiThietBi(){
+        $this->db->select('id, ten');
+        $result = $this->db->get('dm_loai_thiet_bi');
+        
+        return $result->result_array();
+    }
+    
     public function getAllQuocGia(){
         $this->db->select('ma_qg, qg');
         $result = $this->db->get('dm_qg');

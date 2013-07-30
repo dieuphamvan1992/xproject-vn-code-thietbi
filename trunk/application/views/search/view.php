@@ -89,7 +89,7 @@
                             <td><?php echo $thiet_bi['khu_nha']; ?></td>
                             <td>
                                 <?php 
-                                    if ($thiet_bi['trang_thai'] == 0){
+                                    if ($thiet_bi['trang_thai'] === 0){
                                         echo 'Chưa thanh lý';
                                     }else if ($thiet_bi['trang_thai'] == 1){
                                         echo 'Đã thanh lý';

@@ -24,6 +24,7 @@ class Search extends Tb_controller{
         $data['data']['list_khu_nha'] = $khu_nha;
         $data['data']['list_ten_thiet_bi'] = $ten_thiet_bi;
         $data['data']['list_loai_thiet_bi'] = $loai_thiet_bi;
+        
         if (isset($_POST['submit'])){
             $data_form['id'] = $this->change_string($this->input->post('ma', TRUE));
             $data_form['trang_thai'] = $this->input->post('tt', TRUE);
@@ -58,18 +59,25 @@ class Search extends Tb_controller{
         $don_vi = $this->Msearch->getAllDonVi();
         $khu_nha = $this->Msearch->getAllKhuNha();
         $loai_thiet_bi = $this->Msearch->getAllLoaiThietBi();
+        $ten_thiet_bi = $this->Msearch->getAllTenThietBi();
+        $ds_hdn = $this->Msearch->getAllHoaDonNhap();
+        $ds_hdx = $this->Msearch->getAllHoaDonXuat();
         
         $data['list_don_vi'] = $don_vi;
         $data['list_khu_nha'] = $khu_nha;
         $data['list_loai_thiet_bi'] = $loai_thiet_bi;
+        $data['data']['list_ten_thiet_bi'] = $ten_thiet_bi;
+        $data['data']['ds_hdn'] = $ds_hdn;
+        $data['data']['ds_hdx'] = $ds_hdx;
         
         if (isset($_POST['submit'])){
             $temp = array();
             $temp['shdn'] = $this->change_string($this->input->post('shdn', TRUE));
             $temp['shdx'] = $this->change_string($this->input->post('shdx', TRUE));
             $temp['id_don_vi_quan_ly'] = $this->input->post('don_vi', TRUE);
+            $temp['id_ten_thiet_bi'] = $this->input->post('ten', TRUE);
             $temp['id_loai_thiet_bi'] = $this->input->post('loai_thiet_bi', TRUE);
-            $temp['id_khu_nha'] = $this->input->post('khu_nha');
+            $temp['id_khu_nha'] = $this->input->post('khu_nha', TRUE);
             $temp['tu_nam'] = $this->input->post('tu', TRUE);
             $temp['den_nam'] = $this->input->post('den', TRUE);
             $temp['phong'] = $this->input->post('phong', TRUE);
@@ -99,9 +107,31 @@ class Search extends Tb_controller{
     }
     
     public function detail($id){
+        
         $data['title'] = 'Chi tiết thiết bị';
         $data['template'] = 'search/detail';
         $data['data'] = array();
+        
+        if (isset($_POST['submit'])){
+            $trang_thai = $this->input->post('trang_thai', TRUE);
+            $mo_ta = $this->input->post('mo_ta', TRUE);
+            $id = (int)$this->input->post('id', TRUE);
+            $phong = $this->input->post('phong', TRUE);
+            
+            $temp = array(
+                'id' => $id,
+                'trang_thai' => $trang_thai,
+                'phong' => $phong,
+                'mo_ta' => $mo_ta,
+            );
+            $result = $this->Msearch->updateThietBi($temp);
+            if ($result == false){
+                $data['data']['error'] = "Cập nhật thông tin thất bại!";
+            }else{
+                $data['data']['info'] = "Cập nhật thông tin thành công";
+            }
+        }
+        
         $thiet_bi = $this->Msearch->getThietBiSuDung($id);
         $data['data']['thiet_bi'] = $thiet_bi;
         if ($thiet_bi['id_chi_tiet_xuat'] != NULL){
