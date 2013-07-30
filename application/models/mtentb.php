@@ -14,6 +14,7 @@ class Mtentb extends CI_Model{
 
 	public function addTentb($data){
 		$this->db->insert("dm_ten_thiet_bi", $data);
+        return $this->db->insert_id();
 	}
 
 	public function updateTentb($data, $id)

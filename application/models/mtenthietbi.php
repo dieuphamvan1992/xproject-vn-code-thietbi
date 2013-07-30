@@ -2,7 +2,7 @@
 
 class Mtenthietbi extends CI_Model {
 
-    var $table = "ten_thiet_bi";
+    var $table = "dm_ten_thiet_bi";
 
     public function __construct() {
         parent::__construct();

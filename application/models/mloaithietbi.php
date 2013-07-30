@@ -1,6 +1,6 @@
 <?php
 class Mloaithietbi extends CI_Model{
-    var $table = "loai_thiet_bi";
+    var $table = "dm_loai_thiet_bi";
 
     public function __construct(){
         parent::__construct();
