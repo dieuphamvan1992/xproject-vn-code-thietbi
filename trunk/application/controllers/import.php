@@ -142,12 +142,14 @@ class import extends Tb_controller{
 
 		//vòng lặp lấy dữ liệu
 		$rowCount = 2;  
+                
+                $count = count($import);
 
-		if(count($import))
+		if($count)
 
 		{  
 
-		   for($i=0; $i<count($import); $i++)
+		   for($i=0; $i<$count; $i++)
 		    {  
                         $objPHPExcel->getActiveSheet()->setCellValue("A".$rowCount, $i);
                         $objPHPExcel->getActiveSheet()->setCellValue("B".$rowCount, $import[$i]['id']);
