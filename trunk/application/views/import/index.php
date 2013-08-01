@@ -13,7 +13,7 @@
             <p style="padding-top:20px"><input type='file' name='myfile' id='chon'><p>
        </div>
        <div style="padding-top:50px; margin-right:-50px; float:left">
-       		<i class="icon-chevron-right"></i>
+       		
        </div>
        <div class="span4 alert alert-success" style="height:120px">
             <h4 style="margin-bottom:5px; text-align:center">Tự động thêm</h4>
@@ -56,8 +56,10 @@
        </div>
        <div class="span4 alert alert-box" style="height:120px;">
        		<h4 align="center">Ghi chú</h4>
-            <li>Hãy chắc chắn rằng nội dung của file excel bạn đưa vào là chính xác</li>
-            <li>Bạn có thể tải mẫu Excel tại đây </li>
+            <p>Hãy chắc chắn rằng nội dung của file excel bạn đưa vào là chính xác.Bạn có thể tải mẫu Excel tại đây</p>
+            <p align="center">
+            <a href=""><button type="button" class="btn btn-small btn-warning"><i class="icon-arrow-down icon-white"></i>&nbsp;Tải về</button></a>
+            </p>
        </div>
     </div>
     <div class="button-box" style="text-align:center">
