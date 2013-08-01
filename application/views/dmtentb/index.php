@@ -141,12 +141,13 @@
                 echo "<td class=''>".$trangthai."</td>";
                 echo "<td class=''>".$mota."</td>";
         ?>
-                <td class=''>
-                    <img src="<?php echo base_url(); ?>public/images/edit.png" width="20" height="20" onclick="edit_dmtentb('<?php echo $id; ?>')">
-               </td>
-               <td>
-                    <img src="<?php echo base_url(); ?>public/images/delete.png" width="20" height="20" onclick="delete_dmtentb('<?php echo $id; ?>')">
+        		<td>
+                	<button type="button" class="btn btn-small" onclick="edit_dmtentb('<?php echo $id; ?>')"><i class="icon-edit"></i>&nbsp;<strong>Sửa</strong></button>   
                 </td>
+                <td>
+                	<button type="button" class="btn btn-small" onclick="delete_dmtentb('<?php echo $id; ?>')"><i class="icon-trash"></i>&nbsp;<strong>Xóa</strong></button>           	
+                </td>
+               
         <?php
                 echo "</tr>";
             }
