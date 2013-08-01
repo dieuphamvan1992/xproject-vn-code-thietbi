@@ -94,10 +94,10 @@
 							<th>
 								Mô tả
 							</th>
-							<th width='50px'>
+							<th width='65px'>
 								Sửa
 							</th>
-                            <th width='50px'>
+                            <th width='65px'>
 								Xóa
 							</th>
 						</tr>
