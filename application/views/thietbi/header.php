@@ -23,6 +23,7 @@
                               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                 <li><a tabindex="-1" href="<?php echo site_url('bangdm') ?>">Quản lý bảng danh mục</a></li>
                                 <li><a tabindex="-1" href="<?php echo site_url('') ?>">Quản lý người dùng</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('import') ?>">Import dữ liệu</a></li>
                               </ul>
                             </div>
                     	</li>
