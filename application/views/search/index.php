@@ -152,7 +152,6 @@
 
                 <div style="float:left">
                 	<h3><i class=" icon-chevron-right">&nbsp;</i>&nbsp;Danh sách thiết bị</h3>
-					<a href='<?php echo site_url(); ?>/export'>Xuất</a>
                 </div>
                 <div style="float:right">
                 	Tổng số thiết bị: <font color="#42515f"><strong><?php echo count($list_thiet_bi); ?></strong></font>
@@ -160,7 +159,6 @@
                 	<a href='<?php echo site_url(); ?>/export'>
                 	<button type="button" class="btn btn-small btn-info" ><i class="icon-list-alt icon-white"></i> Xuất</button>
                     </a>
-                	
                 </div>
                 <div class="clear"></div>
             </div>
