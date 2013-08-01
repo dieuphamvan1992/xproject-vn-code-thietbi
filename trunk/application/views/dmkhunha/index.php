@@ -119,8 +119,7 @@
                 echo "<td class=''>".$mota."</td>";
         ?>
                 <td>
-                	<button type="button" class="btn btn-small" onclick="edit_dmkhunha('<?php echo $id; ?>')"><i class="icon-edit"></i>&nbsp;<strong>Sửa</strong></button>
-                    
+                	<button type="button" class="btn btn-small" onclick="edit_dmkhunha('<?php echo $id; ?>')"><i class="icon-edit"></i>&nbsp;<strong>Sửa</strong></button>   
                 </td>
                 <td>
                 	<button type="button" class="btn btn-small" onclick="delete_dmkhunha('<?php echo $id; ?>')"><i class="icon-trash"></i>&nbsp;<strong>Xóa</strong></button>           	
