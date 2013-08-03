@@ -3,7 +3,7 @@ class Mnhacc extends CI_Model{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->database();	
+		$this->load->database();
 	}
 
 	public function selectAllNhacc()
@@ -23,7 +23,7 @@ class Mnhacc extends CI_Model{
 	}
 
 	public function deleteNhacc($id)
-	{	
+	{
 		//echo "test";
 		$this->db->where("id", $id);
 		$this->db->delete("dm_nha_cung_cap");

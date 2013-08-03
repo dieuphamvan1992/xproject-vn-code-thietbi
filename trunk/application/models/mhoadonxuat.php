@@ -1,6 +1,6 @@
 <?php
 
-class Mhoadonnhap extends CI_Model {
+class Mhoadonxuat extends CI_Model {
 
     var $table = "nhap";
 
@@ -23,25 +23,24 @@ class Mhoadonnhap extends CI_Model {
         return $row->max;
     }
 
-    public function _insertNhap($so_hoa_don, $ngay_thuc_hien, $nha_cung_cap, $id_can_bo_thuc_hien, $mo_ta) {
-       // $this->db->trans_start();
+    public function _insertNhap($id_nhap,$so_hoa_don, $ngay_thuc_hien, $nha_cung_cap, $id_can_bo_thuc_hien, $mo_ta) {
+        $this->db->set("id", $id_nhap);
         $this->db->set("so_hoa_don", $so_hoa_don);
         $this->db->set("id_nha_cung_cap", $nha_cung_cap);
         $this->db->set("id_can_bo_thuc_hien", $id_can_bo_thuc_hien);
         $this->db->set("ngay_thuc_hien", $ngay_thuc_hien);
         $this->db->set("mo_ta", $mo_ta);
+
         $this->db->insert($this->table);
-      //   $this->db->trans_complete();
-        return $this->db->insert_id();
     }
 
-    public function _insetChiTietNhap($id_nhap,$thiet_bi,$don_gia,$so_luong,$bao_hanh) {
+    public function _insetChiTietNhap($id_nhap,$thiet_bi,$don_gia,$so_luong,$quoc_gia) {
         $this->db->set("id_nhap", $id_nhap);
         $this->db->set("id_ten_thiet_bi", $thiet_bi);
         $this->db->set("don_gia", $don_gia);
         $this->db->set("so_luong", $so_luong);
         $this->db->set("so_luong_con", $so_luong);
-        $this->db->set("so_thang_bao_hanh", $bao_hanh);
+        $this->db->set("id_quoc_gia", $quoc_gia);
         $this->db->insert("chi_tiet_nhap");
     }
 
@@ -71,15 +70,9 @@ class Mhoadonnhap extends CI_Model {
         return $row->max;
     }
 
-    public function _insertXuat($soHoaDon, $canBoThucHien, $ngayThucHien, $nguonVon, $phong, $donViNhan)
-    {
-      //  $this->db->trans_start();
-        $this->db->set("so_hoa_don", $soHoaDon);
-        $this->db->set("phong", $phong);
-        $this->db->set("ngay_thuc_hien", $ngayThucHien);
+    public function _insertXuat($id_xuat) {
+        $this->db->set("id", $id_xuat);
         $this->db->insert("xuat");
-       // $this->db->trans_complete();
-        return $this->db->insert_id();
     }
 
     public function _getMaxIdChiTietXuat() {
@@ -89,8 +82,8 @@ class Mhoadonnhap extends CI_Model {
         return $row->max;
     }
 
-    public function _insertChiTietXuat($id_xuat, $id_chi_tiet_nhap, $chi_phi_lap_dat, $chi_phi_chay_thu, $chi_phi_van_chuyen, $so_luong) {
-       //  $this->db->trans_start();
+    public function _insertChiTietXuat($id_chi_tiet_xuat, $id_xuat, $id_chi_tiet_nhap, $chi_phi_lap_dat, $chi_phi_chay_thu, $chi_phi_van_chuyen, $so_luong) {
+        $this->db->set("id", $id_chi_tiet_xuat);
         $this->db->set("id_xuat", $id_xuat);
         $this->db->set("id_chi_tiet_nhap", $id_chi_tiet_nhap);
         $this->db->set("chi_phi_lap_dat", $chi_phi_lap_dat);
@@ -98,9 +91,6 @@ class Mhoadonnhap extends CI_Model {
         $this->db->set("chi_phi_chay_thu", $chi_phi_chay_thu);
         $this->db->set("so_luong", $so_luong);
         $this->db->insert("chi_tiet_xuat");
-      //  $this->db->trans_complete();
-
-        return $this->db->insert_id();
     }
     public function _insertThietBiSuDung($id_chi_tiet_xuat,$id_don_vi_quan_ly,$id_thiet_bi,$ngay_su_dung,$id_khu_nha,$phong)
     {
