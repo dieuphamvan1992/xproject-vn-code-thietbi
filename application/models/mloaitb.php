@@ -3,7 +3,7 @@ class Mloaitb extends CI_Model{
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->database();	
+		$this->load->database();
 	}
 
 	public function selectAllLoaitb()
@@ -24,7 +24,7 @@ class Mloaitb extends CI_Model{
 	}
 
 	public function deleteLoaitb($id)
-	{	
+	{
 		//echo "test";
 		$this->db->where("id", $id);
 		$this->db->delete("dm_loai_thiet_bi");
@@ -38,12 +38,12 @@ class Mloaitb extends CI_Model{
 		$row = $query->row();
 		return $row;
 	}
-    
+
     public function getLoaiThietBiByTen($ten){
         $this->db->select('id');
         $this->db->where("ten", $ten);
         $result = $this->db->get('dm_loai_thiet_bi');
-        
+
         return $result->row_array();
     }
 }
