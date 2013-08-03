@@ -6,7 +6,7 @@ class Tb_controller extends CI_Controller {
 		   $this->load->library('session');
 		   $this->load->helper('url');
 		   $this->load->helper('form');
-
+		   $this->session->set_userdata('idcanbo','1');
 	 }
 
 	public function index()

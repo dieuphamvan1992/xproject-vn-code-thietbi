@@ -10,7 +10,7 @@ class Ajax extends Tb_controller {
     }
 
     public function index() {
-        
+
     }
 
     public function getListThietBiByIDLoai($id_loai) {
@@ -19,14 +19,14 @@ class Ajax extends Tb_controller {
         echo(json_encode($this->Mtenthietbi->_ajaxGetThietBiByIDLoai($id_loai)));
     }
 
-    public function getListChiTietNhapByIDTen($id_ten = "") {
+    public function getListChiTietNhapByIDTen($id_ten) {
         $this->load->Model("Mhoadonnhap");
-
         $listsanpham = $this->session->userdata('listsanpham');
-        if (!isset($listsanpham[$id_ten])) {
-            
-            
+        if (empty($listsanpham[$id_ten])) {
+
+
             $list_chi_tiet_nhaps = $this->Mhoadonnhap->getListChiTietNhapByIDTen($id_ten);
+         //   print_r($list_chi_tiet_nhaps);
             $list = array();
             foreach ($list_chi_tiet_nhaps as $an) {
                 $id = $an['id'];
