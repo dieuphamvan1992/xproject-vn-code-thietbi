@@ -207,8 +207,6 @@
     <!-- Begin script -->
     <script type="text/javascript" src="<?php echo base_url('public/js/nhapthang.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('public/js/search.js'); ?>"></script>
-    <script type="text/javascript" src="<?php //echo base_url('public/js/jquery.dataTables.js'); ?>"></script>
-    <script type="text/javascript" src="<?php //echo base_url('public/js/DT_bootstrap.js'); ?>"></script>
     <script type="text/javascript">
         $('document').ready(function(){
             $('[chosen]').select2();
