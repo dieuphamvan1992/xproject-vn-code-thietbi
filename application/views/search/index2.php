@@ -6,6 +6,7 @@
 	<div class="box-title">
     	<h2>Tìm kiếm theo lô</h2>
     </div>
+    
 	<div class="form-horizontal">
     	<div class="row-fluid">
             <div class="span4">
@@ -33,7 +34,7 @@
                         foreach($list_khu_nha as $item){
                             $khu_nha[$item['id']] = $item['ten'];
                         }
-                        echo form_dropdown("khu_nha", $khu_nha, null, 'class="fix-height" chosen=""');
+                        echo form_dropdown("khu_nha", $khu_nha, null, ' chosen=""');
                     ?>
                     </div>
                   </div>
@@ -49,7 +50,7 @@
                             foreach($list_don_vi as $item){
                                 $don_vi[$item['id']] = $item['ten'];
                             }
-                            echo form_dropdown("don_vi", $don_vi, null, 'class="fix-height" chosen=""');
+                            echo form_dropdown("don_vi", $don_vi, null, ' chosen=""');
                         ?>
                     </div>
                 </div>
@@ -60,7 +61,7 @@
                 <div class="control-group">
                     <label class="control-label fix-width">Tên thiết bị</label>
                     <div class="controls fix-margin">
-                        <select name="ten" id="ten" class="fix-height" chosen="">
+                        <select name="ten" id="ten" chosen="">
                             <option value="" loai="first"></option>
                             <?php
                                 foreach ($list_ten_thiet_bi as $item){
@@ -82,7 +83,7 @@
 								foreach ($list_loai_thiet_bi as $item){
 									$loai[$item['id']] = $item['ten'];
 								}
-								echo form_dropdown("loai_thiet_bi", $loai, null, 'id="loai" class="fix-height" chosen=""');
+								echo form_dropdown("loai_thiet_bi", $loai, null, 'id="loai" chosen=""');
             				?>
                       </div>
                 </div>
@@ -91,7 +92,7 @@
                 <div class="control-group">
                     <label class="control-label fix-width">Trạng thái</label>
                     <div class="controls fix-margin">
-                        <select name="tt" class="fix-height" id="tt" chosen="">
+                        <select name="tt" id="tt" chosen="">
                             <option value=""></option>
                             <option value="0">Chưa thanh lý</option>
                             <option value="1">Đã thanh lý</option>

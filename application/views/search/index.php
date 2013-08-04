@@ -20,7 +20,7 @@
                             <div class="control-group">
                                 <label class="control-label fix-width">Trạng thái</label>
                                 <div class="controls fix-margin">
-                                    <select type="text" class="fix-height" name="tt" chosen="">
+                                    <select type="text"  name="tt" chosen="">
                                     	<option value=""></option>
                                         <option value="0">Chưa thanh lý</option>
                                         <option value="1">Đã thanh lý</option>
@@ -39,7 +39,7 @@
 										foreach($list_don_vi as $item){
 											$don_vi[$item['id']] = $item['ten'];
 										}
-										echo form_dropdown("don_vi", $don_vi, null, 'class="fix-height" id="don_vi" chosen=""');
+										echo form_dropdown("don_vi", $don_vi, null, ' id="don_vi" chosen=""');
 									?>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                             <div class="control-group">
                                 <label class="control-label fix-width">Tên thiết bị</label>
                                 <div class="controls fix-margin">
-                                    <select name="ten" id="ten" class="fix-height" chosen="">
+                                    <select name="ten" id="ten"  chosen="">
                                         <option value="" loai="first"></option>
                                         <?php
                                             foreach ($list_ten_thiet_bi as $item){
@@ -71,7 +71,7 @@
 										foreach ($list_loai_thiet_bi as $item){
 											$loai[$item['id']] = $item['ten'];
 										}
-										echo form_dropdown("loai_thiet_bi", $loai, null, 'class="fix-height" id="loai" chosen=""');
+										echo form_dropdown("loai_thiet_bi", $loai, null, ' id="loai" chosen=""');
 									?>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                                 <div class="control-group">
                                     <label class="control-label fix-width">Từ năm</label>
                                     <div class="controls fix-margin">
-                                        <select name="tu" id="tu" class="fix-height" style="width:70px">
+                                        <select name="tu" id="tu" style="width:70px">
                                             <option value=""></option>
                                             <?php
                                                 $year = (int) date('Y');
@@ -97,7 +97,7 @@
                                 <div class="control-group">
                                     <label class="control-label" style="width:60px;">Đến năm</label>
                                     <div class="controls" style="margin-left:70px;">
-                                        <select name="den" id="den" class="fix-height" style="width:70px">
+                                        <select name="den" id="den" style="width:70px">
                                             <option value=""></option>
                                             <?php
                                                 for ($i = $year; $i > 2003; $i--){
@@ -128,7 +128,7 @@
 										foreach($list_khu_nha as $item){
 											$khu_nha[$item['id']] = $item['ten'];
 										}
-										echo form_dropdown("khu_nha", $khu_nha, null, 'class="fix-height" id="khu_nha" chosen=""');
+										echo form_dropdown("khu_nha", $khu_nha, null, ' id="khu_nha" chosen=""');
 									?>
                                 </div>
                             </div>
