@@ -142,13 +142,13 @@
     </div>
 </div>
 
-<div class="table-box">
+<div class="table-box ">
 	 <?php
         	if (isset($list_thiet_bi) && count($list_thiet_bi) > 0){
     	?>
-	<div class="table-box-title">
+	<div class="table-box-title alert-info">
         <div style="float:left">
-            <h3><i class=" icon-chevron-right">&nbsp;</i>&nbsp;Danh sách lô thiết bị</h3>
+            <h3><i class=" icon-chevron-right">&nbsp;</i>&nbsp;<strong>Danh sách lô thiết bị</strong></h3>
         </div>
         <div style="float:right">
             Tổng số thiết bị: <font color="#42515f"><strong><?php echo count($list_thiet_bi); ?></strong></font>
@@ -201,7 +201,7 @@
         </table>
     <?php     
         }else if (!isset($is_first)){
-            echo '<p style="color:red;">No matches were found</p>';
+            echo '<div class="alert alert-warning">Dữ liệu tìm kiếm không tồn tại</div>';
         }
         $hdn = $hdx = '';
         foreach ($ds_hdn as $item){
