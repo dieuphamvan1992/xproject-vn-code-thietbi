@@ -45,7 +45,7 @@
 <?php
 	if($success){
 	?>
-		<div class="notification success" >
+		<div class="alert alert-success" >
 			<span class="strong">Thao tác thành công.</span>
 			<span class="close" title="Dismiss"></span>
 		</div>
@@ -54,7 +54,7 @@
 
 	if($warning){
 		?>
-			<div class="notification warning" >
+			<div class="alert alert-danger" >
 				<span class="strong">Dữ liệu bạn nhập còn thiếu. Xin vui lòng kiểm tra lại!</span>
 				<span class="close" title="Dismiss"></span>
 			</div>
