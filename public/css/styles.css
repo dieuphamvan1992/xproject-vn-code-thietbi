@@ -178,15 +178,6 @@ ul.menu-list li.list-item:hover .dropdown-menu{
 .table-box-title{
 	width:99.2%;
 	padding:0.3%;
-	background: #faf9f9; /* Old browsers */
-	background: -moz-linear-gradient(top, #faf9f9 0%, #f4f2f2 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#faf9f9), color-stop(100%,#f4f2f2)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #faf9f9 0%,#f4f2f2 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #faf9f9 0%,#f4f2f2 100%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(top, #faf9f9 0%,#f4f2f2 100%); /* IE10+ */
-	background: linear-gradient(to bottom, #faf9f9 0%,#f4f2f2 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#faf9f9', endColorstr='#f4f2f2',GradientType=0 ); /* IE6-9 */
-	background:#FFF;
 	border:1px solid #4d6175;
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
