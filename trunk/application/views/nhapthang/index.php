@@ -10,6 +10,9 @@
     }
 ?>
 <div class="container-box">
+<div class="box-title">
+	<h2 align="left">Nhập thẳng</h2> 
+</div>
     <table width="100%">
         <tr>
             <td><label>Số hóa đơn</label></td>
