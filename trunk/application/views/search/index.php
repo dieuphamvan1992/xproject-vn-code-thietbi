@@ -200,7 +200,7 @@
             </table>
         <?php
             }else if(!isset($is_first)){
-                echo '<p style="color:red;">No matches were found</p>';
+                echo '<div class="alert alert-warning">Dữ liệu tìm kiếm không tồn tại</div>';
             }
         ?>
             </div>     
