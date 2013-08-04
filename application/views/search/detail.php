@@ -1,10 +1,10 @@
-<div class="container-box">
-    <div class="box-title">
-        <h2>Chi tiết thiết bị sử dụng</h2>
-    </div>
     <?php
         echo form_open('search/detail/'.$thiet_bi['id']);
     ?>
+<div class="container-box" >
+    <div class="box-title">
+        <h2>Chi tiết thiết bị sử dụng</h2>
+    </div>
     <div class="table-box">
         <input type="hidden" name="id" value="<?php echo $thiet_bi['id']; ?>" />
         <table width="100%">
@@ -63,10 +63,10 @@
     <div class="button-box">
     	<input type="submit" name="submit" class="btn btn-success" value="Lưu thông tin" />
     </div>
+</div>
     <?php
         echo form_close();
     ?>
-</div>
 <div>
     <label id="info" style="color: blue;font-size: 20px;"><?php if (isset($info)) echo $info;?></label>
     <label id="error" style="color: red;font-size: 20px;"><?php if (isset($error)) echo $error;?></label>
