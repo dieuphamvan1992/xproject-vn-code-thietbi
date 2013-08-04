@@ -8,7 +8,7 @@
             <div class="control-group">
                 <label class="control-label fix-width">Mã khu nhà</label>
                 <div class="controls fix-margin">
-                    <input type="text" class="span10" name='ma'>
+                    <input type="text" class="span10" name='ten'>
                 </div> 
             </div>  
         </div> 
