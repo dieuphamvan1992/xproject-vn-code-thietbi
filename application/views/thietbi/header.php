@@ -14,21 +14,6 @@
                               </ul>
                             </div>
                     	</li>
-                   
-                    	<li class="list-item">
-                        	<i class=" icon-wrench icon-white"></i>
-                    		Quản lý
-                              <div class="dropdown">
-                              <!-- Link or button to toggle dropdown -->
-                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <li><a tabindex="-1" href="<?php echo site_url('bangdm') ?>">Quản lý bảng danh mục</a></li>
-                                <li><a tabindex="-1" href="<?php echo site_url('') ?>">Quản lý người dùng</a></li>
-                                <li><a tabindex="-1" href="<?php echo site_url('import') ?>">Import dữ liệu</a></li>
-                              </ul>
-                            </div>
-                    	</li>
-                    
-                    
                     	<li class="list-item">
                         	<i class="icon-list-alt icon-white"></i>
                     		 Hoá đơn
@@ -43,7 +28,31 @@
                               </ul>
                             </div>
                     	</li>
-                    
+                        <li class="list-item">
+                        	<i class=" icon-wrench icon-white"></i>
+                    		Quản lý
+                              <div class="dropdown">
+                              <!-- Link or button to toggle dropdown -->
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <li><a tabindex="-1" href="<?php echo site_url('bangdm') ?>">Quản lý bảng danh mục</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('') ?>">Quản lý người dùng</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('import') ?>">Import dữ liệu</a></li>
+                              </ul>
+                            </div>
+                    	</li>
+                        <li class="list-item">
+                        	<i class=" icon-wrench icon-white"></i>
+                    		Xem lịch sử
+                              <div class="dropdown">
+                              <!-- Link or button to toggle dropdown -->
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                                <li><a  href="<?php echo site_url('nhapthang/viewlog') ?>">Lịch sử nhập thẳng</a></li>
+                                <li><a href="<?php echo site_url('') ?>">Lịch sử import</a></li>
+                              </ul>
+                            </div>
+                    	</li>
+                        
+                    	
                     
                 </ul>
                 <a href="#">
