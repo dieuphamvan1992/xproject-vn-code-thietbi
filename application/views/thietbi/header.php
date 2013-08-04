@@ -41,7 +41,7 @@
                             </div>
                     	</li>
                         <li class="list-item">
-                        	<i class=" icon-wrench icon-white"></i>
+                        	<i class=" icon-align-justify icon-white"></i>
                     		Xem lịch sử
                               <div class="dropdown">
                               <!-- Link or button to toggle dropdown -->
