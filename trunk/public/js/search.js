@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-	var oTable = $('#customers').dataTable( {
+	var oTable = $('customers').dataTable( {
 		"bProcessing": true,
 		"sPaginationType": "full_numbers",
 		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",

@@ -16,7 +16,7 @@
     <table width="100%">
         <tr>
             <td><label>Số hóa đơn</label></td>
-            <td><input type="text" name="so_hd" id="so_hd" onkeypress="onlyNumber(event)"/></td>
+            <td><input type="text" name="so_hd" id="so_hd" onkeypress="onlyInteger(event)"/></td>
             <td><label>Nhà cung cấp</label></td>
             <td>
                 <select name="nha_cung_cap" id="nha_cung_cap" chosen="">
@@ -183,8 +183,24 @@
 
        $("#hoantat").click(function(){
             
+            /**
+             * Kiểm tra số hóa đơn đã được điền đầy đủ chưa
+             */
+            var shd_str = "Số hóa đơn chưa được nhập";
+            if ($('#so_hd').val() == ''){
+                alert(shd_str);
+                return;
+            }
+            
             var tbl = document.getElementById('customers');
             var ls = tbl.getElementsByTagName('tr');
+            /**
+             * Kiểm tra hóa đơn đã có thiết bị hay chưa
+             */
+            if (ls.length == 1){
+                alert("Chưa có thiết bị nào được nhập!");
+                return;
+            }
             var sl = 0;
             for (i = 1; i < ls.length; i++){
                 var ds = ls[i].getElementsByTagName('td');
@@ -197,6 +213,8 @@
             if (sl > 100){
                 str = str + "\n\nCảnh báo: Số lượng của thiết bị vượt quá 100!" +
                     "\n\nTổng số thiết bị: " + sl;
+            }else if (sl == 0){
+                str = str + "\n\nCảnh báo: Số lượng của thiết bị bằng 0!";
             }
             var test = confirm(str);
             if (test == false){
