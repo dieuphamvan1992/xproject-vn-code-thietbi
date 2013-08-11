@@ -167,6 +167,9 @@ class NhapThang extends Tb_controller{
     }
     
     public function addThietBiSuDung($temp){
+        
+        $this->load->model('Mnewtb');
+        
         $data = array();
         $data['id_chi_tiet_xuat'] = $temp['id_chi_tiet_xuat'];
         $data['id_don_vi_quan_ly'] = $temp['id_don_vi_quan_ly'];
@@ -176,6 +179,9 @@ class NhapThang extends Tb_controller{
         $data['id_khu_nha'] = $temp['id_khu_nha'];
         $data['phong'] = $temp['phong'];
         $data['tinh_trang'] = null;
+        if ($temp['id_don_vi_quan_ly'] !== null){
+            $data['ma_thiet_bi'] = $this->Mnewtb->newMaThietBi($temp['id_don_vi_quan_ly']);
+        }
         
         $result = $this->Mnhapthang->insertThietBiSuDung($data);
         return $result;
@@ -237,6 +243,14 @@ class NhapThang extends Tb_controller{
                 "ten" => $ten,
                 "don_vi_tinh" => $don_vi_tinh
             );
+            
+            /**
+             * Lấy đường dẫn tương đối đến thư mục chứa ảnh
+             */
+            $img = $this->session->userdata('img');
+            if ($img != null){
+                $data['anh'] = $img;
+            }
             
             if ($loai != ""){
                 $loai = (int) $loai;

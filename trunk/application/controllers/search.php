@@ -40,6 +40,7 @@ class Search extends Tb_controller{
             $this->session->set_userdata($data_form);
             $data['data']['list_thiet_bi'] = $result;
             
+            $data['data']['old'] = $data_form;
             $this->load->view('thietbi/layout', $data);
         }else{
             $data['data']['is_first'] = true;
@@ -87,6 +88,7 @@ class Search extends Tb_controller{
             $result = $this->Msearch->searchBatch($temp);
             $data['data']['list_thiet_bi'] = $result;
             
+            $data['data']['old'] = $temp;
             $this->load->view('thietbi/layout', $data);
         }else{
             $data['is_first'] = true;

@@ -165,7 +165,7 @@
             <thead>
                 <tr>
                     <th width="40px">STT</th>
-                    <th width="90px">Mã thiết bị</th>
+                    <th width="170px">Mã thiết bị</th>
                     <th>Tên thiết bị</th>
                     <th width="70px">Số lượng</th>
                     <th>Đơn vị</th>
@@ -182,7 +182,16 @@
                 ?>
                 <tr>
                     <td><?php echo $index; ?></td>
-                    <td><?php echo $item['MIN(thiet_bi_su_dung.id)'].' - '.$item['MAX(thiet_bi_su_dung.id)']; ?></td>
+                    <td>
+                        <?php 
+                            $str = explode(".", $item['MAX(thiet_bi_su_dung.ma_thiet_bi)']);
+                            $txt = "";
+                            if (count($str) > 1){
+                                $txt = $str[1];
+                            }
+                            echo $item['MIN(thiet_bi_su_dung.ma_thiet_bi)'].' - '.$txt; 
+                        ?>
+                    </td>
                     <td><?php echo $item['ten']; ?></td>
                     <td><?php echo $item['COUNT(thiet_bi_su_dung.id)']; ?></td>
                     <td><?php echo $item['don_vi']; ?></td>

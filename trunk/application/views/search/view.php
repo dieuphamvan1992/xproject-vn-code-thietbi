@@ -80,7 +80,7 @@
                             <td><?php echo $index; ?></td>
                             <td>
                                 
-                                    <?php echo $thiet_bi['id']; ?>
+                                    <?php echo $thiet_bi['ma_thiet_bi']; ?>
                                 
                             </td>
                             <td><a target="_blank" href="<?php echo base_url('index.php/search/detail/'. $thiet_bi['id']); ?>"><?php echo $thiet_bi['ten']; ?></a></td>
@@ -89,7 +89,7 @@
                             <td><?php echo $thiet_bi['khu_nha']; ?></td>
                             <td>
                                 <?php 
-                                    if ($thiet_bi['trang_thai'] === 0){
+                                    if (($thiet_bi['trang_thai'] !== null) && ($thiet_bi['trang_thai'] == 0)){
                                         echo 'Chưa thanh lý';
                                     }else if ($thiet_bi['trang_thai'] == 1){
                                         echo 'Đã thanh lý';
