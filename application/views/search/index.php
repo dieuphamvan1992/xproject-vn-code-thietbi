@@ -12,7 +12,8 @@
                             <div class="control-group">
                                 <label class="control-label fix-width">Mã thiết bị</label>
                                 <div class="controls fix-margin">
-                                    <input type="text" class="fix-height" name="ma" onkeypress="onlyNumber(event)">
+                                    <input type="text" class="fix-height" name="ma" onkeypress="onlyNumber(event)"
+                                    value="<?php if (isset($old['id'])) echo $old['id']; ?>" />
                                 </div> 
                             </div>  
                         </div> 
@@ -182,7 +183,7 @@
                     ?>
                         <tr>
                             <td><?php echo $index; ?></td>
-                            <td><?php echo $thiet_bi['id']; ?></td>
+                            <td><?php echo $thiet_bi['ma_thiet_bi']; ?></td>
                             <td>
                                 <a target="_blank" href="<?php echo base_url('index.php/search/detail/' . $thiet_bi['id']); ?>">
                                     <?php echo $thiet_bi['ten']; ?>

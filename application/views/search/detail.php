@@ -10,7 +10,7 @@
         <table width="100%">
             <tr>
                 <td width="140px">Mã thiết bị</td>
-                <td><input type="text" value="<?php echo $thiet_bi['id']; ?>" class="uneditable-input" /></td>
+                <td><input type="text" value="<?php echo $thiet_bi['ma_thiet_bi']; ?>" class="uneditable-input" /></td>
                 <td width="140px">Tên thiết bị</td>
                 <td ><input type="text" value="<?php echo $thiet_bi['ten'] ?>" class="uneditable-input"/></td>
             </tr>

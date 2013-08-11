@@ -281,6 +281,14 @@
             $('#them_thiet_bi').modal('show');
        });
        $('#them').click(function(){
+            var ten_t = $('#ten_moi').val();
+            var loai_o = $("#loai").val();
+            var loai_n = $('#loai_moi').val();
+            
+            if (($.trim(ten_t) == "") || ((loai_o == "")&&($.trim(loai_n) == ""))){
+                return;
+            }
+            
             $.post("<?php echo base_url('index.php/nhapthang/addTenThietBi'); ?>",
             {
                 csrf_test_name : $("input[name='csrf_test_name']").val(),
@@ -299,6 +307,7 @@
                         var loai = '<option value="'+obj.id_loai+'">'+$('#loai_moi').val()+'</option>';
                         $('#loai').append(loai);
                     }
+                    $("#s2id_ten").find("span").html($('#ten_moi').val());
                 }else{
                     alert("Data: " + data + "\nStatus: " + status);
                 }
@@ -306,6 +315,9 @@
        });
        $("#loai").click(function(){
             $("#loai_moi").val("");
+       });
+       $("#loai_moi").focus(function(){
+            $("#s2id_loai").find("span").html("");
        });
     });
 </script>
@@ -354,6 +366,12 @@
                         <input type="text" name="loai_moi" id="loai_moi" />
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label"><strong>Ảnh của thiết bị</strong></label>
+            <div class="controls">
+                <iframe width="400px" src="<?php echo base_url('index.php/upload/'); ?>"></iframe>
             </div>
         </div>
     </div>

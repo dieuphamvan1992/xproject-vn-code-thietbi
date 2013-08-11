@@ -9,6 +9,19 @@ function appendText(index){
     var kh = $("#kh").val();
     var dg = $("#dg").val();
     
+    /**
+     * Kiểm tra thiết bị nhập có thiếu thông tin số lượng hay không?
+     */
+    var test_sl = parseInt(sl);
+    if (!isNaN(test_sl)){
+        if (test_sl <= 0){
+            alert("Số lượng thiết bị phải lớn hơn 0");
+            return;
+        }
+    }else{
+        alert("Bạn hãy điền số lượng của thiết bị này");
+        return;
+    }
     var cp = cpld + " , " + cpvc + " , " + cpct;
     var txt =   '<tr id="' + index + '">'
                     + '<td data="' + ten + '">' + $("#ten option:selected").text() + '</td>'

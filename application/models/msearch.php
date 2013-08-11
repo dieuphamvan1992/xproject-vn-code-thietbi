@@ -78,8 +78,8 @@ class Msearch extends CI_Model{
         $this->db->join('dm_don_vi', 'dm_don_vi.id = thiet_bi_su_dung.id_don_vi_quan_ly', 'LEFT');
         $this->db->join('dm_khu_nha', 'dm_khu_nha.id = thiet_bi_su_dung.id_khu_nha', 'LEFT');
         
-        $this->db->select('thiet_bi_su_dung.id, thiet_bi_su_dung.ngay_su_dung, thiet_bi_su_dung.phong, 
-        dm_don_vi.ten as don_vi, dm_khu_nha.ten as khu_nha, dm_ten_thiet_bi.ten');
+        $this->db->select('thiet_bi_su_dung.ma_thiet_bi, thiet_bi_su_dung.ngay_su_dung, thiet_bi_su_dung.phong, 
+        dm_don_vi.ten as don_vi, dm_khu_nha.ten as khu_nha, dm_ten_thiet_bi.ten, thiet_bi_su_dung.id');
         $result = $this->db->get('thiet_bi_su_dung');
         
         return $result->result_array();
@@ -235,7 +235,7 @@ class Msearch extends CI_Model{
         $this->db->group_by('id_chi_tiet_xuat');
         $this->db->select('COUNT(thiet_bi_su_dung.id),dm_ten_thiet_bi.ten as ten, dm_ten_thiet_bi.id, 
             dm_don_vi.ten as don_vi, dm_loai_thiet_bi.ten as loai, id_chi_tiet_xuat, xuat.so_hoa_don, 
-            MAX(thiet_bi_su_dung.id), MIN(thiet_bi_su_dung.id)');
+            MAX(thiet_bi_su_dung.ma_thiet_bi), MIN(thiet_bi_su_dung.ma_thiet_bi)');
         
         $result = $this->db->get('thiet_bi_su_dung');
         // echo $this->db->last_query(); 
@@ -251,7 +251,8 @@ class Msearch extends CI_Model{
         $this->db->join('dm_khu_nha', 'dm_khu_nha.id = thiet_bi_su_dung.id_khu_nha', 'LEFT');
         
         $this->db->select('thiet_bi_su_dung.id, thiet_bi_su_dung.ngay_su_dung, thiet_bi_su_dung.phong, 
-        dm_don_vi.ten as don_vi, dm_khu_nha.ten as khu_nha, dm_ten_thiet_bi.ten, thiet_bi_su_dung.trang_thai');
+        dm_don_vi.ten as don_vi, dm_khu_nha.ten as khu_nha, dm_ten_thiet_bi.ten, thiet_bi_su_dung.trang_thai, 
+        thiet_bi_su_dung.ma_thiet_bi');
         $result = $this->db->get('thiet_bi_su_dung');
         
         return $result->result_array();
@@ -283,7 +284,7 @@ class Msearch extends CI_Model{
         
         $this->db->select('sd.id, ngay_su_dung, sd.trang_thai, phong, sd.mo_ta, 
         dm_ten_thiet_bi.ten, dm_loai_thiet_bi.ten as loai, dm_don_vi.ten as don_vi, 
-        dm_khu_nha.ten as khu_nha, tinh_trang, id_chi_tiet_xuat');
+        dm_khu_nha.ten as khu_nha, tinh_trang, id_chi_tiet_xuat, sd.ma_thiet_bi');
         
         $result = $this->db->get('thiet_bi_su_dung as sd');
         return $result->row_array();

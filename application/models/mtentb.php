@@ -38,5 +38,12 @@ class Mtentb extends CI_Model{
 		$row = $query->row();
 		return $row;
 	}
+    
+    public function getNewId(){
+        $this->db->select('MAX(id)');
+        $result = $this->db->get('dm_ten_thiet_bi');
+        
+        return $result->row_array();
+    }
 }
 ?>
