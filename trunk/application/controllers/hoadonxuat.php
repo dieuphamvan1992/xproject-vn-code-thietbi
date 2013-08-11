@@ -32,7 +32,7 @@ class Hoadonxuat extends Tb_controller {
         $temp['today'] = date("Y-m-d");
 
 
-        
+
         $this->load->view("thietbi/layout", $temp);
     }
 

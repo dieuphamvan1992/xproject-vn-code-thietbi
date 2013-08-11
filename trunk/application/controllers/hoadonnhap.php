@@ -26,12 +26,12 @@ class Hoadonnhap extends Tb_controller {
 		$temp['template'] = 'hoadonnhap/create';
 
 
-		$temp['today'] = date("Y-m-d");
+		$temp['today'] = date("d-m-Y");
 		if ($this->session->userdata('nhap')) {
 			$cart = $this->session->userdata('nhap');
 			$temp['data']['nhap'] = $cart;
 		}
-		$this->load->view("layout", $temp);
+		$this->load->view("thietbi/layout", $temp);
 
 
 
@@ -46,7 +46,7 @@ class Hoadonnhap extends Tb_controller {
 		$temp['data']['list_nhacungcap'] = $this->Mnhacungcap->_getAllData();
 		$temp['data']['list_loaithietbi'] = $this->Mloaithietbi->_getAllData();
 		$temp['data']['list_tenthietbi'] = $this->Mtenthietbi->_getAllData();
-
+$temp['today'] = date("d-m-Y");
 
 		$temp['title'] = "Hoá đơn nhập";
 		$temp['template'] = 'hoadonnhap/create';
