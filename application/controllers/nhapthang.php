@@ -237,10 +237,10 @@ class NhapThang extends Tb_controller{
         if (!isset($_POST['new_ten'])){
             redirect('nhapthang/');
         }else{
-            $ten = $this->input->post('ten_thiet_bi');
-            $don_vi_tinh = $this->input->post('don_vi_tinh');
+            $ten = changeString($this->input->post('ten_thiet_bi'));
+            $don_vi_tinh = changeString($this->input->post('don_vi_tinh'));
             $loai = $this->input->post('loai');
-            $loai_moi = $this->input->post('loai_moi');
+            $loai_moi = changeString($this->input->post('loai_moi'));
             
             $this->load->model('Mtentb');
             $this->load->model('Mloaitb');
