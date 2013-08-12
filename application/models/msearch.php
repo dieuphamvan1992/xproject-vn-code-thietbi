@@ -25,6 +25,9 @@ class Msearch extends CI_Model{
         if (isset($data['id']) && ($data['id'] !== '')){
             $this->db->where('thiet_bi_su_dung.id', $data['id']);
         }
+        if (isset($data['ma_thiet_bi']) && ($data['ma_thiet_bi'] !== '')){
+            $this->db->where('thiet_bi_su_dung.ma_thiet_bi', $data['ma_thiet_bi']);
+        }
         if (isset($data['id_chi_tiet_xuat']) && ($data['id_chi_tiet_xuat'] !== '')){
             $this->db->where('id_chi_tiet_xuat', $data['id_chi_tiet_xuat']);
         }
