@@ -26,7 +26,7 @@ class Search extends Tb_controller{
         $data['data']['list_loai_thiet_bi'] = $loai_thiet_bi;
         
         if (isset($_POST['submit'])){
-            $data_form['id'] = $this->change_string($this->input->post('ma', TRUE));
+            $data_form['ma_thiet_bi'] = $this->change_string($this->input->post('ma', TRUE));
             $data_form['trang_thai'] = $this->input->post('tt', TRUE);
             $data_form['id_ten_thiet_bi'] = $this->input->post('ten', TRUE);
             $data_form['id_loai_thiet_bi'] = $this->input->post('loai_thiet_bi');
@@ -113,18 +113,22 @@ class Search extends Tb_controller{
         $data['title'] = 'Chi tiết thiết bị';
         $data['template'] = 'search/detail';
         $data['data'] = array();
-        
+        $this->load->helper('string');
         if (isset($_POST['submit'])){
             $trang_thai = $this->input->post('trang_thai', TRUE);
             $mo_ta = $this->input->post('mo_ta', TRUE);
             $id = (int)$this->input->post('id', TRUE);
             $phong = $this->input->post('phong', TRUE);
             
+            if ($trang_thai != 1){
+                $trang_thai = 0;     // Trạng thái mặc định của thiết bị là chưa thanh lý
+            }
+            
             $temp = array(
                 'id' => $id,
                 'trang_thai' => $trang_thai,
-                'phong' => $phong,
-                'mo_ta' => $mo_ta,
+                'phong' => changeString($phong),
+                'mo_ta' => changeString($mo_ta),
             );
             $result = $this->Msearch->updateThietBi($temp);
             if ($result == false){

@@ -7,6 +7,7 @@ class NhapThang extends Tb_controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('Mnhapthang');
+        $this->load->helper('string');
     }
     
     public function index(){
@@ -31,11 +32,11 @@ class NhapThang extends Tb_controller{
         }else{
             $temp1 = array();
             $temp1['id_nha_cung_cap'] = $this->input->post('nha_cung_cap', true);
-            $temp1['so_hoa_don'] = $this->input->post('so_hd', true);
+            $temp1['so_hoa_don'] = changeString($this->input->post('so_hd', true));
             $id_nhap = $this->addNhap($temp1);
             
             $temp2 = array();
-            $temp2['so_hoa_don'] = $this->input->post('so_hd', true);
+            $temp2['so_hoa_don'] = changeString($this->input->post('so_hd', true));
             $id_xuat = $this->addXuat($temp2);
             
             $temp3 = array();
@@ -63,6 +64,11 @@ class NhapThang extends Tb_controller{
             }
             
             $ds = json_decode($_POST['thietbi'], true);
+            if (!$this->validateInput(array('so_hoa_don' => $temp1['so_hoa_don'], 'ds' => $ds))){
+                show_error("Dữ liệu đầu vào không hợp lệ");
+                return;
+            }
+            
             foreach  ($ds as $item){
                 $temp3['id_ten_thiet_bi'] = $item['ten'];
                 $temp3['id_quoc_gia'] = $item['qg'];
@@ -277,5 +283,19 @@ class NhapThang extends Tb_controller{
             }
             echo '{"id_ten" : '.$id_ten_thiet_bi.', "id_loai" : '.$id_loai_thiet_bi.'}';
         }
+    }
+    
+    private function validateInput($data){
+        if (isset($data['so_hoa_don'])){
+            if ($data['so_hoa_don'] == "") return false;
+            if (is_numeric($data['so_hoa_don']) == false) return false;
+        }
+        
+        if (isset($data['ds'])){
+            if ($data['ds'] == null) return false;
+            if (count($data['ds']) == 0) return false;
+        }
+        
+        return true;
     }
 }
