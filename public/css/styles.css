@@ -29,6 +29,7 @@ h3{
 .top-menu{
 	position:fixed;
 	top:0;
+	z-index:9999;
 	right:3%;
 	min-width:300px;
 	width:80%;
@@ -238,5 +239,43 @@ ul.menu-list li.list-item:hover .dropdown-menu{
 select.fix-height{
 	height:24px;
 	padding-right:10px;
+}
+.box-show{
+	border:1px solid #999;
+	line-height:35px;
+	border-radius:5px;
+	background: #d9edf7; /* Old browsers */
+	margin-bottom:5px;
+	font-size:13pt;
+	color:#3a87ad;
+}
+.box-hide{
+	border:1px solid #999;
+	line-height:35px;
+	height:35px;
+	border-radius:5px;
+	background: #fafafa; /* Old browsers */
+	color:#999;
+	font-size:13pt;
+}
+.box-hide:hover{
+	background: #d9edf7; 
+	cursor:pointer;
+}
+.box-show-icon{
+	padding:10px;
+	padding-right:5px;
+	height:100%;
+	
+}
+.box-show-content{
+	background:#fff;
+	color:#333;
+	width:99%;
+	padding:0.5%;
+	height:auto;
+	border-top:1px solid #999;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
 }
 
