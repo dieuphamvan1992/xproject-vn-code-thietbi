@@ -50,7 +50,7 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '';
+$db['default']['password'] = 'vertrigo';
 $db['default']['database'] = 'thietbi';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
@@ -65,18 +65,18 @@ $db['default']['autoinit'] = TRUE;
 $db['default']['stricton'] = FALSE;
 
 // Database thứ 2 đặt trên là staff
-$db['dv']['hostname'] = "localhost";
-$db['dv']['username'] = "root";
-$db['dv']['password'] = "vertrigo";
-$db['dv']['database'] = "qlcb150413";
-$db['dv']['dbdriver'] = "mysql";
-$db['dv']['dbprefix'] = "";
+$db['staff']['hostname'] = "localhost";
+$db['staff']['username'] = "root";
+$db['staff']['password'] = "123456";
+$db['staff']['database'] = "hutstaff";
+$db['staff']['dbdriver'] = "mysql";
+$db['staff']['dbprefix'] = "";
 //$db['dv']['pconnect'] = TRUE;
-$db['dv']['db_debug'] = TRUE;
-$db['dv']['cache_on'] = FALSE;
-$db['dv']['cachedir'] = "";
-$db['dv']['char_set'] = "utf8";
-$db['dv']['dbcollat'] = "utf8_general_ci";
-$db['dv']['pconnect'] = FALSE;
+$db['staff']['db_debug'] = TRUE;
+$db['staff']['cache_on'] = FALSE;
+$db['staff']['cachedir'] = "";
+$db['staff']['char_set'] = "utf8";
+$db['staff']['dbcollat'] = "utf8_general_ci";
+$db['staff']['pconnect'] = FALSE;
 /* End of file database.php */
 /* Location: ./application/config/database.php */
