@@ -1,27 +1,29 @@
 <?php echo form_open(''); ?>
-<h1>Tạo hoá đơn xuất</h1>
-<h2>Chọn hoá đơn nhập từ danh sách bên dưới </h2>
+<h2> Quản lý hoá đơn nhập </h2>
 <!--Bảng-->
 <div class="table-box">
     <table class="table table-bordered">
         <tr>
-            <th><input type="checkbox"> </th>
+            <th>STT </th>
             <th>Mã hoá đơn</th>
             <th>Ngày tạo</th>
-            <th>Nguồn vốn</th>
+            <th>Mô tả</th>
             <th>Cán bộ tạo</th>
             <th>Cán bộ duyệt</th>
             <th>Trạng thái</th>
-            <th></th>
+            <th colspan="2"></th>
         </tr>
 
         <?php
-        foreach ($list_hoadonxuat as $item) {
+        $stt = 0;
+        foreach ($list_hoadonnhap as $item) {
+            $stt ++;
             echo "<tr>";
-            echo '<td><input type="checkbox"> </td>';
+
+            echo "<td>$stt </td>";
             echo "<td> " . $item['so_hoa_don'] . " </td>";
-            echo "<td> " . $item['ngay_thuc_hien'] . " </td>";
-            echo "<td> " . $item['nguonvon'] . " </td>";
+            echo "<td> " . convertDate($item['ngay_thuc_hien']) . " </td>";
+            echo "<td> " . $item['mo_ta'] . " </td>";
             echo "<td> " . " " . " </td>";
             echo "<td> " . " " . " </td>";
             if ($item['trang_thai'] == 0)
@@ -29,7 +31,7 @@
         else
              if ($item['trang_thai'] == 1)
                 echo "<td> Đã duyệt </td>";
-            $linkEdit = site_url("quanlyhoadonxuat/edit/".$item['id']);
+            $linkEdit = site_url("hoadon/quanlynhap/edit/".$item['id']);
             echo "<td><a href='$linkEdit'> Sửa</a>  </td>";
             echo "<td> Xoá </td>";
 
