@@ -1,18 +1,18 @@
  <script>
-  $(function() {
+ $(function() {
     $( "#ngayThucHien" ).datepicker({
         dateFormat: 'dd-mm-yy'
     });
-  });
-  </script>
-<script>
-$(document).ready(function() {
+});
+ </script>
+ <script>
+ $(document).ready(function() {
 
     $("#loaithietbi").select2();
     $("#tenthietbi").select2();
 
 });
-</script>
+ </script>
 <script type="text/javascript">// <![CDATA[
 $(document).ready(function() {
     $('#loaithietbi').change(function() {
@@ -71,8 +71,8 @@ $(document).ready(function() {
 </script>
 <h3> Tạo hoá đơn nhập </h3>
 <?php
-    echo form_open("hoadonnhap/luuThongTinChung");
-    $thongTinChung = $this->session->userdata("ThongTinChung");
+echo form_open("hoadonnhap/luuThongTinChung");
+
 ?>
 <div class="container-box">
     <!--Ba cột-->
@@ -80,70 +80,56 @@ $(document).ready(function() {
         <div class="box">
             <label for="">Số hóa hơn</label>
             <div class="input-box">
-                <input type="text" name="soHoaDon" value="<?php echo set_value('soHoaDon',$thongTinChung['soHoaDon']); ?>" />
+                <input type="text" name="soHoaDon" value="" />
             </div>
             <?php echo form_error('soHoaDon', '<div class="error">', '</div>'); ?>
         </div>
         <div class="box">
             <label for="" >Nhà cung cấp</label>
             <div class="input-box">
-                 <select name="nhaCungCap" id="">
+               <select name="nhaCungCap" id="">
                 <?php
-                        foreach ($list_nhacungcap as $item) {
-                            if ($item['id'] == $thongTinChung['nhaCungCap'])
-                               echo "<option value = " . $item['id'] . " selected>" . $item['ten'] . "</option>";
-                           else
-                            echo "<option value = " . $item['id'] . ">" . $item['ten'] . "</option>";
-                        }
-                        ?>
+                foreach ($list_nhacungcap as $item) {
+                    echo "<option value = " . $item['id'] . ">" . $item['ten'] . "</option>";
+            }
+            ?>
 
-           </select>
-            </div>
-
-            <?php echo form_error('nhaCungCap', '<div class="error">', '</div>'); ?>
-        </div>
-        <div class="box">
-            <label for="" >Ngày Thực hiện</label>
-            <div class="input-box">
-                <?php
-                if (empty ($thongTinChung['ngayThucHien']))
-                {
-                    $day = $today;
-                }
-                else
-                    $day = $thongTinChung['ngayThucHien'];
-                ?>
-                <input type="text" id = "ngayThucHien" name="ngayThucHien" value="<?php echo set_value('ngayThucHien',$day); ?>" />
-            </div>
-            <?php echo form_error('ngayThucHien', '<div class="error">', '</div>'); ?>
-        </div>
-        <div class="clearfix"></div>
+        </select>
     </div>
-    <div class="three-column">
-        <div class="box">
-            <label for="">Cán bộ thực hiện</label>
-            <div class="input-box">
-                <input type="text" name="canBoThucHien" readonly value="<?php echo $this->session->userdata('idcanbo'); ?>"/>
-            </div>
-            <?php echo form_error('canBoThucHien', '<div class="error">', '</div>'); ?>
-        </div>
-        <div class="box">
-            <label for="" >Mô tả</label>
-            <div class="input-box">
-                <input type="text" name="moTa" value="<?php echo set_value('moTa',$thongTinChung['moTa']); ?>" />
-            </div>
-            <?php echo form_error('moTa', '<div class="error">', '</div>'); ?>
-        </div>
 
-        <div class="clearfix"></div>
+    <?php echo form_error('nhaCungCap', '<div class="error">', '</div>'); ?>
+</div>
+<div class="box">
+    <label for="" >Ngày Thực hiện</label>
+    <div class="input-box">
+        <input type="text" id = "ngayThucHien" name="ngayThucHien" value="<?php echo $today ;?>" />
     </div>
-    <input type="submit" class="btn btn-success"value="Lưu" name="btnSave">
+    <?php echo form_error('ngayThucHien', '<div class="error">', '</div>'); ?>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="three-column">
+    <div class="box">
+        <label for="">Cán bộ thực hiện</label>
+        <div class="input-box">
+            <input type="text" name="canBoThucHien" readonly value="<?php echo $this->session->userdata('idcanbo'); ?>"/>
+        </div>
+        <?php echo form_error('canBoThucHien', '<div class="error">', '</div>'); ?>
+    </div>
+    <div class="box">
+        <label for="" >Mô tả</label>
+        <div class="input-box">
+            <input type="text" name="moTa" value="" />
+        </div>
+        <?php echo form_error('moTa', '<div class="error">', '</div>'); ?>
+    </div>
+
+    <div class="clearfix"></div>
+</div>
+<input type="submit" class="btn btn-success"value="Lưu" name="btnSave">
 <?php
-    echo form_close();
+echo form_close();
 ?>
-    <!--<div class="sub-box">
-
-</div>-->
 <?php echo form_open('hoadonnhap/taoHoaDon'); ?>
 <div class="button-box">
 
@@ -195,85 +181,8 @@ $(document).ready(function() {
 </div>
 
 <?php
-if (isset($edit)) { //nếu đang sửa thông tin thiết bị
-    echo form_open("hoadonnhap/doEdit/" . $id_edit);
 
-
-    ?>
-    <input type="hidden" name="thiet_bi_id" value="<?php echo $edit[0]; ?>" >
-
-    <div class="container-box">
-        <div class="box-title">
-            <button class="btn btn-success">Thêm thiết bị xuất</button>
-        </div>
-        <!--Ba cột-->
-        <div class="three-column">
-
-            <div class="box">
-                <label for="" >Tên thiết bị</label>
-
-                <select name="ten_thiet_bi" id="tenthietbi">
-                        <option value=""></option>
-                        <?php
-                        foreach ($list_tenthietbi as $item) {
-                            if ($edit[0] == $item['id'])
-                        echo "<option value = " . $item['id'] . " selected>" . $item['ten'] . "</option>";
-                            else
-                            echo "<option value = " . $item['id'] . ">" . $item['ten'] . "</option>";
-                        }
-                        ?>
-                    </select>
-            </div>
-
-            <div class="box">
-                <label for="" >Số lượng </label>
-                <div class="input-box">
-                    <input type="text" name="so_luong" readonly value="<?php echo $edit[2]; ?>" >
-
-                </div>
-            </div>
-
-
-            <div class="clearfix"></div>
-        </div>
-        <!--Ba cột-->
-        <div class="three-column">
-
-            <div class="box">
-                <label for="" >Đơn giá</label>
-                <div class="input-box">
-                    <?php
-                    ?>
-                    <input type="text" name="don_gia" <?php
-                    if (isset($edit)) {
-                        echo "value = '" . $edit[3] . "'";
-                    }
-                    ?> />
-                </div>
-            </div>
-            <div class="box">
-                <label for="" >Thời gian bảo hành</label>
-                <div class="input-box">
-                    <input type="text" name="thoi_gian_bao_hanh" <?php
-                    if (isset($edit)) {
-                        echo "value = '" . $edit[5] . "'";
-                    }
-                    ?> />
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-
-
-            <div class="clearfix"></div>
-            <input type="submit" name ="btnUpdateThietBiXuat" class="btn btn-success">
-
-        </div>
-    </div>
-
-    <?php
-} else { //nếu là thêm mới thiết bị vào hoá đơn
-    echo form_open("hoadonnhap/doAdd");
+    echo form_open("hoadonnhap2/doAdd");
     ?>
 
 
@@ -352,13 +261,10 @@ if (isset($edit)) { //nếu đang sửa thông tin thiết bị
 
             <div class="clearfix"></div>
         </div>
-            <input type="submit" name ="btnThemThietBiNhap" class="btn btn-success">
+            <input type="submit" name ="btnThemThietBiNhap" id = "btnThemThietBiNhap" value ="Thêm thiết bị" class="btn btn-success">
 
         </div>
     </div>
-    <?php
-}
-?>
 
 
 
