@@ -20,9 +20,10 @@
                            <div class="dropdown">
                               <!-- Link or button to toggle dropdown -->
                               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <li><a tabindex="-1" href="<?php echo site_url('hoadonnhap') ?>">Tạo hoá đơn nhập</a></li>
-                                <li><a tabindex="-1" href="<?php echo site_url('hoadonxuat') ?>">Tạo hoá đơn xuất</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('hoadon/nhap') ?>">Tạo hoá đơn nhập</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('hoadon/xuat') ?>">Tạo hoá đơn xuất</a></li>
                                 <li><a tabindex="-1" href="<?php echo site_url('nhapthang') ?>">Nhập thẳng</a></li>
+                                <li><a tabindex="-1" href="<?php echo site_url('hoadon/quanlynhap') ?>">Quản lý hoá đơn nhập</a></li>
                                 <!--<li class="divider"></li>
                                 <li><a tabindex="-1" href="#">Separated link</a></li>-->
                               </ul>
