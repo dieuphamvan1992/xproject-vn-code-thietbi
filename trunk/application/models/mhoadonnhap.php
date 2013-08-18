@@ -35,6 +35,16 @@ class Mhoadonnhap extends CI_Model {
         return $this->db->insert_id();
     }
 
+    public function _updateNhap($id, $so_hoa_don, $ngay_thuc_hien, $nha_cung_cap, $id_can_bo_thuc_hien, $mo_ta)
+    {
+        $this->db->set("so_hoa_don", $so_hoa_don);
+        $this->db->set("id_nha_cung_cap", $nha_cung_cap);
+        $this->db->set("id_can_bo_thuc_hien", $id_can_bo_thuc_hien);
+        $this->db->set("ngay_thuc_hien", $ngay_thuc_hien);
+        $this->db->set("mo_ta", $mo_ta);
+        $this->db->where("id", $id);
+        $this->db->update($this->table);
+    }
     public function _insetChiTietNhap($id_nhap,$thiet_bi,$don_gia,$so_luong,$bao_hanh) {
         $this->db->set("id_nhap", $id_nhap);
         $this->db->set("id_ten_thiet_bi", $thiet_bi);
@@ -43,6 +53,11 @@ class Mhoadonnhap extends CI_Model {
         $this->db->set("so_luong_con", $so_luong);
         $this->db->set("so_thang_bao_hanh", $bao_hanh);
         $this->db->insert("chi_tiet_nhap");
+    }
+    public function _deleteChiTietNhap($id_nhap)
+    {
+        $this->db->where('id_nhap', $id_nhap);
+        $this->db->delete('chi_tiet_nhap');
     }
 
 
@@ -76,6 +91,7 @@ class Mhoadonnhap extends CI_Model {
       //  $this->db->trans_start();
         $this->db->set("so_hoa_don", $soHoaDon);
         $this->db->set("phong", $phong);
+        $this->db->set("id_nguon_von", $nguonVon);
         $this->db->set("ngay_thuc_hien", $ngayThucHien);
         $this->db->insert("xuat");
        // $this->db->trans_complete();
