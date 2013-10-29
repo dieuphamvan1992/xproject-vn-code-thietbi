@@ -5,7 +5,7 @@
     <title><?php echo $title; ?></title>
 
     <link href='<?php echo base_url(); ?>public/css/abc.css' rel="stylesheet" type="text/css" />
-    
+
 
     <link href='<?php echo base_url(); ?>public/bootstrap/css/bootstrap.min.css' rel="stylesheet" type="text/css" />
     <link href='<?php echo base_url(); ?>public/bootstrap/css/bootstrap-responsive.min.css' rel="stylesheet" type="text/css" />
@@ -15,9 +15,11 @@
     <link href='<?php echo base_url(); ?>public/css/jquery-ui.css' rel="stylesheet" type="text/css" />
 
     <script src="<?php echo base_url(); ?>public/js/jquery.js" type="text/javascript"> </script>
+     <script src="<?php echo base_url(); ?>public/js/jquery-ui.js" type="text/javascript"> </script>
 
     <script src="<?php echo base_url(); ?>public/bootstrap/js/bootstrap.js" type="text/javascript"> </script>
     <script src="<?php echo base_url(); ?>public/select2/select2.min.js" type="text/javascript"> </script>
+    <script src="<?php echo base_url(); ?>public/js/jquery.number.min.js" type="text/javascript"> </script>
 </head>
 
 <body>

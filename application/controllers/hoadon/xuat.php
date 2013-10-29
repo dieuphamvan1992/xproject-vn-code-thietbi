@@ -8,6 +8,11 @@ class Xuat extends Tb_controller {
 
 	public function __construct() {
 		parent::__construct();
+		if (($this->role < 0) || ($this->role > 3))
+		{
+			redirect("/");
+			exit;
+		}
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$temp = array();
@@ -77,7 +82,7 @@ class Xuat extends Tb_controller {
 				$chi_phi_van_chuyen = $van_chuyens[$key];
 				$chi_phi_chay_thu = $chay_thus[$key];
 				$so_luong_con = $so_luong_cons[$key];
-				echo $so_luong_con;
+				//echo $so_luong_con;
 				if (($so_luong_con >= $so_luong) && ($so_luong > 0))
 				{
 				 $this->Mhoadonxuat->inserChiTietXuat($id_xuat, $id_chi_tiet_nhap, $id_thiet_bi, $don_gia, $so_luong, $chi_phi_lap_dat, $chi_phi_chay_thu, $chi_phi_van_chuyen);

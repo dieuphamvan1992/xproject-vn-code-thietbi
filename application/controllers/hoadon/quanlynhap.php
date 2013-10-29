@@ -8,6 +8,11 @@ class Quanlynhap extends Tb_controller {
 
 	public function __construct() {
 		parent::__construct();
+		if (($this->role < 0) || ($this->role > 3))
+		{
+			redirect("/");
+			exit;
+		}
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->Model("Mnhacungcap");
@@ -58,6 +63,7 @@ class Quanlynhap extends Tb_controller {
 		$thongTinChungNhap['ngayThucHien'] = convertDate($ttchung->ngay_thuc_hien);
 		$thongTinChungNhap['nhaCungCap'] = $ttchung->id_nha_cung_cap;
 		$thongTinChungNhap['canBoThucHien'] = $ttchung->id_can_bo_thuc_hien;
+		$thongTinChungNhap['tenCanBoThucHien'] = $ttchung->username;
 		$thongTinChungNhap['moTa'] = $ttchung->mo_ta;
 
 		$this->temp['data']['nhaps'] = $this->session->userdata('nhaps');
@@ -68,5 +74,21 @@ class Quanlynhap extends Tb_controller {
 		$this->load->view("thietbi/layout", $this->temp);
 		//var_dump($this->temp['data']['thongTinchung']);
 
+	}
+	public function duyet($id)
+	{
+		$this->load->Model("Mhoadon");
+		$ttchung = $this->Mhoadon->getHoaDonNhapX($id);
+		$idcanbo = $this->session->userdata('idcanbo');
+		if ($idcanbo == $ttchung->id_can_bo_thuc_hien)
+		{
+			$this->session->set_flashdata('error', 'Không được duyệt hoá đơn do cán bộ tự tạo!');
+			redirect("hoadon/quanlynhap/");
+			exit;
+		}
+		$this->Mhoadon->duyetHoaDonNhap($id,$idcanbo);
+		$this->session->set_flashdata('success', 'Đã duyệt hoá đơn thành công!');
+		redirect("hoadon/quanlynhap/");
+		exit;
 	}
 }

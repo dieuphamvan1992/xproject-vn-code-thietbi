@@ -40,7 +40,7 @@
                 <td>
                     <?php
                          $trangthai = array(
-                            '' => 'Không xác định',
+                            '' => '',
                             0 => 'Chưa thanh lý',
                             1 => 'Đã thanh lý',
                          );

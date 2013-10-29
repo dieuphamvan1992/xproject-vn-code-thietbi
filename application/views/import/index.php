@@ -58,7 +58,7 @@
        		<h4 align="center">Ghi chú</h4>
             <p>Hãy chắc chắn rằng nội dung của file excel bạn đưa vào là chính xác.Bạn có thể tải mẫu Excel tại đây</p>
             <p align="center">
-            <a href=""><button type="button" class="btn btn-small btn-warning"><i class="icon-arrow-down icon-white"></i>&nbsp;Tải về</button></a>
+            <a href="../import/import.xls"><button type="button" class="btn btn-small btn-warning"><i class="icon-arrow-down icon-white"></i>&nbsp;Tải về</button></a>
             </p>
        </div>
     </div>

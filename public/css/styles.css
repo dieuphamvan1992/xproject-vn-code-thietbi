@@ -278,4 +278,8 @@ select.fix-height{
 	border-bottom-left-radius:5px;
 	border-bottom-right-radius:5px;
 }
-
+.error{
+	color: #b94a48;
+	font-size: 9pt;
+	line-height: 17px;
+}

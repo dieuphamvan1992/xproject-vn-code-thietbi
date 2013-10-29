@@ -46,9 +46,9 @@
                     <label class="control-label fix-width">Đơn vị quản lý</label>
                     <div class="controls fix-margin">
                         <?php
-                            $don_vi = array('' => 'Tất cả các đơn vị quản lý');
+                            $don_vi = array();
                             foreach($list_don_vi as $item){
-                                $don_vi[$item['id']] = $item['ten'];
+                                $don_vi[$item['ma_dv']] = $item['dv'];
                             }
                             echo form_dropdown("don_vi", $don_vi, null, ' chosen=""');
                         ?>

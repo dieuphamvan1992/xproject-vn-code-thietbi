@@ -105,8 +105,23 @@ class mimport extends CI_Model {
         return $this->getId("ten", "dm_nha_cung_cap", $ten);
     }
     
+//    public function getIdDonVi($ten) {
+//        return $this->getId("ten", "dm_don_vi", $ten);
+//    }
+    
     public function getIdDonVi($ten) {
-        return $this->getId("ten", "dm_don_vi", $ten);
+        $this->canbo = $this->load->database('staff',TRUE); 
+        $this->canbo->select("ma_dv");
+        $this->canbo->where("dv", $ten);
+        $this->canbo->limit(1, 0);
+        $query = $this->canbo->get("dm_dv");
+        $row = $query->row(); 
+        if($row) {
+            $id = $row->ma_dv; 
+        } else {
+            $id = -1;
+        }          
+        return $id;
     }
     
     public function getIdKhuNha($ten) {
@@ -187,6 +202,13 @@ class mimport extends CI_Model {
         return $this->insertTen("qg", "dm_quoc_gia", $ten);
     }
     // </editor-fold>
+    
+    public function getAllLog() {
+        $this->db->select('id, thoi_gian, id_nhap, id_chi_tiet_nhap, id_xuat, id_chi_tiet_xuat, id_nha_cung_cap, id_khu_nha, id_nguon_von, id_loai_thiet_bi, id_ten_thiet_bi, id_quoc_gia, total, total_fail, tinh_trang, file, user_id, username');
+        $result = $this->db->get('log_import');
+        
+        return $result->result_array();
+    }
 }
 
 ?>

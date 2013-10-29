@@ -29,7 +29,10 @@
             <td>
                 <select id="don_vi_nhan" chosen="">
                     <?php
-                        list_option($ds_don_vi);
+                       // list_option($ds_don_vi);
+                        foreach ($ds_don_vi as $item){
+                          echo '<option value="' . $item['ma_dv'] . '">' . $item['dv'] . '</option>';
+                      }
                     ?>
                 </select>
             </td>
