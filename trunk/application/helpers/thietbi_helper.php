@@ -18,5 +18,15 @@ if ( ! function_exists('convertDate2'))
 	}
 }
 
+if ( ! function_exists('convertPrice'))
+{
+	function convertPrice($price)
+	{
+		$price =  preg_replace('/\D/', '', $price);
+		return $price;
+	}
+}
+
+
 
 

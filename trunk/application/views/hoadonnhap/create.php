@@ -1,3 +1,4 @@
+
  <script>
   $(function() {
     $( "#ngayThucHien" ).datepicker({
@@ -69,6 +70,23 @@ $(document).ready(function() {
 });
 // ]]>
 </script>
+<?php
+    if ($this->session->flashdata('error'))
+    {
+        ?>
+        <div class="alert alert-error"><?php echo $this->session->flashdata('error'); ?></div>
+        <?php
+    }
+    else
+        if ($this->session->flashdata('success'))
+    {
+        ?>
+        <div class="alert alert-success"><?php echo $this->session->flashdata('success'); ?></div>
+        <?php
+    }
+?>
+
+?>
 <h3> Tạo hoá đơn nhập </h3>
 <?php
     echo form_open("hoadonnhap/luuThongTinChung");
@@ -244,7 +262,7 @@ if (isset($edit)) { //nếu đang sửa thông tin thiết bị
                 <div class="input-box">
                     <?php
                     ?>
-                    <input type="text" name="don_gia" <?php
+                    <input type="text" id = "dongia" name="don_gia" <?php
                     if (isset($edit)) {
                         echo "value = '" . $edit[3] . "'";
                     }

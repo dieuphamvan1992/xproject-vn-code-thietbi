@@ -1,10 +1,15 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-class Bangdm extends CI_Controller {
+require_once(APPPATH . 'controllers/tb_controller.php');
+class Bangdm extends Tb_controller {
 
 	public function __construct()
 	{
 		parent::__construct();
+		if (($this->role < 0) || ($this->role > 3))
+		{
+			redirect("/");
+			exit;
+		}
 		$this->load->helper('url');
 	}
 

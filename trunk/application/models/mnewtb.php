@@ -30,12 +30,16 @@ class Mnewtb extends CI_Model{
     
     public function newMaThietBi($id_don_vi){
         $id_don_vi = (int) $id_don_vi;
+        $temp = array();
         $temp = $this->getMaxMa($id_don_vi);
         
         $max_ma = "";
-        if ($temp['ma_thiet_bi'] !== null){
-            $ar = explode(".", $temp['ma_thiet_bi']);
-            $max_ma = $ar[1];
+        
+        if (count($temp) != 0){
+            if ($temp['ma_thiet_bi'] !== null){
+                $ar = explode(".", $temp['ma_thiet_bi']);
+                $max_ma = $ar[1];
+            }
         }
         
         if ($max_ma === ""){
@@ -57,6 +61,6 @@ class Mnewtb extends CI_Model{
             $temp = $temp . "0";
         }
         $str = substr($id_don_vi, 0, 6);
-        return $temp.$str;
+        return $str.$temp;
     }
 }

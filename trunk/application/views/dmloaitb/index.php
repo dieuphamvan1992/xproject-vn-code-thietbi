@@ -125,7 +125,7 @@
 									
 								</td>
                                 <td>
-                                	<button type="button" class="btn btn-small" onclick="onclick="delete_dmloaitb('<?php echo $id; ?>')"><i class="icon-trash"></i>&nbsp;<strong>Xóa</strong></button>    
+                                	<button type="button" class="btn btn-small" onclick="delete_dmloaitb('<?php echo $id; ?>')"><i class="icon-trash"></i>&nbsp;<strong>Xóa</strong></button>    
                                 </td>
 						<?php
 								echo "</tr>";

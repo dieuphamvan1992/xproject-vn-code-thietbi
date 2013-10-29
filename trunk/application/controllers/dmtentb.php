@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
-class Dmtentb extends CI_Controller {
+require_once(APPPATH . 'controllers/tb_controller.php');
+class Dmtentb extends Tb_controller {
 
 	public function __construct()
 	{

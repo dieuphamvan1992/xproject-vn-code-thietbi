@@ -8,6 +8,11 @@ class Nhap extends Tb_controller {
 
 	public function __construct() {
 		parent::__construct();
+		if (($this->role < 0) || ($this->role > 3))
+		{
+			redirect("/");
+			exit;
+		}
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->Model("Mnhacungcap");
@@ -67,6 +72,7 @@ class Nhap extends Tb_controller {
 				$ngayThucHien = $this->input->post('ngayThucHien');
 				$nhaCungCap = $this->input->post('nhaCungCap');
 				$canBoThucHien = $this->input->post('canBoThucHien');
+				$tenCanBoThucHien = $this->input->post('tenCanBoThucHien');
 				$moTa = $this->input->post('moTa');
 
 
@@ -75,6 +81,7 @@ class Nhap extends Tb_controller {
 				$thongTinChungNhap['ngayThucHien'] = $ngayThucHien;
 				$thongTinChungNhap['nhaCungCap'] = $nhaCungCap;
 				$thongTinChungNhap['canBoThucHien'] = $canBoThucHien;
+				$thongTinChungNhap['tenCanBoThucHien'] = $tenCanBoThucHien;
 				$thongTinChungNhap['moTa'] = $moTa;
 
 				$this->session->set_userdata('thongTinChungNhap',$thongTinChungNhap);
@@ -127,7 +134,7 @@ class Nhap extends Tb_controller {
 			} else {
 				$idThietBi = $this->input->post('ten_thiet_bi');
 				$soLuong = $this->input->post('so_luong');
-				$donGia = $this->input->post('don_gia');
+				$donGia = convertPrice($this->input->post('don_gia'));
 				$thoiGianBaoHanh = $this->input->post('thoi_gian_bao_hanh');
 				$ten_thiet_bi = "";
 				if ($idThietBi) {
@@ -172,7 +179,7 @@ class Nhap extends Tb_controller {
 			$so_luongs = $this->input->post('so_luongs');
 			$don_gias = $this->input->post('don_gias');
 			$bao_hanhs = $this->input->post('bao_hanhs');
-
+			
 
 
 			foreach ($ten_thiet_bis as $key => $value) {
@@ -186,7 +193,9 @@ class Nhap extends Tb_controller {
 			}
 			$this->session->unset_userdata('thongTinChungNhap');
 			$this->session->unset_userdata('nhaps');
+			$this->session->set_flashdata('success', 'Đã tạo hoá đơn thành công!');
 			redirect('hoadon/nhap/create');
+			exit;
 		}
 	}
 
@@ -270,7 +279,7 @@ class Nhap extends Tb_controller {
 
 				$idThietBi = $this->input->post('ten_thiet_bi');
 				$soLuong = $this->input->post('so_luong');
-				$donGia = $this->input->post('don_gia');
+				$donGia = convertPrice($this->input->post('don_gia'));
 				$thoiGianBaoHanh = $this->input->post('thoi_gian_bao_hanh');
 				$ten_thiet_bi = "";
 				if ($idThietBi) {

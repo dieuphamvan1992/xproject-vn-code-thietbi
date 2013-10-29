@@ -14,9 +14,9 @@
                                 <div class="controls fix-margin">
                                     <input type="text" class="fix-height" name="ma" onkeypress="onlyNumber(event)"
                                     value="<?php if (isset($old['id'])) echo $old['id']; ?>" />
-                                </div> 
-                            </div>  
-                        </div> 
+                                </div>
+                            </div>
+                        </div>
                         <div class="span4">
                             <div class="control-group">
                                 <label class="control-label fix-width">Trạng thái</label>
@@ -28,24 +28,24 @@
                                     </select>
                                 </div>
                             </div>
-                        </div> 
-                   </div> 
+                        </div>
+                   </div>
                    <div class="row-fluid">
                         <div class="span12">
                             <div class="control-group">
                                 <label class="control-label fix-width">Đơn vị quản lý</label>
                                 <div class="controls fix-margin">
                                     <?php
-										$don_vi = array('' => 'Tất cả các đơn vị quản lý');
+										$don_vi = array();
 										foreach($list_don_vi as $item){
-											$don_vi[$item['id']] = $item['ten'];
+											$don_vi[$item['ma_dv']] = $item['dv'];
 										}
 										echo form_dropdown("don_vi", $don_vi, null, ' id="don_vi" chosen=""');
 									?>
                                 </div>
                             </div>
-                        </div>    
-                    </div> 
+                        </div>
+                    </div>
                     <div class="row-fluid">
                         <div class="span4">
                             <div class="control-group">
@@ -55,14 +55,14 @@
                                         <option value="" loai="first"></option>
                                         <?php
                                             foreach ($list_ten_thiet_bi as $item){
-                                                echo '<option value="'.$item['id'].'" loai="'.$item['id_loai_thiet_bi'] 
+                                                echo '<option value="'.$item['id'].'" loai="'.$item['id_loai_thiet_bi']
                                                 .'">' . $item['ten'] . '</option>';
                                             }
                                         ?>
-                                    </select>        
+                                    </select>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                         <div class="span4">
                             <div class="control-group">
                                 <label class="control-label fix-width">Loại thiết bị</label>
@@ -76,7 +76,7 @@
 									?>
                                 </div>
                             </div>
-                        </div>  
+                        </div>
                         <div class="span4">
                             <div class="span6">
                                 <div class="control-group">
@@ -93,7 +93,7 @@
                                         </select>
                                     </div>
                                 </div>
-                            </div>  
+                            </div>
                             <div class="span3">
                                 <div class="control-group">
                                     <label class="control-label" style="width:60px;">Đến năm</label>
@@ -108,7 +108,7 @@
                                         </select>
                                     </div>
                                </div>
-                            </div>   
+                            </div>
                         </div>
                     </div>
                     <div class="row-fluid">
@@ -119,7 +119,7 @@
                                     <input type="text" name="phong" class="fix-height" >
                                 </div>
                             </div>
-                        </div>   
+                        </div>
                          <div class="span4">
                             <div class="control-group">
                                 <label class="control-label fix-width">Khu nhà</label>
@@ -133,8 +133,8 @@
 									?>
                                 </div>
                             </div>
-                        </div> 
-                   </div>      
+                        </div>
+                   </div>
            </div>
            <div class="button-box">
                 <button class="btn btn-success" type="submit" name="submit">Tìm kiếm</button>
@@ -177,7 +177,7 @@
                 </thead>
                 <tbody>
                     <?php
-                        $index = 0; 
+                        $index = 0;
                         foreach($list_thiet_bi as $thiet_bi){
                             $index++;
                     ?>
@@ -204,7 +204,7 @@
                 echo '<div class="alert alert-warning">Dữ liệu tìm kiếm không tồn tại</div>';
             }
         ?>
-            </div>     
+            </div>
     <!-- Begin script -->
     <script type="text/javascript" src="<?php echo base_url('public/js/nhapthang.js'); ?>"></script>
     <script type="text/javascript" src="<?php echo base_url('public/js/search.js'); ?>"></script>
@@ -216,7 +216,7 @@
         $(document).ready(function(){
      	$('#loai').change(function(){
      		$('#ten option:gt(0)').remove();
-    
+
      		var loaithietbi_ID = $('#loai').val();
     		// alert("<?php echo site_url('ajax/getListThietBiByIDLoai/'); ?>/"+loaithietbi_ID);
     		$.ajax({
@@ -225,7 +225,7 @@
     			dataType: "json",
     			success: function(data)
     			{
-    
+
     				$.each(data,function(id,ten)
     				{
     					$('#ten').append($("<option></option>")
@@ -235,9 +235,9 @@
     			error: function(error){
     				console.log(error);
     			}
-    
+
     		});
-    
+
     	});
      });
     </script>

@@ -34,8 +34,9 @@ class Mnhapthang extends CI_Model{
     }
 
     public function getAllDonVi(){
-        $this->db->select('id, ten');
-        $result = $this->db->get('dm_don_vi');
+        $this->db->select('*');
+        $this->db->where('LENGTH(ma_dv) >= 4');
+        $result = $this->db->get('hutstaff.dm_dv');
 
         return $result->result_array();
     }

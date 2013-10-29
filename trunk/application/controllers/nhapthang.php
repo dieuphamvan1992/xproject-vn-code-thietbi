@@ -6,6 +6,11 @@ class NhapThang extends Tb_controller{
     
     public function __construct(){
         parent::__construct();
+        if (($this->role < 0) || ($this->role > 3))
+        {
+            redirect("/");
+            exit;
+        }
         $this->load->model('Mnhapthang');
         $this->load->helper('string');
     }
@@ -27,6 +32,7 @@ class NhapThang extends Tb_controller{
     }
     
     public function add(){
+        try{
         if (!isset($_POST['submit'])){
             redirect('nhapthang/');
         }else{
@@ -37,6 +43,14 @@ class NhapThang extends Tb_controller{
             
             $temp2 = array();
             $temp2['so_hoa_don'] = changeString($this->input->post('so_hd', true));
+            $temp2['id_don_vi_nhan'] = $this->input->post('don_vi_nhan', true);
+            $temp2['id_khu_nha'] = $this->input->post('khu_nha', true);
+            $temp2['id_nguon_von'] = $this->input->post('nguon_von', true);
+            if (isset($_POST['phong'])){
+                $temp2['phong'] = $this->input->post('phong', true);
+            }else{
+                $temp2['phong'] = "";
+            }
             $id_xuat = $this->addXuat($temp2);
             
             $temp3 = array();
@@ -44,15 +58,7 @@ class NhapThang extends Tb_controller{
             
             $temp4 = array();
             $temp4['id_xuat'] = $id_xuat;
-            $temp4['id_don_vi_nhan'] = $this->input->post('don_vi_nhan', true);
-            $temp4['id_khu_nha'] = $this->input->post('khu_nha', true);
-            $temp4['id_nguon_von'] = $this->input->post('nguon_von', true);
             $temp4['cho_muon'] = $this->input->post('cho_muon', true);
-            if (isset($_POST['phong'])){
-                $temp4['phong'] = $this->input->post('phong', true);
-            }else{
-                $temp4['phong'] = "";
-            }
             
             $temp5 = array();
             $temp5['id_don_vi_quan_ly'] = $this->input->post('don_vi_nhan', true);
@@ -94,6 +100,7 @@ class NhapThang extends Tb_controller{
                     $this->addThietBiSuDung($temp5);
                 }
             }
+            
             echo "Nhập dữ liệu thành công!";
             /**
              * Lưu dữ liệu để back up
@@ -102,9 +109,12 @@ class NhapThang extends Tb_controller{
             $id_user = 0;
             $this->addLog($id_nhap, $id_xuat, $id_user, date('Y-m-d'));
         }
+        }catch(Exception $ex){
+            echo 'Message: ' .$ex->getMessage();
+        }
     }
     
-    public function addNhap($temp){
+    protected function addNhap($temp){
         $data = array();
         $data['id_nha_cung_cap'] = $temp['id_nha_cung_cap'];
         $data['so_hoa_don'] = $temp['so_hoa_don'];
@@ -118,7 +128,7 @@ class NhapThang extends Tb_controller{
         return $result;
     }
     
-    public function addChiTietNhap($temp){
+    protected function addChiTietNhap($temp){
         $data = array();
         $data['id_nhap'] = $temp['id_nhap'];
         $data['id_ten_thiet_bi'] = $temp['id_ten_thiet_bi'];
@@ -134,9 +144,13 @@ class NhapThang extends Tb_controller{
         return $result;
     }
     
-    public function addXuat($temp){
+    protected function addXuat($temp){
         $data = array();
         $data['so_hoa_don'] = $temp['so_hoa_don'];
+        $data['id_don_vi_nhan'] = $temp['id_don_vi_nhan'];
+        $data['id_khu_nha'] = $temp['id_khu_nha'];
+        $data['id_nguon_von'] = $temp['id_nguon_von'];
+        $data['phong'] = $temp['phong'];
         $data['trang_thai'] = null;
         $data['ngay_thuc_hien'] = date('Y-m-d');
         $data['ngay_duyet'] = null;
@@ -147,13 +161,9 @@ class NhapThang extends Tb_controller{
         return $result;
     }
     
-    public function addChiTietXuat($temp){
+    protected function addChiTietXuat($temp){
         $data = array();
         $data['id_xuat'] = $temp['id_xuat'];
-        $data['id_don_vi_nhan'] = $temp['id_don_vi_nhan'];
-        $data['id_khu_nha'] = $temp['id_khu_nha'];
-        $data['id_nguon_von'] = $temp['id_nguon_von'];
-        $data['phong'] = $temp['phong'];
         $data['id_chi_tiet_nhap'] = $temp['id_chi_tiet_nhap'];
         $data['chi_phi_lap_dat'] = $temp['chi_phi_lap_dat'];
         $data['chi_phi_van_chuyen'] = $temp['chi_phi_van_chuyen'];
@@ -163,8 +173,6 @@ class NhapThang extends Tb_controller{
         $data['gia_tri_con'] = null;
         $data['tinh_trang'] = null;
         $data['so_luong'] = $temp['so_luong'];
-        $data['ngay_thuc_hien'] = date('Y-m-d');
-        $data['id_can_bo_thuc_hien'] = null;
         $data['cho_muon'] = $temp['cho_muon'];
         $data['trang_thai'] = null;
         
@@ -172,7 +180,7 @@ class NhapThang extends Tb_controller{
         return $result;
     }
     
-    public function addThietBiSuDung($temp){
+    protected function addThietBiSuDung($temp){
         
         $this->load->model('Mnewtb');
         
