@@ -219,7 +219,27 @@ function nhapThang(link_in, link_out){
     if ($("#cho_muon").is(':checked')){
         tt = 1;
     }
-
+/**
+ * Begin error processing
+ */
+    $.ajaxSetup({
+        error: function (request, err) {
+            if (request.status == 404) {
+                alert('Page not found');
+            } else if (request.status == 500) {
+                $('body').html(request.responseText);
+            } else if (err == 'parsererror') {
+                alert('Parse error');
+            } else if (err == 'timeout') {
+                alert('Timeout');
+            } else {
+                alert('Unhandled exception.\n' + request.responseText);
+            }
+        }
+    });
+/**
+ * End
+ */
     $.post(link_in,
     {
         csrf_test_name : $("input[name='csrf_test_name']").val(),
