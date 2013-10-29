@@ -16,7 +16,7 @@
     <table width="100%">
         <tr>
             <td><label>Số hóa đơn</label></td>
-            <td><input type="text" name="so_hd" id="so_hd" onkeypress="onlyInteger(event)"/></td>
+            <td><input type="text" name="so_hd" id="so_hd" onkeypress=""/></td>
             <td><label>Nhà cung cấp</label></td>
             <td>
                 <select name="nha_cung_cap" id="nha_cung_cap" chosen="">
